@@ -19,7 +19,7 @@ This software is aimed to help keep track of the home storage, get reports and a
 
   A *home* is a set of *storages*.
 
-  Home management contains tools to manage storages belonging to the home, and changing the other attributes of the home.
+  Home management contains tools to manage storages belonging to the home, adjusting the product limits for the home, and changing the other attributes of the home.
 
   Administrators can create new and delete existing homes.
 
