@@ -43,11 +43,11 @@ This software is aimed to help keep track of the home storage, get reports and a
   A home can have multiple normal users linked to it, and normal users can be linked to multiple homes.
 
 
-## Class diagram
-<img src="documentation/classdiagram.svg" alt="Class Diagram" width="400" />
+## Documentation
 
-## Database diagram
-<img src="documentation/database.svg" alt="Database Diagram" width="800" />
+* [User stories](documentation/user-stories.md)
+* <img src="documentation/classdiagram.svg" alt="Class Diagram" width="400" />
+* <img src="documentation/database.svg" alt="Database Diagram" width="800" />
 
 ## Heroku app
 <a href="https://guarded-reef-23220.herokuapp.com/">Home Storage at Heroku</a>
