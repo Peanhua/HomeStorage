@@ -6,14 +6,22 @@
   </head>
 
   <body>
-    <ul>
-      <li><a href="{{ url_for('homes_index') }}">List homes</a></li>
-      <li><a href="{{ url_for('homes_form')  }}">Add a new home</a></li>
-      <li><a href="{{ url_for('products_index') }}">List products</a></li>
-      <li><a href="{{ url_for('products_form')  }}">Add a new product</a></li>
-      <li><a href="{{ url_for('users_index') }}">List users</a></li>
-      <li><a href="{{ url_for('users_form')  }}">Add a new user</a></li>
-    </ul>
+    <div>
+      <a href="{{ url_for('users_index') }}">List users</a>
+      <a href="{{ url_for('users_form')  }}">Add a new user</a>
+    </div>
+    <div>
+      <a href="{{ url_for('products_index') }}">List products</a>
+      <a href="{{ url_for('products_form')  }}">Add a new product</a>
+    </div>
+    <div>
+      <a href="{{ url_for('homes_index') }}">List homes</a>
+      <a href="{{ url_for('homes_form')  }}">Add a new home</a>
+    </div>
+    <div>
+      <a href="{{ url_for('storages_index') }}">List storages</a>
+      <a href="{{ url_for('storages_form')  }}">Add a new storage</a>
+    </div>
     
     {% block body %}
     {% endblock %}

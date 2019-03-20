@@ -19,6 +19,9 @@ from application.homes    import views
 from application.products import models
 from application.products import views
 
+from application.storages import models
+from application.storages import views
+
 from application.users    import models
 from application.users    import views
 

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<table>
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+  </tr>
+  {% for storage in storages %}
+  <tr>
+    <td>{{ storage.id    }}</td>
+    <td>{{ storage.name  }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
