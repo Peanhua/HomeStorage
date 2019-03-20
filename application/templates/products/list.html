@@ -3,11 +3,16 @@
 {% block body %}
 <table>
   <tr>
+    <th>#</th>
     <th>Product</th>
   </tr>
   {% for product in products %}
   <tr>
-    <td>{{ product.name }}</td>
+    <form method="POST" action="{{ url_for('products_update', product_id=product.id) }}">
+      <td>{{ product.id }}</td>
+      <td><input type="text" name="name" value="{{ product.name }}" /></td>
+      <td><input type="submit" value="Update" /></td>
+    </form>
   </tr>
   {% endfor %}
 </table>
