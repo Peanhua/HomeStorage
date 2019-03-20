@@ -3,7 +3,7 @@ Keep track of home storage.
 
 Created for a course named Aineopintojen harjoitustyö: Tietokantasovellus kevät 2019.
 
-Every home has some food stored, whether it's half eaten bread and open can of milk, 3 tons of sugar (https://www.riemurasia.net/kuva/Sokerivarasto/69529), or something between. The home storage can also contain products such as medicine, tools, and so on. The items in home storage often have limited lifetime, they are constantly being used, and the stock is also constantly being replenished with new items. The larger the storage is, the harder it is to keep track of the current state of it; is something going bad soon, is there oversupply of some product, etc.
+Every home has some food stored, whether it's half eaten bread and open can of milk, [3 tons of sugar](https://www.riemurasia.net/kuva/Sokerivarasto/69529), or something between. The home storage can also contain items such as medicine, tools, and so on. The items in home storage often have limited lifetime, they are constantly being used, and the stock is also constantly being replenished with new items. The larger the storage is, the harder it is to keep track of the current state of it; is something going bad soon, is there oversupply of something, and so on.
 
 ## Features
 
