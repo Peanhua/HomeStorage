@@ -13,7 +13,13 @@ db = SQLAlchemy(app)
 
 from application import views
 
+from application.homes    import models
+from application.homes    import views
+
 from application.products import models
 from application.products import views
+
+from application.users    import models
+from application.users    import views
 
 db.create_all()

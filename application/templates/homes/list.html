@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<table>
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+  </tr>
+  {% for home in homes %}
+  <tr>
+    <td>{{ home.id    }}</td>
+    <td>{{ home.name  }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

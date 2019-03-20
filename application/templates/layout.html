@@ -7,8 +7,12 @@
 
   <body>
     <ul>
+      <li><a href="{{ url_for('homes_index') }}">List homes</a></li>
+      <li><a href="{{ url_for('homes_form')  }}">Add a new home</a></li>
       <li><a href="{{ url_for('products_index') }}">List products</a></li>
       <li><a href="{{ url_for('products_form')  }}">Add a new product</a></li>
+      <li><a href="{{ url_for('users_index') }}">List users</a></li>
+      <li><a href="{{ url_for('users_form')  }}">Add a new user</a></li>
     </ul>
     
     {% block body %}

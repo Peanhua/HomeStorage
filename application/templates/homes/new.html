@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('homes_create') }}">
+  <table>
+    <tr><td><label for="name">Name:</label></td><td><input type="text" name="name" /></td></tr>
+    <tr><td></td><td><input type="submit" value="Add new home" /></td></tr>
+  </table>
+</form>
+{% endblock %}
