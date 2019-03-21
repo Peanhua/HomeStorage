@@ -3,6 +3,7 @@
 * As an administrator, I can create and delete user accounts.
 * As an administrator, I can reset users password.
 * As an administrator, I can create new homes and assign users to them.
+* As a user, I can create new user accounts to my home.
 * As a user, I can create, delete, and edit storages belonging to my home.
 * As a user, I can add items to my home storages. The items are based on products anyone has added.
 * As a user, I can remove items from my home storages.

@@ -15,7 +15,7 @@ def users_form():
 
 @app.route("/users/", methods=["POST"])
 def users_create():
-    user = User(request.form.get("name"), request.form.get("login"), request.form.get("password"))
+    user = User(request.form.get("name"), request.form.get("email"), request.form.get("login"), request.form.get("password"))
 
     db.session().add(user)
     db.session().commit()

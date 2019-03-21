@@ -11,7 +11,7 @@ This software is aimed to help keep track of the home storage, get reports and a
 * Products
 
   A *product* is something that can be stored, it's an abstract representation. All the *products* are shared between all the *homes*.
-  An *item* is a physical instantation of a *product*, something that is actually present in real life. An *item* is always tied to a specific *storage*.
+  An *item* is a physical instantation of a *product*, something that is actually present in real life. An *item* is always located in a specific *storage*.
 
   Product management handles creating, updating, and deleting of *products*.
 
