@@ -46,8 +46,8 @@ This software is aimed to help keep track of the home storage, get reports and a
 ## Documentation
 
 * [User stories](documentation/user-stories.md)
-* <img src="documentation/classdiagram.svg" alt="Class Diagram" width="400" />
-* <img src="documentation/database.svg" alt="Database Diagram" width="800" />
+* Class diagram: <img src="documentation/classdiagram.svg" alt="Class Diagram" width="400" />
+* Database diagram: <img src="documentation/database.svg" alt="Database Diagram" width="600" />
 
 ## Heroku app
 <a href="https://guarded-reef-23220.herokuapp.com/">Home Storage at Heroku</a>
