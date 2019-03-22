@@ -17,6 +17,10 @@ def storages_form():
 @app.route("/storages/", methods=["POST"])
 def storages_create():
     form = StorageForm(request.form)
+
+    if not form.validate():
+        return render_template("storages/new.html", form = form)
+    
     storage = Storage(form.name.data)
 
     db.session().add(storage)

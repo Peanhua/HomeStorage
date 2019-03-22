@@ -17,6 +17,10 @@ def users_form():
 @app.route("/users/", methods=["POST"])
 def users_create():
     form = UserForm(request.form)
+
+    if not form.validate():
+        return render_template("users/new.html", form = form)
+    
     user = User(form.name.data,
                 form.email.data,
                 form.login.data,

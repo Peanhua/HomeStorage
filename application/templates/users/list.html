@@ -6,12 +6,14 @@
     <th>#</th>
     <th>User</th>
     <th>Login</th>
+    <th>Email</th>
   </tr>
   {% for user in users %}
   <tr>
     <td>{{ user.id    }}</td>
     <td>{{ user.name  }}</td>
     <td>{{ user.login }}</td>
+    <td>{{ user.email }}</td>
   </tr>
   {% endfor %}
 </table>

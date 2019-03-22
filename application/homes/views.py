@@ -17,6 +17,10 @@ def homes_form():
 @app.route("/homes/", methods=["POST"])
 def homes_create():
     form = HomeForm(request.form)
+
+    if not form.validate():
+        return render_template("homes/new.html", form = form)
+    
     home = Home(form.name.data)
 
     db.session().add(home)

@@ -17,6 +17,10 @@ def products_form():
 @app.route("/products/", methods=["POST"])
 def products_create():
     form = ProductForm(request.form)
+
+    if not form.validate():
+        return render_template("products/new.html", form = form)
+    
     product = Product(form.name.data)
 
     db.session().add(product)

@@ -3,7 +3,16 @@
 {% block body %}
 <form method="POST" action="{{ url_for('storages_create') }}">
   <table>
-    <tr><td>{{ form.name.label }}</td><td>{{ form.name }}</td></tr>
+    <tr>
+      <td>{{ form.name.label }}</td><td>{{ form.name }}</td>
+      <td>
+        <ul>
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
     <tr><td></td><td><input type="submit" value="Add new storage" /></td></tr>
   </table>
 </form>
