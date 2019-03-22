@@ -1,6 +1,7 @@
-from application import app, db
+from application                 import app, db
 from application.products.models import Product
-from flask import redirect, render_template, request, url_for
+from application.products.forms  import ProductForm
+from flask                       import redirect, render_template, request, url_for
 
 # List of products
 @app.route("/products", methods=["GET"])
@@ -11,11 +12,12 @@ def products_index():
 # Create new product
 @app.route("/products/new/")
 def products_form():
-    return render_template("products/new.html")
+    return render_template("products/new.html", form = ProductForm())
 
 @app.route("/products/", methods=["POST"])
 def products_create():
-    product = Product(request.form.get("name"))
+    form = ProductForm(request.form)
+    product = Product(form.name.data)
 
     db.session().add(product)
     db.session().commit()

@@ -1,6 +1,7 @@
-from application import app, db
+from application              import app, db
 from application.users.models import User
-from flask import redirect, render_template, request, url_for
+from application.users.forms  import UserForm
+from flask                    import redirect, render_template, request, url_for
 
 # List of users
 @app.route("/users", methods=["GET"])
@@ -11,11 +12,15 @@ def users_index():
 # Create new user
 @app.route("/users/new/")
 def users_form():
-    return render_template("users/new.html")
+    return render_template("users/new.html", form = UserForm())
 
 @app.route("/users/", methods=["POST"])
 def users_create():
-    user = User(request.form.get("name"), request.form.get("email"), request.form.get("login"), request.form.get("password"))
+    form = UserForm(request.form)
+    user = User(form.name.data,
+                form.email.data,
+                form.login.data,
+                form.password.data)
 
     db.session().add(user)
     db.session().commit()

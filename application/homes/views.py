@@ -1,6 +1,7 @@
-from application import app, db
+from application              import app, db
 from application.homes.models import Home
-from flask import redirect, render_template, request, url_for
+from application.homes.forms  import HomeForm
+from flask                    import redirect, render_template, request, url_for
 
 # List of homes
 @app.route("/homes", methods=["GET"])
@@ -11,11 +12,12 @@ def homes_index():
 # Create new home
 @app.route("/homes/new/")
 def homes_form():
-    return render_template("homes/new.html")
+    return render_template("homes/new.html", form = HomeForm())
 
 @app.route("/homes/", methods=["POST"])
 def homes_create():
-    home = Home(request.form.get("name"))
+    form = HomeForm(request.form)
+    home = Home(form.name.data)
 
     db.session().add(home)
     db.session().commit()
