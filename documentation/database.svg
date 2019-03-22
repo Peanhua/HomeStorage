@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="30cm" height="31cm" viewBox="-130 -151 593 606" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="30cm" height="32cm" viewBox="-130 -171 593 626" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
     <rect style="fill: #ffffff" x="-124" y="388" width="226.2" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-124" y="388" width="226.2" height="18"/>
@@ -34,26 +34,29 @@
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="351.5" y="285">VARCHAR(40)</text>
   </g>
   <g>
-    <rect style="fill: #ffffff" x="-116" y="-151" width="203.1" height="18"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-116" y="-151" width="203.1" height="18"/>
-    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-14.45" y="-137">User</text>
-    <rect style="fill: #ffffff" x="-116" y="-133" width="203.1" height="84"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-116" y="-133" width="203.1" height="84"/>
-    <polygon style="fill: #000000" points="-113,-123 -111,-120 -109,-123 -111,-126 "/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-107" y="-117">(pk) user_id</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-4.6" y="-117">INTEGER</text>
-    <ellipse style="fill: #000000" cx="-111" cy="-107" rx="2" ry="2"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-107" y="-101">name</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-4.6" y="-101">VARCHAR(80)</text>
-    <ellipse style="fill: #000000" cx="-111" cy="-91" rx="2" ry="2"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-107" y="-85">login</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-4.6" y="-85">VARCHAR(40)</text>
-    <ellipse style="fill: #000000" cx="-111" cy="-75" rx="2" ry="2"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-107" y="-69">password</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-4.6" y="-69">VARCHAR(40)</text>
-    <ellipse style="fill: #000000" cx="-111" cy="-59" rx="2" ry="2"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-107" y="-53">email</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-4.6" y="-53">VARCHAR(80)</text>
+    <rect style="fill: #ffffff" x="-115" y="-171" width="203.1" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-115" y="-171" width="203.1" height="18"/>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-13.45" y="-157">User</text>
+    <rect style="fill: #ffffff" x="-115" y="-153" width="203.1" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-115" y="-153" width="203.1" height="100"/>
+    <polygon style="fill: #000000" points="-112,-143 -110,-140 -108,-143 -110,-146 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-106" y="-137">(pk) user_id</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-3.6" y="-137">INTEGER</text>
+    <ellipse style="fill: #000000" cx="-110" cy="-127" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-106" y="-121">name</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-3.6" y="-121">VARCHAR(80)</text>
+    <ellipse style="fill: #000000" cx="-110" cy="-111" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-106" y="-105">login</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-3.6" y="-105">VARCHAR(40)</text>
+    <ellipse style="fill: #000000" cx="-110" cy="-95" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-106" y="-89">password</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-3.6" y="-89">VARCHAR(40)</text>
+    <ellipse style="fill: #000000" cx="-110" cy="-79" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-106" y="-73">email</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-3.6" y="-73">VARCHAR(80)</text>
+    <ellipse style="fill: #000000" cx="-110" cy="-63" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-106" y="-57">superuser</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-3.6" y="-57">BOOLEAN</text>
   </g>
   <g>
     <rect style="fill: #ffffff" x="199" y="59" width="264.7" height="18"/>
@@ -120,8 +123,8 @@
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="11.4" y="49">INTEGER</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-14.45,-49 -14.45,-33 -13.85,-33 -13.85,-1 "/>
-    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-10.45" y="-37">1</text>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-13.45,-53 -13.45,-27 -13.85,-27 -13.85,-1 "/>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-9.45" y="-41">1</text>
     <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-9.85" y="-5">*</text>
   </g>
   <g>

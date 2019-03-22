@@ -6,12 +6,9 @@
   </head>
 
   <body>
+    {% if current_user.is_authenticated %}
     <div>
-      {% if current_user.is_authenticated %}
 	Logged in as {{ current_user.name }} <a href="{{ url_for('auth_logout') }}">Logout</a>
-      {% else %}
-      <a href="{{ url_for('auth_login') }}">Login</a>
-      {% endif %}
     </div>
     <div>
       <a href="{{ url_for('users_index') }}">List users</a>
@@ -29,6 +26,12 @@
       <a href="{{ url_for('storages_index') }}">List storages</a>
       <a href="{{ url_for('storages_form')  }}">Add a new storage</a>
     </div>
+    
+    {% else %}
+    <div>
+      <a href="{{ url_for('auth_login') }}">Login</a>
+    </div>
+    {% endif %}
     
     {% block body %}
     {% endblock %}

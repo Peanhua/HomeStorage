@@ -46,3 +46,11 @@ def load_user(user_id):
 
 
 db.create_all()
+
+# Create default root user:
+root = load_user(1)
+if not root:
+    root = User("Superuser", "root@not.set.invalid", "root", "root")
+    root.superuser = True
+    db.session().add(root)
+    db.session().commit()

@@ -49,5 +49,8 @@ This software is aimed to help keep track of the home storage, get reports and a
 * Class diagram: <img src="documentation/classdiagram.svg" alt="Class Diagram" width="400" />
 * Database diagram: <img src="documentation/database.svg" alt="Database Diagram" width="600" />
 
+Default superuser account login is "root", and its password is "root".
+
+
 ## Heroku app
 <a href="https://guarded-reef-23220.herokuapp.com/">Home Storage at Heroku</a>
