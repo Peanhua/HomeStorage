@@ -8,8 +8,9 @@
   </tr>
   {% for home in homes %}
   <tr>
-    <td>{{ home.id    }}</td>
-    <td>{{ home.name  }}</td>
+    <td>{{ home.home_id }}</td>
+    <td>{{ home.name    }}</td>
+    <td><a href="{{ url_for('homes_edit', home_id=home.home_id) }}">Edit</a></td>
   </tr>
   {% endfor %}
 </table>

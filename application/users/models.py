@@ -5,7 +5,7 @@ class User(db.Model):
     # Change the name of the table because "user" is a restricted keyword in PostgreSQL:
     __tablename__ = "account"
     
-    id        = db.Column(db.Integer,    primary_key = True)
+    user_id   = db.Column(db.Integer,    primary_key = True)
     name      = db.Column(db.String(80), nullable = False)
     login     = db.Column(db.String(40), nullable = False)
     password  = db.Column(db.String(40), nullable = False)
@@ -20,7 +20,7 @@ class User(db.Model):
         self.superuser = False
 
     def get_id(self):
-        return self.id
+        return self.user_id
 
     def is_active(self):
         return True

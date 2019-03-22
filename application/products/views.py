@@ -2,7 +2,7 @@ from application                 import app, db
 from application.products.models import Product
 from application.products.forms  import ProductForm
 from flask                       import redirect, render_template, request, url_for
-from flask_login              import login_required
+from flask_login                 import login_required
 
 # List of products
 @app.route("/products", methods=["GET"])
@@ -38,7 +38,6 @@ def products_create():
 def products_update(product_id):
     product = Product.query.get(product_id)
     product.name = request.form.get("name")
-    print(request.form.get("name"))
     db.session().commit()
 
     return redirect(url_for("products_index"))

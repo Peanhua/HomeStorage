@@ -15,9 +15,6 @@ from application          import views
 
 from application.auth     import views
 
-from application.homes    import models
-from application.homes    import views
-
 from application.products import models
 from application.products import views
 
@@ -26,6 +23,10 @@ from application.storages import views
 
 from application.users    import models
 from application.users    import views
+
+from application.homes    import models
+from application.homes    import views
+
 
 
 # Authentication

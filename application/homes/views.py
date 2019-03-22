@@ -31,3 +31,25 @@ def homes_create():
     db.session().commit()
     
     return redirect(url_for("homes_index"))
+
+
+@app.route("/homes/<home_id>/", methods=["GET", "POST"])
+@login_required
+def homes_edit(home_id):
+    home = Home.query.get(home_id)
+    
+    if request.method == "GET":
+        form = HomeForm()
+        form.name.data = home.name
+        return render_template("homes/edit.html", form = form)
+
+    else:
+        form = HomeForm(request.form)
+
+        if not form.validate():
+            return render_template("homes/edit.html", form = form)
+
+        home.name = form.name.data
+        db.session().commit()
+        return redirect(url_for("homes_index"))
+
