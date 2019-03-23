@@ -3,30 +3,40 @@
   <head>
     <meta charset="utf-8">
     <title>Home Storage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <script>
+      editUserUrl = (user_id) => {
+        return "{{ url_for('users_edit', user_id='USER_ID') }}".replace(/USER_ID/, user_id)
+      }
+    </script>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
   </head>
 
   <body>
-    {% if current_user.is_authenticated %}
-    <div>
-    </div>
-    <div>
-      <a href="{{ url_for('users_index') }}">Users</a>
-      <a href="{{ url_for('products_index') }}">Products</a>
-      <a href="{{ url_for('homes_index') }}">Homes</a>
-      <a href="{{ url_for('storages_index') }}">Storages</a>
+    <div class="container">
+      {% if current_user.is_authenticated %}
+      <div>
+      </div>
+      <div>
+        <a href="{{ url_for('users_index') }}">Users</a>
+        <a href="{{ url_for('products_index') }}">Products</a>
+        <a href="{{ url_for('homes_index') }}">Homes</a>
+        <a href="{{ url_for('storages_index') }}">Storages</a>
 
-      <span style="float: right;">
-        user:<a href="{{ url_for('users_profile_edit') }}">{{ current_user.name }}</a> <a href="{{ url_for('auth_logout') }}">logout</a>
-      </span>
+        <span style="float: right;">
+          <span>user: <a href="{{ url_for('users_profile_edit') }}">{{ current_user.name }}</a></span>
+          <button onclick="location.assign('{{ url_for('auth_logout') }}')">logout</button>
+        </span>
+      </div>
+      
+      {% else %}
+      <div>
+        <a href="{{ url_for('auth_login') }}">Login</a>
+      </div>
+      {% endif %}
+      
+      {% block body %}
+      {% endblock %}
     </div>
-    
-    {% else %}
-    <div>
-      <a href="{{ url_for('auth_login') }}">Login</a>
-    </div>
-    {% endif %}
-    
-    {% block body %}
-    {% endblock %}
   </body>
 </html>

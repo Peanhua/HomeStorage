@@ -23,7 +23,10 @@
     <td>{{ user.login     }}</td>
     <td>{{ user.email     }}</td>
     <td>{{ user.superuser }}</td>
-    <td><a href="{{ url_for('users_edit', user_id=user.user_id) }}">Edit</a></td>
+    <td>
+      <button onclick="onEditUserClicked({{ user.user_id }})">Edit</button>
+      <button onclick="onDeleteUserClicked({{ user.user_id }})">Delete</button>
+    </td>
   </tr>
   {% endfor %}
 </table>

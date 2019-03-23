@@ -16,6 +16,9 @@ class HomeUser(db.Model):
     home_id     = db.Column(db.Integer, db.ForeignKey("home.home_id"),    nullable = False)
     user_id     = db.Column(db.Integer, db.ForeignKey("account.user_id"), nullable = False)
 
+    #home = db.relationship("Home")
+    user = db.relationship("User")
+
     def __init__(self, home_id, user_id):
         self.home_id = home_id
         self.user_id = user_id

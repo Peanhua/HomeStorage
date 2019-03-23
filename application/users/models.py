@@ -12,6 +12,9 @@ class User(db.Model):
     email     = db.Column(db.String(80), nullable = False)
     superuser = db.Column(db.Boolean,    nullable = False)
 
+    homes = db.relationship("HomeUser", back_populates="user", cascade="all, delete, delete-orphan")
+    #homes = db.relationship("HomeUser", backref="user", cascade="all, delete, delete-orphan")
+
     def __init__(self, name, email, login, password):
         self.name      = name
         self.email     = email

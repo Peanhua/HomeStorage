@@ -39,7 +39,7 @@ def users_create():
 
 
 # Edit user
-@app.route("/users/<user_id>/", methods=["GET", "POST"])
+@app.route("/users/<user_id>/", methods=["GET", "POST", "DELETE"])
 @login_required
 def users_edit(user_id):
     user = User.query.get(user_id)
@@ -48,7 +48,7 @@ def users_edit(user_id):
         form = UserEditForm(obj=user)
         return render_template("users/edit.html", form=form, user=user)
 
-    else:
+    elif request.method == "POST":
         form = UserEditForm(request.form)
 
         if not form.validate():
@@ -63,6 +63,14 @@ def users_edit(user_id):
         db.session().commit()
 
         return redirect(url_for("users_index"))
+
+    elif request.method == "DELETE":
+        db.session().delete(user)
+        db.session().commit()
+        return ""
+    
+
+
 
 
 # Edit user profile
@@ -87,3 +95,5 @@ def users_profile_edit():
         db.session().commit()
 
         return redirect(url_for("index"))
+
+
