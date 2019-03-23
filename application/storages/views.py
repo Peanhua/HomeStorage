@@ -7,7 +7,8 @@ from flask_login                 import current_user, login_required
 
 # Helper function:
 def get_my_homes():
-    return Home.query.order_by("name")
+    myhomes = [home.home_id for home in current_user.homes]
+    return Home.query.filter(Home.home_id.in_(myhomes)).order_by("name").all()
     
 # List of storages
 @app.route("/storages", methods=["GET"])

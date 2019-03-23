@@ -2,6 +2,7 @@
 
 {% block body %}
 <h3>Add new storage</h3>
+{% if form.home.choices|length > 0 %}
 <form method="POST" action="{{ url_for('storages_create') }}">
   <table>
     <tr>
@@ -33,4 +34,7 @@
     </tr>
   </table>
 </form>
+{% else %}
+<div>You don't have any homes set. Ask your administrator to place you in one or more homes.</div>
+{% endif %}
 {% endblock %}
