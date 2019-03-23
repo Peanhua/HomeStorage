@@ -21,9 +21,7 @@ def storages_index():
 @login_required
 def storages_form():
     form = StorageForm()
-    print(get_my_homes())
     form.home.choices = [(h.home_id, h.name) for h in get_my_homes()]
-    print(form.home.choices)
     return render_template("storages/new.html", form = form)
 
 @app.route("/storages/", methods=["POST"])
