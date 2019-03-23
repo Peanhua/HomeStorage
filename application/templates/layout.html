@@ -8,6 +8,9 @@
       editUserUrl = (user_id) => {
         return "{{ url_for('users_edit', user_id='USER_ID') }}".replace(/USER_ID/, user_id)
       }
+      editProductUrl = (product_id) => {
+        return "{{ url_for('products_edit', product_id='PRODUCT_ID') }}".replace(/PRODUCT_ID/, product_id)
+      }
     </script>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
   </head>

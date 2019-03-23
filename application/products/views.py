@@ -33,11 +33,28 @@ def products_create():
     return redirect(url_for("products_index"))
 
 
-@app.route("/products/<product_id>/", methods=["POST"])
+# Edit product
+@app.route("/products/<product_id>/", methods=["GET", "POST", "DELETE"])
 @login_required
-def products_update(product_id):
+def products_edit(product_id):
     product = Product.query.get(product_id)
-    product.name = request.form.get("name")
-    db.session().commit()
 
-    return redirect(url_for("products_index"))
+    if request.method == "GET":
+        form = ProductForm(obj=product)
+        return render_template("products/edit.html", form=form, product=product)
+
+    elif request.method == "POST":
+        form = ProductForm(request.form)
+
+        if not form.validate():
+            return render_template("products/edit.html", form=form, product=product)
+        
+        product.name = request.form.get("name")
+        db.session().commit()
+
+        return redirect(url_for("products_index"))
+
+    elif request.method == "DELETE":
+        db.session().delete(product)
+        db.session().commit()
+        return ""
