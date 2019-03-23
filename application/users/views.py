@@ -1,6 +1,6 @@
 from application              import app, db
 from application.users.models import User
-from application.users.forms  import UserForm
+from application.users.forms  import UserNewForm, UserEditForm
 from flask                    import redirect, render_template, request, url_for
 from flask_login              import login_required
 
@@ -15,12 +15,12 @@ def users_index():
 @app.route("/users/new/")
 @login_required
 def users_form():
-    return render_template("users/new.html", form = UserForm())
+    return render_template("users/new.html", form = UserNewForm())
 
 @app.route("/users/", methods=["POST"])
 @login_required
 def users_create():
-    form = UserForm(request.form)
+    form = UserNewForm(request.form)
 
     if not form.validate():
         return render_template("users/new.html", form = form)
@@ -30,7 +30,36 @@ def users_create():
                 form.login.data,
                 form.password.data)
 
+    user.superuser = form.superuser.data
+    
     db.session().add(user)
     db.session().commit()
     
     return redirect(url_for("users_index"))
+
+
+# Edit user
+@app.route("/users/<user_id>/", methods=["GET", "POST"])
+@login_required
+def users_edit(user_id):
+    user = User.query.get(user_id)
+
+    if request.method == "GET":
+        form = UserEditForm(obj=user)
+        return render_template("users/edit.html", form=form, user=user)
+
+    else:
+        form = UserEditForm(request.form)
+
+        if not form.validate():
+            return render_template("users/edit.html", form=form, user=user)
+
+        user.name      = form.name.data
+        user.email     = form.email.data
+        user.login     = form.login.data
+        user.superuser = form.superuser.data
+        if len(form.password.data) > 0:
+            user.password = form.password.data
+        db.session().commit()
+
+        return redirect(url_for("users_index"))

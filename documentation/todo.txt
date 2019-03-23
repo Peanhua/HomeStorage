@@ -1,0 +1,2 @@
+* Don't allow multiple users to share the same login.
+* Don't allow multiple users to share the same email address.
