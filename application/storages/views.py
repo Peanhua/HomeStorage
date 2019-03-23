@@ -7,7 +7,7 @@ from flask_login                 import current_user, login_required
 
 # Helper function:
 def get_my_homes():
-    Home.query.order_by("name")
+    return Home.query.order_by("name")
     
 # List of storages
 @app.route("/storages", methods=["GET"])
@@ -21,7 +21,9 @@ def storages_index():
 @login_required
 def storages_form():
     form = StorageForm()
+    print(get_my_homes())
     form.home.choices = [(h.home_id, h.name) for h in get_my_homes()]
+    print(form.home.choices)
     return render_template("storages/new.html", form = form)
 
 @app.route("/storages/", methods=["POST"])
