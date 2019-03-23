@@ -1,9 +1,13 @@
+import os
+
+import dotenv
+dotenv.load_dotenv()
+
 from flask import Flask
 app = Flask(__name__)
 
 
 from flask_sqlalchemy import SQLAlchemy
-import os
 
 if os.environ.get("HEROKU"):
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
@@ -36,8 +40,10 @@ from application.homes    import views
 
 
 # Authentication
-from os import urandom
-app.config["SECRET_KEY"] = urandom(32)
+secretkey = os.environ.get("SECRET_KEY")
+if not secretkey:
+    secretkey = os.urandom(32)
+app.config["SECRET_KEY"] = secretkey
 
 from flask_login import LoginManager
 login_manager = LoginManager()
