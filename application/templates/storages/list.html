@@ -1,6 +1,13 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h3>Storages</h3>
+<div>
+  <a href="{{ url_for('storages_form')  }}">Add a new storage</a>
+</div>
+<div>
+  &nbsp;
+</div>
 <table>
   <tr>
     <th>#</th>
@@ -8,8 +15,8 @@
   </tr>
   {% for storage in storages %}
   <tr>
-    <td>{{ storage.id    }}</td>
-    <td>{{ storage.name  }}</td>
+    <td>{{ storage.storage_id }}</td>
+    <td>{{ storage.name       }}</td>
   </tr>
   {% endfor %}
 </table>

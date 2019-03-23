@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h3>Add new product</h3>
 <form method="POST" action="{{ url_for('products_create') }}">
   <table>
     <tr>
@@ -13,7 +14,13 @@
         </ul>
       </td>
     </tr>
-    <tr><td></td><td><input type="submit" value="Add new product" /></td></tr>
+    <tr>
+      <td></td>
+      <td>
+        <a href="{{ url_for('products_index') }}">Cancel</a>
+        <input type="submit" value="Add new product" />
+      </td>
+    </tr>
   </table>
 </form>
 {% endblock %}

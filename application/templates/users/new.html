@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h3>Add new user</h3>
 <form method="POST" action="{{ url_for('users_create') }}">
   <table>
     <tr>
@@ -43,7 +44,13 @@
         </ul>
       </td>
     </tr>
-    <tr><td></td><td colspan="2"><input type="submit" value="Add new user" /></td></tr>
+    <tr>
+      <td></td>
+      <td>
+        <a href="{{ url_for('users_index') }}">Cancel</a>
+        <input type="submit" value="Add new user" />
+      </td>
+    </tr>
   </table>
 </form>
 {% endblock %}

@@ -8,23 +8,16 @@
   <body>
     {% if current_user.is_authenticated %}
     <div>
-	Logged in as {{ current_user.name }} <a href="{{ url_for('auth_logout') }}">Logout</a>
     </div>
     <div>
-      <a href="{{ url_for('users_index') }}">List users</a>
-      <a href="{{ url_for('users_form')  }}">Add a new user</a>
-    </div>
-    <div>
-      <a href="{{ url_for('products_index') }}">List products</a>
-      <a href="{{ url_for('products_form')  }}">Add a new product</a>
-    </div>
-    <div>
-      <a href="{{ url_for('homes_index') }}">List homes</a>
-      <a href="{{ url_for('homes_form')  }}">Add a new home</a>
-    </div>
-    <div>
-      <a href="{{ url_for('storages_index') }}">List storages</a>
-      <a href="{{ url_for('storages_form')  }}">Add a new storage</a>
+      <a href="{{ url_for('users_index') }}">Users</a>
+      <a href="{{ url_for('products_index') }}">Products</a>
+      <a href="{{ url_for('homes_index') }}">Homes</a>
+      <a href="{{ url_for('storages_index') }}">Storages</a>
+
+      <span style="float: right;">
+        user:{{ current_user.name }} <a href="{{ url_for('auth_logout') }}">logout</a>
+      </span>
     </div>
     
     {% else %}
