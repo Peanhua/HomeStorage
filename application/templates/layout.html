@@ -24,9 +24,12 @@
       <div>
       </div>
       <div>
+        {% if "ADMIN" in current_user.roles() %}
         <a href="{{ url_for('users_index') }}">Users</a>
-        <a href="{{ url_for('products_index') }}">Products</a>
         <a href="{{ url_for('homes_index') }}">Homes</a>
+        {% endif %}
+        <a href="{{ url_for('products_index') }}">Products</a>
+        <a href="{{ url_for('myhomes_index') }}">My Homes</a>
         <a href="{{ url_for('storages_index') }}">Storages</a>
 
         <span style="float: right;">
