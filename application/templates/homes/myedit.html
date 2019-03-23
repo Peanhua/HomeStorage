@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Products for: {{ home.name }}</h3>
+<form method="POST">
+  <table>
+    <tr>
+      <th>Product</th>
+      <th>Selected</th>
+      <th>Min desired count</th>
+      <th>Max desired count</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+      <td>{{ product.name }}</td>
+      <td><input type="checkbox" /></td>
+      <td><input type="text" /></td>
+      <td><input type="text" /></td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td colspan="4">
+        <a href="{{ url_for('myhomes_index') }}">Cancel</a>
+        <input type="submit" value="Save" />
+      </td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

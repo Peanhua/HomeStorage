@@ -1,8 +1,10 @@
-from application              import app, db, login_required
-from application.homes.models import Home, HomeUser
-from application.homes.forms  import HomeForm
-from application.users.models import User
-from flask                    import redirect, render_template, request, url_for
+from application                 import app, db, login_required
+from application.homes.models    import Home, HomeUser
+from application.homes.forms     import HomeForm
+from application.users.models    import User
+from application.products.models import Product
+from flask                       import redirect, render_template, request, url_for
+from flask_login                 import current_user
 
 # List of homes
 @app.route("/homes", methods=["GET"])
@@ -86,3 +88,33 @@ def homeusers_edit(home_id):
         db.session().commit()
         
         return redirect(url_for("homes_index"))
+
+
+
+# My Homes list:
+@app.route("/myhomes", methods=["GET"])
+@login_required()
+def myhomes_index():
+    homes = current_user.get_my_homes()
+    return render_template("homes/mylist.html", homes = homes)
+
+# My Homes editing:
+@app.route("/myhomes/<home_id>/", methods=["GET", "POST"])
+@login_required()
+def myhomes_edit(home_id):
+    home = Home.query.get(home_id)
+    # TODO: check that current_user has permission to edit the home
+    
+    if request.method == "GET":
+        products = Product.query.all()
+        return render_template("homes/myedit.html", home=home, products=products)
+
+    else:
+        #form = HomeForm(request.form)
+
+        #if not form.validate():
+        #    return render_template("homes/edit.html", form = form)
+
+        #home.name = form.name.data
+        #db.session().commit()
+        return redirect(url_for("myhomes_index"))
