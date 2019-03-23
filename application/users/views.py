@@ -1,24 +1,24 @@
-from application              import app, db
+from application              import app, db, login_required
 from application.users.models import User
 from application.users.forms  import UserNewForm, UserEditForm
 from flask                    import abort, redirect, render_template, request, url_for
-from flask_login              import current_user, login_required
+from flask_login              import current_user
 
 # List of users
 @app.route("/users", methods=["GET"])
-@login_required
+@login_required(role="ADMIN")
 def users_index():
     return render_template("users/list.html", users = User.query.all())
 
 
 # Create new user
 @app.route("/users/new/")
-@login_required
+@login_required(role="ADMIN")
 def users_form():
     return render_template("users/new.html", form = UserNewForm())
 
 @app.route("/users/", methods=["POST"])
-@login_required
+@login_required()
 def users_create():
     form = UserNewForm(request.form)
 
@@ -40,7 +40,7 @@ def users_create():
 
 # Edit user
 @app.route("/users/<user_id>/", methods=["GET", "POST", "DELETE"])
-@login_required
+@login_required(role="ADMIN")
 def users_edit(user_id):
     user = User.query.get(user_id)
 
@@ -81,7 +81,7 @@ def users_edit(user_id):
 
 # Edit user profile
 @app.route("/profile", methods=["GET", "POST"])
-@login_required
+@login_required()
 def users_profile_edit():
     if request.method == "GET":
         form = UserEditForm(obj=current_user)

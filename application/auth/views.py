@@ -24,3 +24,8 @@ def auth_login():
 def auth_logout():
     logout_user()
     return redirect(url_for("index"))
+
+
+@app.route("/auth/unauthorized", methods = ["GET"])
+def auth_unauthorized():
+    return render_template("auth/unauthorized.html")

@@ -33,3 +33,9 @@ class User(db.Model):
 
     def is_authenticated(self):
         return True
+
+    def roles(self):
+        if self.superuser:
+            return ["ADMIN"]
+        else:
+            return ["USER"]
