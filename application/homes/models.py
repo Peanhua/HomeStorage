@@ -4,6 +4,9 @@ class Home(db.Model):
     home_id  = db.Column(db.Integer,    primary_key = True)
     name     = db.Column(db.String(80), nullable = False)
 
+    users = db.relationship("HomeUser", backref="home", lazy=True)
+    #users = db.relationship("HomeUser", back_populates="users")
+
     def __init__(self, name):
         self.name     = name
 

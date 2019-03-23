@@ -8,7 +8,8 @@ from flask_login              import login_required
 @app.route("/homes", methods=["GET"])
 @login_required
 def homes_index():
-    return render_template("homes/list.html", homes = Home.query.all())
+    homes = Home.query.all()
+    return render_template("homes/list.html", homes = homes)
 
 
 # Create new home
