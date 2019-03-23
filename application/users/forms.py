@@ -17,3 +17,5 @@ class UserEditForm(UserBaseForm):
     password  = PasswordField("Password:", [validators.Optional(), validators.Length(min=8)])
     superuser = BooleanField("Superuser:", [validators.Optional()])
 
+class UserProfileForm(UserBaseForm):
+    password  = PasswordField("Password:", [validators.Optional(), validators.Length(min=8)])

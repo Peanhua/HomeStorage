@@ -2,7 +2,7 @@ from application              import app, db
 from application.users.models import User
 from application.users.forms  import UserNewForm, UserEditForm
 from flask                    import redirect, render_template, request, url_for
-from flask_login              import login_required
+from flask_login              import current_user, login_required
 
 # List of users
 @app.route("/users", methods=["GET"])
@@ -63,3 +63,27 @@ def users_edit(user_id):
         db.session().commit()
 
         return redirect(url_for("users_index"))
+
+
+# Edit user profile
+@app.route("/profile", methods=["GET", "POST"])
+@login_required
+def users_profile_edit():
+    if request.method == "GET":
+        form = UserEditForm(obj=current_user)
+        return render_template("users/edit_profile.html", form=form, user=current_user)
+
+    else:
+        form = UserEditForm(request.form)
+
+        if not form.validate():
+            return render_template("users/edit_profile.html", form=form, user=current_user)
+
+        current_user.name      = form.name.data
+        current_user.email     = form.email.data
+        current_user.login     = form.login.data
+        if len(form.password.data) > 0:
+            current_user.password = form.password.data
+        db.session().commit()
+
+        return redirect(url_for("index"))

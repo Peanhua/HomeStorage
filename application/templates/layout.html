@@ -16,7 +16,7 @@
       <a href="{{ url_for('storages_index') }}">Storages</a>
 
       <span style="float: right;">
-        user:{{ current_user.name }} <a href="{{ url_for('auth_logout') }}">logout</a>
+        user:<a href="{{ url_for('users_profile_edit') }}">{{ current_user.name }}</a> <a href="{{ url_for('auth_logout') }}">logout</a>
       </span>
     </div>
     
