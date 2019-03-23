@@ -1,7 +1,7 @@
 from application              import app, db
 from application.users.models import User
 from application.users.forms  import UserNewForm, UserEditForm
-from flask                    import redirect, render_template, request, url_for
+from flask                    import abort, redirect, render_template, request, url_for
 from flask_login              import current_user, login_required
 
 # List of users
@@ -65,6 +65,12 @@ def users_edit(user_id):
         return redirect(url_for("users_index"))
 
     elif request.method == "DELETE":
+        if user.user_id == 1:
+            return abort(400, "Root user can not be deleted.")
+        
+        if user.user_id == current_user.user_id:
+            return abort(400, "Unable to delete the current user.")
+        
         db.session().delete(user)
         db.session().commit()
         return ""
