@@ -3,8 +3,13 @@ app = Flask(__name__)
 
 
 from flask_sqlalchemy import SQLAlchemy
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///homestorage.db"
-app.config["SQLALCHEMY_ECHO"] = True
+
+if os.environ.get("HEROKU"):
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///homestorage.db"
+    app.config["SQLALCHEMY_ECHO"] = True
+    
 # The next is to silence this warning: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -45,8 +50,10 @@ from application.users.models import User
 def load_user(user_id):
     return User.query.get(user_id)
 
-
-db.create_all()
+try:
+    db.create_all()
+except:
+    pass
 
 # Create default root user:
 root = load_user(1)
