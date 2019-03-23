@@ -37,18 +37,9 @@ def login_required(role="ANY"):
             if not current_user.is_authenticated:
                 return login_manager.unauthorized()
 
-            unauthorized = False
-
             if role != "ANY":
-                unauthorized = True
-
-                for user_role in current_user.roles():
-                    if user_role == role:
-                        unauthorized = False
-                        break
-
-                if unauthorized:
-                    return redirect(url_for("auth_unauthorized")) #login_manager.unauthorized()
+                if role not in current_user.roles():
+                    return redirect(url_for("auth_unauthorized"))
 
             return fn(*args, **kwargs)
             
