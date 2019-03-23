@@ -11,6 +11,9 @@
       editProductUrl = (product_id) => {
         return "{{ url_for('products_edit', product_id='PRODUCT_ID') }}".replace(/PRODUCT_ID/, product_id)
       }
+      editHomeUsersUrl = (home_id) => {
+        return "{{ url_for('homeusers_edit', home_id='HOME_ID') }}".replace(/HOME_ID/, home_id)
+      }
     </script>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
   </head>

@@ -18,8 +18,10 @@
   <tr>
     <td>{{ home.home_id      }}</td>
     <td>{{ home.name         }}</td>
-    <td>{{ home.users|length }}</td>
-    <td><a href="{{ url_for('homes_edit', home_id=home.home_id) }}">Edit</a></td>
+    <td><button onclick="onEditHomeUsersClicked({{ home.home_id }})">{{ home.users|length }}</button></td>
+    <td>
+      <a href="{{ url_for('homes_edit', home_id=home.home_id) }}">Edit</a>
+    </td>
   </tr>
   {% endfor %}
 </table>

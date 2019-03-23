@@ -1,6 +1,7 @@
 from application              import app, db, login_required
-from application.homes.models import Home
+from application.homes.models import Home, HomeUser
 from application.homes.forms  import HomeForm
+from application.users.models import User
 from flask                    import redirect, render_template, request, url_for
 
 # List of homes
@@ -53,3 +54,35 @@ def homes_edit(home_id):
         db.session().commit()
         return redirect(url_for("homes_index"))
 
+
+
+# Home users editing:
+@app.route("/homes/users/<home_id>/", methods=["GET", "POST"])
+@login_required(role="ADMIN")
+def homeusers_edit(home_id):
+    home = Home.query.get(home_id)
+    homeuserids = [ u.user_id for u in home.users]
+    
+    homeusers  = User.query.filter(User.user_id.in_(homeuserids)).all()
+    otherusers = User.query.filter(~User.user_id.in_(homeuserids)).all()
+    
+    if request.method == "GET":
+        return render_template("homes/edit_users.html", home=home, homeusers=homeusers, otherusers=otherusers)
+
+    elif request.method == "POST":
+        # Delete HomeUsers not in saveduids, and add new HomeUsers for those that didn't exist before:
+        saveduids = [int(uid) for uid in request.form.getlist("homeusers")]
+        
+        for hu in home.users:
+            if hu.user_id not in saveduids:
+                db.session().delete(hu)
+            else:
+                saveduids.remove(hu.user_id)
+
+        for uid in saveduids:
+            homeuser = HomeUser(home.home_id, uid)
+            db.session().add(homeuser)
+
+        db.session().commit()
+        
+        return redirect(url_for("homes_index"))

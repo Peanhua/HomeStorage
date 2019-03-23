@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST">
+  <input type="hidden" name="home_id" value="{{ home.home_id }}" />
+  <h3>Select users for: {{ home.name }}</h3>
+  <table>
+    <tr>
+      <td>Available:</td>
+      <td></td>
+      <td>{{ home.name }}:</td>
+    </tr>
+    <tr>
+      <td>
+        <select id="otherusers" multiple size="10" style="width: 100%;">
+        {% for u in otherusers %}
+        <option value="{{ u.user_id }}">{{ u.name }}</option>
+        {% endfor %}
+        </select>
+      </td>
+      <td>
+        <div><button style="width: 100%;" onclick="onMoveBetweenListsClicked(event, 'otherusers', 'homeusers')">&gt;&gt; add &gt;&gt;</button></div>
+        <div><button style="width: 100%;" onclick="onMoveBetweenListsClicked(event, 'homeusers', 'otherusers')">&lt;&lt; remove &lt;&lt;</button></div>
+      </td>
+      <td>
+        <select id="homeusers" name="homeusers" multiple size="10" style="width: 100%;">
+        {% for u in homeusers %}
+        <option value="{{ u.user_id }}">{{ u.name }}</option>
+        {% endfor %}
+        </select>
+      </td>
+    </tr>
+  </table>
+  <div>
+    <a href="{{ url_for('homes_index') }}">Cancel</a>
+    <button onclick="onSubmitFormClicked(event, ['homeusers'])">Save</button>
+  </div>
+</form>
+{% endblock %}

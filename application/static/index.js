@@ -45,3 +45,57 @@ onDeleteProductClicked = (product_id) => {
     req.send(null)
   }
 }
+
+
+onEditHomeUsersClicked = (home_id) => {
+  const url = editHomeUsersUrl(home_id)
+  location.assign(url)
+}
+
+
+/* Activates all entries in select_lists before submitting to the server. */
+onSubmitFormClicked = (event, select_lists) => {
+  //event.preventDefault()
+
+  select_lists.forEach(list_id => {
+    const list = document.getElementById(list_id)
+    if(list) {
+      for(let i = 0; i < list.options.length; i++) {
+        option = list.options.item(i)
+        option.selected = true
+      }
+    }
+  })
+}
+
+
+onMoveBetweenListsClicked = (event, list_from_id, list_to_id) => {
+  event.preventDefault()
+
+  moveOne = (list_from, list_to) => {
+    const ind = list_from.selectedIndex
+    
+    if(ind >= 0 && ind < list_from.options.length) {
+      oldopt = list_from.options[ind]
+      
+      newopt = document.createElement("option")
+      newopt.value = oldopt.value
+      newopt.text = oldopt.text
+      list_to.add(newopt)
+      
+      list_from.remove(ind)
+      
+      return true
+
+    } else {
+      return false
+    }
+  }
+
+  const lfrom = document.getElementById(list_from_id)
+  const lto   = document.getElementById(list_to_id)
+
+  while(moveOne(lfrom, lto)) {
+    /* */
+  }
+}
