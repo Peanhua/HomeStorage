@@ -4,13 +4,11 @@
 <h3>My Homes</h3>
 <table>
   <tr>
-    <th>#</th>
     <th>Name</th>
     <th>Users</th>
   </tr>
   {% for home in homes %}
   <tr>
-    <td>{{ home.home_id      }}</td>
     <td>{{ home.name         }}</td>
     <td>{{ home.users|length }}</td>
     <td>
