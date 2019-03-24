@@ -81,6 +81,9 @@ from application.users    import views
 from application.homes    import models
 from application.homes    import views
 
+from application.items    import models
+
+from application.stock    import views
 
 
 # Authentication continued:

@@ -13,6 +13,7 @@
     <td>{{ home.users|length }}</td>
     <td>
       <button type="button" class="btn btn-primary btn-sm" onclick="location.assign('{{ url_for('myhomes_edit', home_id=home.home_id) }}')">Edit</button>
+      <button type="button" class="btn btn-success btn-sm" onclick="location.assign('{{ url_for('stock_edit', home_id=home.home_id) }}')">Stock</button>
     </td>
   </tr>
   {% endfor %}

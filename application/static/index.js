@@ -99,3 +99,26 @@ onMoveBetweenListsClicked = (event, list_from_id, list_to_id) => {
     /* */
   }
 }
+
+
+onStockAdjustClicked = (product_id, amount) => {
+  const cur = document.getElementById("curquant_" + product_id)
+  const curval = parseInt(cur.value)
+  const change = document.getElementById("change_" + product_id)
+  const newquant = document.getElementById("newquant_" + product_id)
+
+  
+  let changeval = parseInt(change.value) + amount
+  let newcur = (curval + changeval)
+
+  if(newcur < 0) {
+    newcur    = 0
+    changeval = -curval
+  } else if(changeval > 9999) {
+    changeval = 9999
+    newcur    = curval + changeval
+  }
+  
+  change.value = changeval
+  newquant.innerHTML = newcur
+}
