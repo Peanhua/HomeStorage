@@ -3,7 +3,7 @@
 {% block body %}
 <h3>Products</h3>
 <div>
-  <button onclick="location.assign('{{ url_for('products_form') }}')">Add a new product</button>
+  <button type="button" class="btn btn-primary btn-sm" onclick="location.assign('{{ url_for('products_form') }}')">Add a new product</button>
 </div>
 <div>
   &nbsp;
@@ -18,8 +18,8 @@
     <td>{{ product.product_id }}</td>
     <td>{{ product.name       }}</td>
     <td>
-      <button onclick="onEditProductClicked({{ product.product_id }})">Edit</button>
-      <button onclick="onDeleteProductClicked({{ product.product_id }})">Delete</button>
+      <button type="button" class="btn btn-primary btn-sm" onclick="onEditProductClicked({{ product.product_id }})">Edit</button>
+      <button type="button" class="btn btn-primary btn-sm" onclick="onDeleteProductClicked({{ product.product_id }})">Delete</button>
     </td>
   </tr>
   {% endfor %}

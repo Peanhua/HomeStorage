@@ -3,7 +3,7 @@
 {% block body %}
 <h3>Users</h3>
 <div>
-  <a href="{{ url_for('users_form')  }}">Add a new user</a>
+  <button type="button" class="btn btn-primary btn-sm" onclick="location.assign('{{ url_for('users_form') }}')">Add new user</button>
 </div>
 <div>
   &nbsp;
@@ -24,8 +24,8 @@
     <td>{{ user.email     }}</td>
     <td>{{ user.superuser }}</td>
     <td>
-      <button onclick="onEditUserClicked({{ user.user_id }})">Edit</button>
-      <button onclick="onDeleteUserClicked({{ user.user_id }})">Delete</button>
+      <button type="button" class="btn btn-primary btn-sm" onclick="onEditUserClicked({{ user.user_id }})"  >Edit</button>
+      <button type="button" class="btn btn-danger btn-sm"  onclick="onDeleteUserClicked({{ user.user_id }})">Delete</button>
     </td>
   </tr>
   {% endfor %}

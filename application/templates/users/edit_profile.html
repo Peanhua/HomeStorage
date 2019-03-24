@@ -20,7 +20,8 @@
       </td>
     </tr>
     <tr>
-      <td>{{ form.password.label }}</td><td>{{ form.password }}</td>
+      <td>{{ form.password.label }}</td>
+      <td>{{ form.password }}<small id="passwordHelp" class="form-text text-muted">Leave password field empty to not change it.</small></td>
       <td>
         <ul>
           {% for error in form.password.errors %}
@@ -56,8 +57,8 @@
       <td>
       </td>
       <td>
-        <a href="{{ url_for('index') }}">Cancel</a>
-        <input type="submit" value="Save" />
+        <button type="button" class="btn btn-secondary" onclick="location.assign('{{ url_for('index') }}')">Cancel</button>
+        <button type="submit" class="btn btn-success">Save</button>
       </td>
     </tr>
   </table>

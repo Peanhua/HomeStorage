@@ -3,7 +3,7 @@
 {% block body %}
 <h3>Storages</h3>
 <div>
-  <a href="{{ url_for('storages_form')  }}">Add a new storage</a>
+  <button type="button" class="btn btn-primary btn-sm" onclick="location.assign('{{ url_for('storages_form') }}')">Add a new storage</button>
 </div>
 <div>
   &nbsp;

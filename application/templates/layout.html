@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Home Storage</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <!-- begin bootstrap stuff -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- end of bootstrap stuff -->
     <script>
       editUserUrl = (user_id) => {
         return "{{ url_for('users_edit', user_id='USER_ID') }}".replace(/USER_ID/, user_id)
@@ -23,29 +25,52 @@
       {% if current_user.is_authenticated %}
       <div>
       </div>
-      <div>
-        {% if "ADMIN" in current_user.roles() %}
-        <a href="{{ url_for('users_index') }}">Users</a>
-        <a href="{{ url_for('homes_index') }}">Homes</a>
-        {% endif %}
-        <a href="{{ url_for('products_index') }}">Products</a>
-        <a href="{{ url_for('myhomes_index') }}">My Homes</a>
-        <a href="{{ url_for('storages_index') }}">Storages</a>
-
-        <span style="float: right;">
-          <span>user: <a href="{{ url_for('users_profile_edit') }}">{{ current_user.name }}</a></span>
-          <button onclick="location.assign('{{ url_for('auth_logout') }}')">logout</button>
-        </span>
-      </div>
-      
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Home Storage</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            {% if "ADMIN" in current_user.roles() %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('users_index') }} ">Users</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('homes_index') }}">Homes</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('products_index') }}">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('myhomes_index') }}">My Homes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('storages_index') }}">Storages</a>
+            </li>
+          </ul>
+          <div class="form-inline mt-2 mt-md-0">
+            <span>user: <a href="{{ url_for('users_profile_edit') }}">{{ current_user.name }}</a></span>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="location.assign('{{ url_for('auth_logout') }}')">logout</button>
+          </div>
+	</div>
+      </nav>
       {% else %}
       <div>
         <a href="{{ url_for('auth_login') }}">Login</a>
       </div>
       {% endif %}
       
-      {% block body %}
-      {% endblock %}
+      <main role="main" class="container">
+        {% block body %}
+        {% endblock %}
+      </main>
     </div>
+    <!-- begin bootstrap stuff -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- end of bootstrap stuff -->
   </body>
 </html>

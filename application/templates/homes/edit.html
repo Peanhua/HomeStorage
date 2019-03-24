@@ -17,8 +17,8 @@
       <td>
       </td>
       <td>
-        <a href="{{ url_for('homes_index') }}">Cancel</a>
-        <input type="submit" value="Save" />
+        <button type="button" class="btn btn-secondary" onclick="location.assign('{{ url_for('homes_index') }}')">Cancel</button>
+        <button type="submit" class="btn btn-success">Save</button>
       </td>
     </tr>
   </table>
