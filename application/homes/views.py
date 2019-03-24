@@ -1,10 +1,11 @@
 from application                 import app, db, login_required
-from application.homes.models    import Home, HomeUser
-from application.homes.forms     import HomeForm
+from application.homes.models    import Home, HomeUser, HomeProduct
+from application.homes.forms     import HomeForm, MyHomeForm
 from application.users.models    import User
 from application.products.models import Product
 from flask                       import redirect, render_template, request, url_for
 from flask_login                 import current_user
+from sqlalchemy                  import and_, or_
 
 # List of homes
 @app.route("/homes", methods=["GET"])
@@ -104,17 +105,48 @@ def myhomes_index():
 def myhomes_edit(home_id):
     home = Home.query.get(home_id)
     # TODO: check that current_user has permission to edit the home
-    
+
     if request.method == "GET":
-        products = Product.query.all()
-        return render_template("homes/myedit.html", home=home, products=products)
+        res = db.session().query(Product, HomeProduct).outerjoin(HomeProduct, and_(Product.product_id == HomeProduct.product_id,
+                                                                                   or_(HomeProduct.home_id == home.home_id,
+                                                                                       HomeProduct.home_id.is_(None)))).all()
+
+        class TmpProduct(object):
+            def __init__(self, product_id, name, mind, maxd):
+                self.product_id   = product_id
+                self.product_name = name
+                self.mindesired   = mind
+                self.maxdesired   = maxd
+        fps = []
+        for i in res:
+            product = i[0]
+            hprod   = i[1]
+            mind = getattr(hprod, "desired_min_quantity", 0)
+            maxd = getattr(hprod, "desired_max_quantity", 0)
+            fps.append(TmpProduct(product.product_id, product.name, mind, maxd))
+
+        class Foo(object):
+            def __init__(self, products):
+                self.products = products
+        form = MyHomeForm(obj=Foo(fps))
+        
+        return render_template("homes/myedit.html", home=home, form=form)
 
     else:
-        #form = HomeForm(request.form)
+        form = MyHomeForm(request.form)
 
         #if not form.validate():
-        #    return render_template("homes/edit.html", form = form)
+        #    return render_template("homes/myedit.html", home=home, form=form)
 
-        #home.name = form.name.data
-        #db.session().commit()
+        # Delete and add new... TODO: fix this to update (where applicable) ?
+        HomeProduct.query.filter(HomeProduct.home_id == home.home_id).delete()
+        for product in form.products.data:
+            product_id = int(product["product_id"])
+            mindesired = int(product["mindesired"])
+            maxdesired = int(product["maxdesired"])
+            if mindesired > 0 or maxdesired > 0:
+                hp = HomeProduct(home.home_id, product_id, mindesired, maxdesired)
+                db.session().add(hp)
+        
+        db.session().commit()
         return redirect(url_for("myhomes_index"))
