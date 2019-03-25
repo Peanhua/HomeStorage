@@ -7,21 +7,23 @@ from flask_login                 import current_user
 
 
 # Stock edit
-@app.route("/stock/<home_id>/", methods=["GET", "POST"])
+@app.route("/stock/<storage_id>/", methods=["GET", "POST"])
 @login_required()
-def stock_edit(home_id):
-    home = Home.query.get(home_id)
-    
+def stock_edit(storage_id):
     def view():
-        storages = Storage.query.filter(Storage.home_id == home_id).all()
-        products = home.get_stock()
-        return render_template("homes/stock_edit.html", home=home, storages=storages, products=products)
+        storage = Storage.query.get(storage_id)
+        home = Home.query.get(storage.home_id)
+        products = storage.get_stock()
+        homeproducts = home.get_stock()
+        for product in products:
+            hp = next(p for p in homeproducts if p["product_id"] == product["product_id"])
+            product["current_total_quantity"] = hp["current_quantity"]
+        return render_template("storages/stock_edit.html", home=home, storage=storage, products=products)
 
     if request.method == "GET":
         return view()
     
     elif request.method == "POST":
-        storage_id  = request.form["storage_id"]
         product_ids = request.form.getlist("productid[]")
         changes     = request.form.getlist("change[]")
 

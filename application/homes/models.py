@@ -31,8 +31,8 @@ class Home(db.Model):
         for row in res:
             rv.append({"product_id":           row[0],
                        "product_name":         row[1],
-                       "desired_min_quantity": row[2],
-                       "desired_max_quantity": row[3],
+                       "desired_min_quantity": row[2] if row[2] else 0,
+                       "desired_max_quantity": row[3] if row[3] else 0,
                        "current_quantity":     row[4] if row[4] else 0
                        })
         return rv

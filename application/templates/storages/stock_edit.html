@@ -2,8 +2,7 @@
 
 {% block body %}
 <form method="POST">
-  <h3>Manage stock for: {{ home.name }}</h3>
-  <input type="hidden" id="home_id" value="{{ home.home_id }}" />
+  <h3>Manage stock for: {{ home.name }} / {{ storage.name }}</h3>
   <table>
     <tr>
       <th>Product</th>
@@ -22,7 +21,7 @@
       <td>{{ product.product_name }}</td>
       <td>{{ product.desired_min_quantity }}</td>
       <td>
-        {{ product.current_quantity }}
+        {{ product.current_quantity }} ({{ product.current_total_quantity }})
         <input type="hidden" id="curquant_{{ product.product_id }}" value="{{ product.current_quantity }}" />
       </td>
       <td>{{ product.desired_max_quantity }}</td>
@@ -38,20 +37,12 @@
       <td>
         <button type="button" class="btn btn-success btn-sm" onclick="onStockAdjustClicked({{ product.product_id }}, 1)">+</button>
       </td>
-      <td><span class="label label-default" id="newquant_{{ product.product_id }}">0</span></td>
+      <td><span class="label label-default" id="newquant_{{ product.product_id }}">{{ product.current_quantity }}</span></td>
     </tr>
     {% endfor %}
   </table>
   <div>
-    Storage: 
-    <select id="storage" name="storage_id">
-      {% for storage in storages %}
-      <option value="{{ storage.storage_id }}">{{ storage.name }}</option>
-      {% endfor %}
-    </select>
-  </div>
-  <div>
-    <button type="button" class="btn btn-secondary" onclick="location.assign('{{ url_for('myhomes_index') }}')">Cancel</button>
+    <button type="button" class="btn btn-secondary" onclick="location.assign('{{ url_for('storages_index') }}')">Cancel</button>
     <button type="submit" class="btn btn-success">Save</button>
   </div>
 </form>

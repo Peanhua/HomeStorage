@@ -2,3 +2,5 @@
 * Don't allow multiple users to share the same email address.
 * Make sure deleted users can no longer do anything, even if they are logged in when their account is deleted.
 * Add "default home" selection to the navbar.
+* Use users login (instead of name) for the select lists when assigning users to homes.
+* Re-order storages view to get rid of the home column, and then group the storages by home.
