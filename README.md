@@ -46,8 +46,8 @@ This software is aimed to help keep track of the home storage, get reports and a
 ## Documentation
 
 * [User stories](documentation/user-stories.md)
-* Class diagram: <img src="documentation/classdiagram.svg" alt="Class Diagram" width="400" />
-* Database diagram: <img src="documentation/database.svg" alt="Database Diagram" width="600" />
+* [Class diagram](documentation/classdiagram.svg)
+* [Database diagram](documentation/database.svg)
 
 Default superuser account login is "root", and its password is "root".
 
