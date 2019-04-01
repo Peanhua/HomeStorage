@@ -1,5 +1,6 @@
-from application    import db
-from sqlalchemy.sql import text
+from application              import db
+from application.items.models import Item
+from sqlalchemy.sql           import text
 
 class Storage(db.Model):
     storage_id = db.Column(db.Integer,    primary_key = True)
@@ -34,3 +35,19 @@ class Storage(db.Model):
                        "current_quantity":     row[4] if row[4] else 0
                        })
         return rv
+
+    def decrease_item_count(self, product_id, amount):
+        # Removes the amount number of items if found for the given product_id,
+        # returns the amount that was not removed.
+        item = Item.query.filter(Item.storage_id == self.storage_id, Item.product_id == product_id).order_by(Item.best_before).first()
+        if not item:
+            return amount
+
+        if item.quantity <= amount:
+            amount -= item.quantity
+            db.session().delete(item)
+            return amount
+        else:
+            item.quantity -= amount
+            db.session().commit()
+            return 0

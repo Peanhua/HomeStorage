@@ -2,16 +2,18 @@ from application                 import app, db, login_required
 from application.homes.models    import Home
 from application.storages.models import Storage
 from application.items.models    import Item
+from application.products.models import Product
 from flask                       import render_template, request, url_for
 from flask_login                 import current_user
+from datetime                    import datetime, timedelta
 
 
 # Stock edit
 @app.route("/stock/<storage_id>/", methods=["GET", "POST"])
 @login_required()
 def stock_edit(storage_id):
+    storage = Storage.query.get(storage_id)
     def view():
-        storage = Storage.query.get(storage_id)
         home = Home.query.get(storage.home_id)
         products = storage.get_stock()
         homeproducts = home.get_stock()
@@ -27,23 +29,18 @@ def stock_edit(storage_id):
         product_ids = request.form.getlist("productid[]")
         changes     = request.form.getlist("change[]")
 
-        existing_items = Item.query.filter(Item.storage_id == storage_id).all()
-
-        handled = []
-        for ei in existing_items:
-            try:
-                ind = product_ids.index(ei.product_id)
-                handled.append(ei.product_id)
-                ei.quantity += changes[ind]
-                if ei.quantity == 0:
-                    db.session().delete(ei)
-            except ValueError:
-                pass
-        
-        for i in range(len(changes)):
-            if product_ids[i] not in handled:
-                item = Item(product_ids[i], storage_id)
-                item.quantity = changes[i]
+        for product_id in product_ids:
+            ind = product_ids.index(product_id)
+            amount = int(changes[ind])
+            if amount < 0: # Remove or adjust quantities for negative changes:
+                amount = -amount
+                while amount > 0:
+                    amount = storage.decrease_item_count(product_id, amount)
+            elif amount > 0: # Add new items:
+                product = Product.query.get(product_id)
+                bestbefore = datetime.now() + timedelta(days=product.default_lifetime)
+                item = Item(product_id, storage_id, bestbefore)
+                item.quantity = amount
                 db.session().add(item)
 
         db.session().commit()

@@ -12,11 +12,13 @@
   <tr>
     <th>#</th>
     <th>Product</th>
+    <th>Default lifetime (days)</th>
   </tr>
   {% for product in products %}
   <tr>
-    <td>{{ product.product_id }}</td>
-    <td>{{ product.name       }}</td>
+    <td>{{ product.product_id       }}</td>
+    <td>{{ product.name             }}</td>
+    <td>{{ product.default_lifetime }}</td>
     <td>
       <button type="button" class="btn btn-primary btn-sm" onclick="onEditProductClicked({{ product.product_id }})">Edit</button>
       <button type="button" class="btn btn-primary btn-sm" onclick="onDeleteProductClicked({{ product.product_id }})">Delete</button>

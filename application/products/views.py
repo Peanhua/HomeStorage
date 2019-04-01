@@ -25,7 +25,7 @@ def products_create():
     if not form.validate():
         return render_template("products/new.html", form = form)
     
-    product = Product(form.name.data)
+    product = Product(form.name.data, form.default_lifetime.data)
 
     db.session().add(product)
     db.session().commit()
@@ -48,8 +48,9 @@ def products_edit(product_id):
 
         if not form.validate():
             return render_template("products/edit.html", form=form, product=product)
-        
+
         product.name = request.form.get("name")
+        product.default_lifetime = request.form.get("default_lifetime")
         db.session().commit()
 
         return redirect(url_for("products_index"))

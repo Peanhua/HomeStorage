@@ -15,6 +15,15 @@
       </td>
     </tr>
     <tr>
+      <td>{{ form.default_lifetime.label }}</td><td>{{ form.default_lifetime }}</td>
+      <td>
+        <ul>
+          {% for error in form.default_lifetime.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    <tr>
       <td></td>
       <td>
         <button type="button" class="btn btn-secondary" onclick="location.assign('{{ url_for('products_index') }}')">Cancel</button>

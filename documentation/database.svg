@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="30cm" height="32cm" viewBox="-130 -171 593 626" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="30cm" height="33cm" viewBox="-129 -171 593 642" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
-    <rect style="fill: #ffffff" x="-124" y="388" width="226.2" height="18"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-124" y="388" width="226.2" height="18"/>
-    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-10.9" y="402">Product</text>
-    <rect style="fill: #ffffff" x="-124" y="406" width="226.2" height="36"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-124" y="406" width="226.2" height="36"/>
-    <polygon style="fill: #000000" points="-121,416 -119,419 -117,416 -119,413 "/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-115" y="422">(pk) product_id</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="10.5" y="422">INTEGER</text>
-    <ellipse style="fill: #000000" cx="-119" cy="432" rx="2" ry="2"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-115" y="438">name</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="10.5" y="438">VARCHAR(80)</text>
+    <rect style="fill: #ffffff" x="-128" y="388" width="233.9" height="18"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-128" y="388" width="233.9" height="18"/>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-11.05" y="402">Product</text>
+    <rect style="fill: #ffffff" x="-128" y="406" width="233.9" height="52"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-128" y="406" width="233.9" height="52"/>
+    <polygon style="fill: #000000" points="-125,416 -123,419 -121,416 -123,413 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-119" y="422">(pk) product_id</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="14.2" y="422">INTEGER</text>
+    <ellipse style="fill: #000000" cx="-123" cy="432" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-119" y="438">name</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="14.2" y="438">VARCHAR(80)</text>
+    <ellipse style="fill: #000000" cx="-123" cy="448" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-119" y="454">default_lifetime</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="14.2" y="454">INTEGER</text>
   </g>
   <g>
     <rect style="fill: #ffffff" x="217" y="203" width="226.2" height="18"/>
@@ -94,8 +97,8 @@
     <rect style="fill: #ffffff" x="231" y="369" width="195.4" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="231" y="369" width="195.4" height="18"/>
     <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="328.7" y="383">Item</text>
-    <rect style="fill: #ffffff" x="231" y="387" width="195.4" height="68"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="231" y="387" width="195.4" height="68"/>
+    <rect style="fill: #ffffff" x="231" y="387" width="195.4" height="84"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="231" y="387" width="195.4" height="84"/>
     <polygon style="fill: #000000" points="234,397 236,400 238,397 236,394 "/>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="240" y="403">(pk) item_id</text>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="365.5" y="403">INTEGER</text>
@@ -108,6 +111,9 @@
     <ellipse style="fill: #000000" cx="236" cy="445" rx="2" ry="2"/>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="240" y="451">quantity</text>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="365.5" y="451">INTEGER</text>
+    <ellipse style="fill: #000000" cx="236" cy="461" rx="2" ry="2"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="240" y="467">best_before</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="365.5" y="467">DATE</text>
   </g>
   <g>
     <rect style="fill: #ffffff" x="-100" y="-1" width="172.3" height="18"/>
@@ -157,9 +163,9 @@
     <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-8.05" y="242">*</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-12.05,332 -12.05,360 -10.9,360 -10.9,388 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-12.05,332 -12.05,360 -11.05,360 -11.05,388 "/>
     <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-8.05" y="344">*</text>
-    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-6.9" y="384">1</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-7.05" y="384">1</text>
   </g>
   <g>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="100.2,171 158.6,171 158.6,247 217,247 "/>
@@ -172,8 +178,8 @@
     <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="332.7" y="365">*</text>
   </g>
   <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="102.2,416 166.6,416 166.6,413 231,413 "/>
-    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="106.2" y="412">1</text>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="105.9,416 168.45,416 168.45,413 231,413 "/>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="109.9" y="412">1</text>
     <text font-size="9.6" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="227" y="409">*</text>
   </g>
   <g>
@@ -207,7 +213,7 @@
   </g>
   <g>
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="331.5,-4 331.5,27.5 331.35,27.5 331.35,59 "/>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="335.5" y="8">1</text>
-    <text font-size="9.59961" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="335.35" y="55">*</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="335.5" y="8">1</text>
+    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="335.35" y="55">*</text>
   </g>
 </svg>
