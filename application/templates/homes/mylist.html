@@ -9,7 +9,7 @@
   </tr>
   {% for home in homes %}
   <tr>
-    <td>{{ home.name         }}</td>
+    <td><a href="{{ url_for('myhomes_view', home_id=home.home_id) }}">{{ home.name }}</a></td>
     <td>{{ home.users|length }}</td>
     <td>
       <button type="button" class="btn btn-primary btn-sm" onclick="location.assign('{{ url_for('myhomes_edit', home_id=home.home_id) }}')">Edit</button>

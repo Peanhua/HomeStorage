@@ -1,5 +1,7 @@
-from application    import db
-from sqlalchemy.sql import text
+from application                 import db
+from application.products.models import Product
+from sqlalchemy.sql              import text
+from sqlalchemy                  import and_, or_
 
 class Home(db.Model):
     home_id  = db.Column(db.Integer,    primary_key = True)
@@ -11,6 +13,27 @@ class Home(db.Model):
     def __init__(self, name):
         self.name     = name
 
+        
+    def get_products(self):
+        res = db.session().query(Product, HomeProduct).outerjoin(HomeProduct, and_(Product.product_id == HomeProduct.product_id,
+                                                                                   or_(HomeProduct.home_id == self.home_id,
+                                                                                       HomeProduct.home_id.is_(None)))).all()
+        class TmpProduct(object):
+            def __init__(self, product_id, name, mind, maxd):
+                self.product_id   = product_id
+                self.product_name = name
+                self.mindesired   = mind
+                self.maxdesired   = maxd
+        fps = []
+        for i in res:
+            product = i[0]
+            hprod   = i[1]
+            mind = getattr(hprod, "desired_min_quantity", 0)
+            maxd = getattr(hprod, "desired_max_quantity", 0)
+            fps.append(TmpProduct(product.product_id, product.name, mind, maxd))
+        return fps;
+
+    
     def get_stock(self):
         q = text("SELECT product.product_id                AS product_id,"
                  "       product.name                      AS product_name,"

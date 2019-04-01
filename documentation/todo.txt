@@ -5,3 +5,4 @@
 * Use users login (instead of name) for the select lists when assigning users to homes.
 * Re-order storages view to get rid of the home column, and then group the storages by home.
 * Don't allow to delete products that are in use (have items associated to the product).
+* Move contents of application/stock/views.py to application/storage/views.py.

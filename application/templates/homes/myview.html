@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>My Home: {{ home.name }}</h3>
+
+<h4>Users:</h4>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  {% for user in homeusers %}
+  <tr>
+    <td>{{ user.name }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<div>&nbsp;</div>
+
+<h4>Products:</h4>
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Desired minimum quantity</th>
+    <th>Desired maximum quantity</th>
+    <th>Current stock</th>
+  </tr>
+  {% for product in products %}
+  <tr>
+    <td>{{ product.product_name }}</td>
+    <td>{{ product.desired_min_quantity }}</td>
+    <td>{{ product.desired_max_quantity }}</td>
+    <td>{{ product.current_quantity }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<div>&nbsp;</div>
+
+<div>
+  <button type="button" class="btn btn-secondary" onclick="location.assign('{{ url_for('myhomes_index') }}')">Close</button>
+</div>
+{% endblock %}
