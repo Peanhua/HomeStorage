@@ -21,7 +21,7 @@
     <td>{{ product.default_lifetime }}</td>
     <td>
       <button type="button" class="btn btn-primary btn-sm" onclick="onEditProductClicked({{ product.product_id }})">Edit</button>
-      <button type="button" class="btn btn-primary btn-sm" onclick="onDeleteProductClicked({{ product.product_id }})">Delete</button>
+      <button type="button" class="btn btn-danger btn-sm" onclick="onDeleteProductClicked({{ product.product_id }})">Delete</button>
     </td>
   </tr>
   {% endfor %}
