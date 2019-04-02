@@ -44,7 +44,7 @@ def homes_edit(home_id):
     if request.method == "GET":
         form = HomeForm()
         form.name.data = home.name
-        return render_template("homes/edit.html", form = form)
+        return render_template("homes/edit.html", form=form, home=home)
 
     else:
         form = HomeForm(request.form)

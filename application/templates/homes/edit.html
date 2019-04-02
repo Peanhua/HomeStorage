@@ -1,8 +1,13 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h3>Edit home</h3>
 <form method="POST">
   <table>
+    <tr>
+      <td>Home id:</td>
+      <td>{{ home.home_id }}</td>
+    </tr>
     <tr>
       <td>{{ form.name.label }}</td><td>{{ form.name }}</td>
       <td>
