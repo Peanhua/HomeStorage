@@ -128,6 +128,10 @@ onStockAdjustClicked = (product_id, amount) => {
 onShowReportClicked = (report_id) => {
   const homeselect = document.getElementById("home_select_" + report_id)
   const home_id = homeselect.options[homeselect.selectedIndex].value
-  const url = showReportUrl(report_id, home_id)
+  
+  const param1input = document.getElementById("param1_" + report_id)
+  const param1 = param1input.value
+  
+  const url = showReportUrl(report_id, home_id, param1)
   location.assign(url)
 }

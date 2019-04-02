@@ -16,8 +16,11 @@
       editHomeUsersUrl = (home_id) => {
         return "{{ url_for('homeusers_edit', home_id='HOME_ID') }}".replace(/HOME_ID/, home_id)
       }
-      showReportUrl = (report_id, home_id) => {
-        return "{{ url_for('report_show', report_id='REPORT_ID', home_id='HOME_ID') }}".replace(/REPORT_ID/, report_id).replace(/HOME_ID/, home_id)
+      showReportUrl = (report_id, home_id, param1) => {
+        return "{{ url_for('report_show', report_id='REPORT_ID', home_id='HOME_ID', param1='PARAM1') }}"
+          .replace(/REPORT_ID/, report_id)
+          .replace(/HOME_ID/, home_id)
+          .replace(/PARAM1/, param1)
       }
     </script>
     <script src="{{ url_for('static', filename='index.js') }}"></script>

@@ -8,6 +8,7 @@
     <th>Report</th>
     <th>Description</th>
     <th>For home</th>
+    <th>Parameters</th>
     <th></th>
   </tr>
   {% for report in reports %}
@@ -20,6 +21,11 @@
         <option value="{{ home.home_id }}">{{ home.name }}</option>
         {% endfor %}
       </select>
+    </td>
+    <td>
+      {{ report.param1label }}
+      <input type="text" id="param1_{{ report.id }}" value="{{ report.param1default }}">
+    </td>
     <td>
       <button type="button" class="btn btn-primary btn-sm align-middle" onclick="onShowReportClicked('{{ report.id }}')">Show</button>
     </td>
