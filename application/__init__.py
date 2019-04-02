@@ -83,7 +83,6 @@ from application.homes    import views
 
 from application.items    import models
 
-from application.stock    import views
 
 
 # Authentication continued:
