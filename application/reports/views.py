@@ -16,7 +16,10 @@ def reports_index():
             self.param1label   = param1label
             self.param1default = param1default
 
-    reports = [ Report("best_before", "Best before", "List items past or nearing the best before -date.", "Days", 7) ]
+    reports = [
+        Report("best_before",      "Best before",      "List items past or nearing the best before -date.",      "Days", 7   ),
+        Report("missing_products", "Missing products", "List products whose quantity is below minimum desired.", None,   None)
+    ]
     homes = current_user.get_my_homes()
     return render_template("reports/index.html", reports=reports, homes=homes)
 
@@ -29,6 +32,9 @@ def report_show(report_id, home_id, param1):
         days = int(param1)
         items = home.get_stock_going_bad(days)
         return render_template("reports/best_before.html", home=home, items=items, days=days)
+    elif report_id == "missing_products":
+        products = home.get_stock_missing()
+        return render_template("reports/missing_products.html", home=home, products=products)
     else:
         return redirect(url_for("reports_index"))
 

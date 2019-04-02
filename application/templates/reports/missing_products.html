@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Missing products: {{ home.name }}</h3>
+<div>Products whose quantity is below minimum desired.</div>
+<div>&nbsp;</div>
+{% if products|length > 0 %}
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Desired quantity</th>
+    <th>Current stock</th>
+    <th>Missing quantity</th>
+  </tr>
+  {% for product in products %}
+  <tr>
+    <td>{{ product.product_name }}</td>
+    <td>{{ product.desired_min_quantity }} ... {{ product.desired_max_quantity }}</td>
+    <td>{{ product.current_quantity }}</td>
+    <td>{{ product.desired_min_quantity - product.current_quantity }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div><b>No results.</b></div>
+{% endif %}
+{% endblock %}

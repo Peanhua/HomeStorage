@@ -52,7 +52,7 @@ def stock_edit(storage_id):
     def view():
         home = Home.query.get(storage.home_id)
         products = storage.get_stock()
-        homeproducts = home.get_stock()
+        homeproducts = home.get_stock_all()
         for product in products:
             hp = next(p for p in homeproducts if p["product_id"] == product["product_id"])
             product["current_total_quantity"] = hp["current_quantity"]

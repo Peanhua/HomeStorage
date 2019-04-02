@@ -23,8 +23,12 @@
       </select>
     </td>
     <td>
+      {% if report.param1label %}
       {{ report.param1label }}
       <input type="text" id="param1_{{ report.id }}" value="{{ report.param1default }}">
+      {% else %}
+      <input type="hidden" id="param1_{{ report.id }}" value="-">
+      {% endif %}
     </td>
     <td>
       <button type="button" class="btn btn-primary btn-sm align-middle" onclick="onShowReportClicked('{{ report.id }}')">Show</button>

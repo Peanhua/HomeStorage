@@ -148,6 +148,6 @@ def myhomes_view(home_id):
     if current_user.user_id not in homeuserids:
         return redirect(url_for("myhomes_index"));
 
-    products = home.get_stock()
+    products = home.get_stock_all()
 
     return render_template("homes/myview.html", home=home, homeusers=homeusers, products=products)
