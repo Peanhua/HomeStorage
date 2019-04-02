@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Best before: {{ home.name }}</h3>
+<div>Items past or nearing the best before -date.</div>
+<div>&nbsp;</div>
+<div>Displaying items with less than {{ days }} days remaining:</div>
+{% if items|length > 0 %}
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Storage</th>
+    <th>Best before</th>
+    <th>Days remaining</th>
+  </tr>
+  {% for item in items %}
+  <tr>
+    <td>{{ item.name }}</td>
+    <td>{{ item.storage }}</td>
+    <td>{{ item.best_before }}</td>
+    <td>{{ item.days_remaining }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div><b>No results.</b></div>
+{% endif %}
+{% endblock %}

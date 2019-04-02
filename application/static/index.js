@@ -122,3 +122,12 @@ onStockAdjustClicked = (product_id, amount) => {
   change.value = changeval
   newquant.innerHTML = newcur
 }
+
+
+
+onShowReportClicked = (report_id) => {
+  const homeselect = document.getElementById("home_select_" + report_id)
+  const home_id = homeselect.options[homeselect.selectedIndex].value
+  const url = showReportUrl(report_id, home_id)
+  location.assign(url)
+}

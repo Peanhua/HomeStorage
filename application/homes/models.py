@@ -41,8 +41,8 @@ class Home(db.Model):
                  "       home_product.desired_max_quantity AS desired_max_quantity,"
                  "       SUM(item.quantity)                AS current_quantity"
                  "  FROM product"
-                 "       LEFT OUTER JOIN home_product ON product.product_id = home_product.product_id"
-                 "                                       AND ( home_product.home_id = :home_id OR home_product.home_id IS NULL)"
+                 "  LEFT OUTER JOIN home_product ON product.product_id = home_product.product_id"
+                 "                                  AND ( home_product.home_id = :home_id OR home_product.home_id IS NULL)"
                  "  LEFT OUTER JOIN item ON product.product_id = item.product_id"
                  "                          AND item.storage_id IN ( SELECT storage.storage_id"
                  "                                                     FROM storage"
@@ -57,6 +57,30 @@ class Home(db.Model):
                        "desired_min_quantity": row[2] if row[2] else 0,
                        "desired_max_quantity": row[3] if row[3] else 0,
                        "current_quantity":     row[4] if row[4] else 0
+                       })
+        return rv
+
+
+    def get_stock_going_bad(self, days):
+        # name, storage, best_before, days_remaining
+        q = text("SELECT product.name                                    AS name,"
+                 "       storage.name                                    AS storage,"
+                 "       item.best_before                                AS best_before,"
+                 "       JULIANDAY(item.best_before) - JULIANDAY(DATE()) AS days_remaining"
+                 "  FROM item"
+                 "  JOIN product ON product.product_id = item.product_id"
+                 "  JOIN storage ON storage.storage_id = item.storage_id"
+                 " WHERE storage.home_id = :home_id"
+                 "   AND days_remaining < :days"
+                 " ORDER BY days_remaining"
+                 ).params(home_id=self.home_id, days=days)
+        res = db.engine.execute(q)
+        rv = []
+        for row in res:
+            rv.append({"name":           row[0],
+                       "storage":        row[1],
+                       "best_before":    row[2],
+                       "days_remaining": int(row[3])
                        })
         return rv
 
