@@ -31,6 +31,7 @@ def users_create():
                 form.password.data)
 
     user.superuser = form.superuser.data
+    user.force_password_change = True
     
     db.session().add(user)
     db.session().commit()
@@ -54,10 +55,11 @@ def users_edit(user_id):
         if not form.validate():
             return render_template("users/edit.html", form=form, user=user)
 
-        user.name      = form.name.data
-        user.email     = form.email.data
-        user.login     = form.login.data
-        user.superuser = form.superuser.data
+        user.name                  = form.name.data
+        user.email                 = form.email.data
+        user.login                 = form.login.data
+        user.superuser             = form.superuser.data
+        user.force_password_change = form.force_password_change.data
         if len(form.password.data) > 0:
             user.change_password(form.password.data)
         db.session().commit()

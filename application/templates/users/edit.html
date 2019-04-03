@@ -18,7 +18,7 @@
       </td>
     </tr>
     <tr>
-      <td>{{ form.password.label }}</td>
+      <td class="align-top">{{ form.password.label }}</td>
       <td>{{ form.password }}<small id="passwordHelp" class="form-text text-muted">Leave password field empty to not change it.</small></td>
       <td>
         <ul>
@@ -27,6 +27,11 @@
           {% endfor %}
         </ul>
       </td>
+    </tr>
+    <tr>
+      <td class="align-top">{{ form.force_password_change.label }}</td>
+      <td colspan="2">{{ form.force_password_change }}
+      <small class="form-text text-muted">Forces the user to change password before the user can continue using HomeStorage system.</small></td>
     </tr>
     <tr>
       <td>{{ form.superuser.label }}</td><td>{{ form.superuser }}</td>

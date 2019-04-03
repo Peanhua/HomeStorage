@@ -100,7 +100,7 @@ def force_password_change():
         return None
     if current_user.is_authenticated:
         if current_user.force_password_change:
-            if request.path != url_for("auth_change_password"):
+            if request.path != url_for("auth_change_password") and request.path != url_for("auth_logout"):
                 return redirect(url_for("auth_change_password"))
 
 

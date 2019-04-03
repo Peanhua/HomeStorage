@@ -22,9 +22,10 @@ class UserNewForm(UserBaseForm):
     superuser = BooleanField("Superuser:", [validators.Optional()])
 
 class UserEditForm(UserBaseForm):
-    login     = StringField("Login:",      [validators.DataRequired(), validators.Length(min=4, max=40), check_unique_login])
-    password  = PasswordField("Password:", [validators.Optional(),     validators.Length(min=8)])
-    superuser = BooleanField("Superuser:", [validators.Optional()])
+    login                 = StringField("Login:",                  [validators.DataRequired(), validators.Length(min=4, max=40), check_unique_login])
+    password              = PasswordField("Password:",             [validators.Optional(),     validators.Length(min=8)])
+    superuser             = BooleanField("Superuser:",             [validators.Optional()])
+    force_password_change = BooleanField("Force password change:", [validators.Optional()])
 
 class UserProfileForm(UserBaseForm):
     password  = PasswordField("Password:", [validators.Optional(), validators.Length(min=8)])
