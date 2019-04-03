@@ -27,7 +27,7 @@ class User(db.Model):
         self.change_password(password)
 
     def change_password(self, password):
-        self.password = generate_password_hash(password, 12)
+        self.password = generate_password_hash(password, 12).decode("utf-8")
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
