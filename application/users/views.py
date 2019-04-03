@@ -1,6 +1,6 @@
 from application              import app, db, login_required
 from application.users.models import User
-from application.users.forms  import UserNewForm, UserEditForm
+from application.users.forms  import UserNewForm, UserEditForm, UserProfileForm
 from flask                    import abort, redirect, render_template, request, url_for
 from flask_login              import current_user
 
@@ -59,7 +59,7 @@ def users_edit(user_id):
         user.login     = form.login.data
         user.superuser = form.superuser.data
         if len(form.password.data) > 0:
-            user.password = form.password.data
+            user.change_password(form.password.data)
         db.session().commit()
 
         return redirect(url_for("users_index"))
@@ -84,20 +84,19 @@ def users_edit(user_id):
 @login_required()
 def users_profile_edit():
     if request.method == "GET":
-        form = UserEditForm(obj=current_user)
+        form = UserProfileForm(obj=current_user)
         return render_template("users/edit_profile.html", form=form, user=current_user)
 
     else:
-        form = UserEditForm(request.form)
+        form = UserProfileForm(request.form)
 
         if not form.validate():
             return render_template("users/edit_profile.html", form=form, user=current_user)
 
         current_user.name      = form.name.data
         current_user.email     = form.email.data
-        current_user.login     = form.login.data
         if len(form.password.data) > 0:
-            current_user.password = form.password.data
+            current_user.change_password(form.password.data)
         db.session().commit()
 
         return redirect(url_for("index"))

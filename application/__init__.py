@@ -92,6 +92,17 @@ from application.users.models import User
 def load_user(user_id):
     return User.query.get(user_id)
 
+# Handle forced password changes:
+from flask import request
+@app.before_request
+def force_password_change():
+    if not current_user:
+        return None
+    if current_user.is_authenticated:
+        if current_user.force_password_change:
+            if request.path != url_for("auth_change_password"):
+                return redirect(url_for("auth_change_password"))
+
 
 # Initialize database:
 try:
