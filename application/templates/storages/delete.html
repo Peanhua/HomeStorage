@@ -10,6 +10,7 @@
   <tr><td>{{ item.product_name }}</td><td>{{ item.current_quantity }}</td></tr>
   {% endfor %}
 </table>
+<div><b>The items will be permanently lost!</b></div>
 {% else %}
 <div><b>No items in {{ storage.name }}.</b></div>
 {% endif %}

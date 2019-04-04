@@ -48,6 +48,7 @@ def storages_create():
 @app.route("/storages/<storage_id>/delete", methods=["GET", "DELETE"])
 @login_required()
 def storages_delete(storage_id):
+    # TODO: make sure the user has permission to delete this storage
     storage = Storage.query.get(storage_id)
     if request.method == "GET":
         home = Home.query.get(storage.home_id)
