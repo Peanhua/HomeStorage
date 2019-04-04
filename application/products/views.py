@@ -1,8 +1,10 @@
 from application                 import app, db
 from application.products.models import Product
 from application.products.forms  import ProductForm
-from flask                       import redirect, render_template, request, url_for
+from application.items.models    import Item
+from flask                       import redirect, render_template, request, url_for, abort
 from flask_login                 import login_required
+from sqlalchemy                  import exc
 
 # List of products
 @app.route("/products", methods=["GET"])
@@ -56,6 +58,14 @@ def products_edit(product_id):
         return redirect(url_for("products_index"))
 
     elif request.method == "DELETE":
-        db.session().delete(product)
-        db.session().commit()
-        return ""
+        try:
+            db.session().delete(product)
+            db.session().commit()
+            return "", 204
+        except exc.SQLAlchemyError:
+            db.session().rollback()
+            itemcount = Item.query.filter(Item.product_id == product.product_id).count()
+            if itemcount > 0:
+                return "Unable to delete product '" + product.name + "', it is in use by " + str(itemcount) + " items.", 405
+            else:
+                abort(418)

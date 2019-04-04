@@ -34,8 +34,10 @@ onDeleteProductClicked = (product_id) => {
     const url = editProductUrl(product_id)
     req.onreadystatechange = function() {
       if(this.readyState === 4) {
-        if(this.status === 200) {
+        if(this.status === 204) {
           location.reload()
+        } else if(this.status == 405) {
+          alert(req.responseText)
         } else {
           alert(req.responseText)
         }

@@ -8,8 +8,8 @@
 * As a user, I can add items to my home storages. The items are based on products anyone has added.
 * As a user, I can remove items from my home storages.
 * As a user, I can add new products.
-* As a user, I can edit products if they are not in use by any items.
-* As an administrator, I can edit products even if they are in use.
+* As a user, I can edit products. This can be done anytime regardless whether the products are in use or not, a friendly environment between all the homes and users is expected.
+* As a user, I can delete products if they are not in use.
 * As a user, I can get a listing of items whose lifetime has ended or are about to end.
 * As a user, I can get a listing of products missing for my home.
 * As a user, I can get reports about product usage. The statistics contain quantities of products used over certain period of time, for example how many liters of milk are consumed per month.
