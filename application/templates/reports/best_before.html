@@ -9,6 +9,7 @@
 <table>
   <tr>
     <th>Item</th>
+    <th>Quantity</th>
     <th>Storage</th>
     <th>Best before</th>
     <th>Days remaining</th>
@@ -16,6 +17,7 @@
   {% for item in items %}
   <tr>
     <td>{{ item.name }}</td>
+    <td>{{ item.quantity }}</td>
     <td>{{ item.storage }}</td>
     <td>{{ item.best_before }}</td>
     <td>{{ item.days_remaining }}</td>

@@ -77,6 +77,7 @@ class Home(db.Model):
     def get_stock_going_bad(self, days):
         # name, storage, best_before, days_remaining
         q = text("SELECT product.name                                    AS name,"
+                 "       item.quantity                                   AS quantity,"
                  "       storage.name                                    AS storage,"
                  "       item.best_before                                AS best_before,"
                  "       JULIANDAY(item.best_before) - JULIANDAY(DATE()) AS days_remaining"
@@ -91,9 +92,10 @@ class Home(db.Model):
         rv = []
         for row in res:
             rv.append({"name":           row[0],
-                       "storage":        row[1],
-                       "best_before":    row[2],
-                       "days_remaining": int(row[3])
+                       "quantity":       row[1],
+                       "storage":        row[2],
+                       "best_before":    row[3],
+                       "days_remaining": int(row[4])
                        })
         return rv
 
