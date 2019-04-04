@@ -61,7 +61,7 @@ def storages_delete(storage_id):
 
 
 # Stock edit
-@app.route("/stock/<storage_id>/", methods=["GET", "POST"])
+@app.route("/storages/<storage_id>/stock", methods=["GET", "POST"])
 @login_required()
 def stock_edit(storage_id):
     storage = Storage.query.get(storage_id)
