@@ -7,3 +7,9 @@ class StorageForm(FlaskForm):
 
     class Meta:
         csrf = False
+
+
+class StorageDeleteForm(FlaskForm):
+    class Meta:
+        csrf = False
+

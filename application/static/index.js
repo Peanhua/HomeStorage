@@ -135,3 +135,21 @@ onShowReportClicked = (report_id) => {
   const url = showReportUrl(report_id, home_id, param1)
   location.assign(url)
 }
+
+
+
+onDeleteStorageClicked = (storage_id) => {
+  const req = new XMLHttpRequest()
+  const url = deleteStorageUrl(storage_id)
+  req.onreadystatechange = function() {
+    if(this.readyState === 4) {
+      if(this.status === 200) {
+        location.assign(req.responseText)
+      } else {
+        alert(req.responseText)
+      }
+    }
+  }
+  req.open("DELETE", url, true)
+  req.send(null)
+}

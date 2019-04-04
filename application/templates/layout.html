@@ -23,6 +23,9 @@
           .replace(/HOME_ID/, home_id)
           .replace(/PARAM1/, param1)
       }
+      deleteStorageUrl = (storage_id) => {
+        return "{{ url_for('storages_delete', storage_id='STORAGE_ID') }}".replace(/STORAGE_ID/, storage_id)
+      }
     </script>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
   </head>

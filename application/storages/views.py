@@ -1,6 +1,6 @@
 from application                 import app, db, login_required
 from application.storages.models import Storage
-from application.storages.forms  import StorageForm
+from application.storages.forms  import StorageForm, StorageDeleteForm
 from application.homes.models    import Home
 from application.items.models    import Item
 from application.products.models import Product
@@ -42,6 +42,22 @@ def storages_create():
     db.session().commit()
     
     return redirect(url_for("storages_index"))
+
+
+# Storage delete:
+@app.route("/storages/<storage_id>/delete", methods=["GET", "DELETE"])
+@login_required()
+def storages_delete(storage_id):
+    storage = Storage.query.get(storage_id)
+    if request.method == "GET":
+        home = Home.query.get(storage.home_id)
+        stock = storage.get_stock(False)
+        form = StorageDeleteForm(obj=storage)
+        return render_template("storages/delete.html", form=form, home=home, storage=storage, stock=stock)
+    elif request.method == "DELETE":
+        db.session().delete(storage)
+        db.session().commit()
+        return url_for("storages_index")
 
 
 # Stock edit

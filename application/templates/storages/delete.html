@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Delete storage: {{ home.name }}/{{ storage.name }}</h3>
+{% if stock|length > 0 %}
+<div><b>WARNING! The storage contains items:</b></div>
+<table>
+  <tr><th>Name</th><th>Quantity</th></tr>
+  {% for item in stock %}
+  <tr><td>{{ item.product_name }}</td><td>{{ item.current_quantity }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<div><b>No items in {{ storage.name }}.</b></div>
+{% endif %}
+<div>Are you sure you want to delete the storage {{ storage.name }} from home {{ home.name }}?</div>
+<div>
+  <button type="button" class="btn btn-secondary" onclick="location.assign('{{ url_for('storages_index') }}')">Cancel</button>
+  <button type="submit" class="btn btn-danger" onclick="onDeleteStorageClicked({{ storage.storage_id }})">Delete</button>
+</div>
+{% endblock %}

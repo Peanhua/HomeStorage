@@ -17,7 +17,10 @@
   <tr>
     <td>{{ item[1] }}</td>
     <td>{{ item[0].name }}</td>
-    <td><button type="button" class="btn btn-success btn-sm" onclick="location.assign('{{ url_for('stock_edit', storage_id=item[0].storage_id) }}')">Edit Stock</button></td>
+    <td>
+      <button type="button" class="btn btn-danger btn-sm" onclick="location.assign('{{ url_for('storages_delete', storage_id=item[0].storage_id) }}')">Delete storage</button>
+      <button type="button" class="btn btn-success btn-sm" onclick="location.assign('{{ url_for('stock_edit', storage_id=item[0].storage_id) }}')">Edit Stock</button>
+    </td>
   </tr>
   {% endfor %}
 </table>
