@@ -4,35 +4,37 @@
 <h3>Add new storage</h3>
 {% if form.home.choices|length > 0 %}
 <form method="POST" action="{{ url_for('storages_create') }}">
-  <table>
-    <tr>
-      <td>{{ form.home.label }}</td><td>{{ form.home }}</td>
-      <td>
+  <div class="container">
+    <div class="row">
+      <div class="col-1">{{ form.home.label }}</div>
+      <div class="col">{{ form.home }}</div>
+      <div class="col">
         <ul>
           {% for error in form.home.errors %}
           <li>{{ error }}</li>
           {% endfor %}
         </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>{{ form.name.label }}</td><td>{{ form.name }}</td>
-      <td>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1">{{ form.name.label }}</div>
+      <div class="col">{{ form.name }}</div>
+      <div class="col">
         <ul>
           {% for error in form.name.errors %}
           <li>{{ error }}</li>
           {% endfor %}
         </ul>
-      </td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col">
         <button type="button" class="btn btn-secondary" onclick="location.assign('{{ url_for('storages_index') }}')">Cancel</button>
         <button type="submit" class="btn btn-success">Add new storage</button>
-      </td>
-    </tr>
-  </table>
+      </div>
+    </div>
+  </div>
 </form>
 {% else %}
 <div>You don't have any homes set. Ask your administrator to place you in one or more homes.</div>

@@ -3,33 +3,35 @@
 {% block body %}
 <h3>Edit home</h3>
 <form method="POST">
-  <table>
-    <tr>
-      <td>Home id:</td>
-      <td>{{ home.home_id }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.name.label }}</td><td>{{ form.name }}</td>
-      <td>
+  <div class="container">
+    <div class="row">
+      <div class="col-2">Home id:</div>
+      <div class="col">{{ home.home_id }}</div>
+    </div>
+    <div class="row">
+      <div class="col-2">{{ form.name.label }}</div>
+      <div class="col">{{ form.name }}</div>
+      <div class="col">
         <ul>
           {% for error in form.name.errors %}
           <li>{{ error }}</li>
           {% endfor %}
         </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>Users:</td>
-      <td>{{ home.users|length }} <button type="button" class="btn btn-primary btn-sm" onclick="onEditHomeUsersClicked({{ home.home_id }})">add/remove users</button></td>
-    </tr>
-    <tr>
-      <td>
-      </td>
-      <td>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">Users:</div>
+      <div class="col-1">{{ home.users|length }}</div>
+      <div class="col"><button type="button" class="btn btn-primary btn-sm" onclick="onEditHomeUsersClicked({{ home.home_id }})">add/remove users</button></div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col">
         <button type="button" class="btn btn-secondary" onclick="location.assign('{{ url_for('homes_index') }}')">Cancel</button>
         <button type="submit" class="btn btn-success">Save</button>
-      </td>
-    </tr>
-  </table>
+      </div>
+    </div>
+  </div>
 </form>
 {% endblock %}

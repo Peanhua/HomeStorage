@@ -38,12 +38,10 @@
       </td>
     </tr>
     {% endfor %}
-    <tr>
-      <td colspan="4">
-        <button type="button" class="btn btn-secondary" onclick="location.assign('{{ url_for('myhomes_index') }}')">Cancel</button>
-        <button type="submit" class="btn btn-success">Save</button>
-      </td>
-    </tr>
   </table>
+  <div>
+    <button type="button" class="btn btn-secondary" onclick="location.assign('{{ url_for('myhomes_index') }}')">Cancel</button>
+    <button type="submit" class="btn btn-success">Save</button>
+  </div>
 </form>
 {% endblock %}
