@@ -30,11 +30,12 @@ To run *Home Storage*, use the *run.py* script:
 ```$ ./run.py```
 
 The following environment variables are recognized and used if present:
-Variable      | Value   | Default       | Description
---------      | -----   | -------       | -----------
-SECRET_KEY    | String  | *random data* | Set the Flask SECRET_KEY used for securely signing the session cookie.
-DATABASE_URL  | String  | sqlite:///homestorage.db | The database URL used for SQLAlchemy connection.
-DATABASE_ECHO | Boolean | False         | Controls the SQLALCHEMY_ECHO configuration.
+<table>
+  <tr><th>Variable     </th><th>Value type</th><th>Default      </th><th>Description</th></tr>
+  <tr><td>SECRET_KEY   </td><td>String    </td><td>*random data*</td><td>Set the Flask SECRET_KEY used for securely signing the session cookie.</td></tr>
+  <tr><td>DATABASE_URL </td><td>String    </td><td>sqlite:///homestorage.db</td><td>The database URL used for SQLAlchemy connection.</td></tr>
+  <tr><td>DATABASE_ECHO</td><td>Boolean   </td><td>False        </td><td>Controls the SQLALCHEMY_ECHO configuration.</td></tr>
+</table>
 
 The variables are also read from ```.env``` using the *python-dotenv* package.
 

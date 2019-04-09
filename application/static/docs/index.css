@@ -2,3 +2,19 @@ img {
   border: 1px solid #cccccc;
   box-shadow: 10px 10px #cccccc;
 }
+
+table {
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+}
+
+th {
+  border-bottom: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+}
+
+td {
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+}
