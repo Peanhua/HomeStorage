@@ -1,10 +1,21 @@
-from flask       import render_template
-from application import app, login_required
+from application                 import app, login_required
+from application.homes.models    import Home
+from application.products.models import Product
+from application.users.models    import User
+from flask                       import render_template
+from flask_login                 import current_user
 
 @app.route("/")
 @login_required()
 def index():
-    return render_template("index.html")
+    if "ADMIN" in current_user.roles():
+        systemstatus = {
+            "homes":    Home.query.all(),
+            "products": Product.query.all(),
+            "users":    User.query.all(),
+        }
+
+    return render_template("index.html", systemstatus=systemstatus)
 
 @app.route("/docs/")
 def docs_index():

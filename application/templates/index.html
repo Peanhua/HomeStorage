@@ -2,10 +2,61 @@
 
 {% block body %}
 <h3>Dashboard</h3>
-<small>Use the navigation menu on top.</small>
-
+<small>Use the navigation menu on top, or check out the <a href="{{ url_for('docs_index') }}">documentation</a></small>
 <p></p>
-<ul>
-  <li><a href="{{ url_for('docs_index') }}">Documentation</a></li>
-</ul>
+{% if "ADMIN" in current_user.roles() %}
+<h4>System status:</h4>
+<div class="container">
+  <div class="row">
+    <div class="col-1">Homes:</div>
+    <div class="col">{{ systemstatus.homes|length }}</div>
+  </div>
+  <div class="row">
+    <div class="col-1">Users:</div>
+    <div class="col">{{ systemstatus.users|length }}</div>
+  </div>
+  <div class="row">
+    <div class="col-1">Products:</div>
+    <div class="col">{{ systemstatus.products|length }}</div>
+  </div>
+</div>
+<p></p>
+<h5>Warnings/errors:</h5>
+<div class="container">
+  {% if systemstatus.homes|length == 0 %}
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-danger" role="alert">
+        You have not set any homes yet.
+        <a href="{{ url_for('homes_form') }}">Click here</a> to create a new home.
+      </div>
+    </div>
+  </div>
+  {% else %}
+  {% for home in systemstatus.homes %}
+  {% if home.users|length == 0 %}
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-danger" role="alert">
+        The home "{{ home.name }}" does not have any users.
+        <a href="{{ url_for('homeusers_edit', home_id=home.home_id) }}">Click here</a> to assign users for "{{ home.name }}".
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+  
+  {% if systemstatus.users|length == 1 %}
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-warning" role="alert">
+        You have not set up additional users.
+        Home Storage is more fun with more users, <a href="{{ url_for('users_form') }}">click here</a> to create new users.
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
 {% endblock %}
