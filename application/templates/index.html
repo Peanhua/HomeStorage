@@ -67,10 +67,15 @@
   <div class="row">
     <div class="col-2">{{ home.name }}</div>
     <div class="col">
-      {% if home.bad_stock|length == 0 %}
+      {% if home.bad_stock|length == 0 and home.missing_products|length == 0 %}
       <div class="alert alert-success" role="alert">All good.</div>
       {% else %}
+      {% if home.bad_stock|length > 0 %}
       <div class="alert alert-danger" role="alert">Some items have best before date in less than 3 days. <button type="button" class="btn btn-sm btn-primary" onclick="location.assign('{{ url_for('report_show', report_id='best_before', home_id=home.home_id, param1='3') }}')">Show report</button></div>
+      {% endif %}
+      {% if home.missing_products|length > 0 %}
+      <div class="alert alert-danger" role="alert">Missing {{ home.missing_products|length }} products from stock. <button type="button" class="btn btn-sm btn-primary" onclick="location.assign('{{ url_for('report_show', report_id='missing_products', home_id=home.home_id, param1='x') }}')">Show report</button></div>
+      {% endif %}
       {% endif %}
     </div>
   </div>

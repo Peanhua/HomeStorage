@@ -12,6 +12,7 @@ def index():
     myhomes = current_user.get_my_homes()
     for home in myhomes:
         setattr(home, "bad_stock", home.get_stock_going_bad(3))
+        setattr(home, "missing_products", home.get_stock_missing())
 
     if "ADMIN" in current_user.roles():
         systemstatus = {
