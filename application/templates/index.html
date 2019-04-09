@@ -58,6 +58,19 @@
     </div>
   </div>
   {% endif %}
+
+  {% for user in systemstatus.users %}
+  {% if user.homes|length == 0 %}
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-danger" role="alert">
+        User "{{ user.name }}" is not assigned to any home.
+        You can assign users to homes in <a href="{{ url_for('homes_index') }}">home management</a>.
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
 </div>
 {% endif %}
 <h4>My status:</h4>
