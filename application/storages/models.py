@@ -40,6 +40,7 @@ class Storage(db.Model):
                        "desired_max_quantity": row[3] if row[3] else 0,
                        "current_quantity":     row[4] if row[4] else 0
                        })
+        res.close()
         return rv
 
     def decrease_item_count(self, product_id, amount):

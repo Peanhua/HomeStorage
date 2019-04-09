@@ -1,5 +1,5 @@
 from application                 import db
-#from application.storages.models import Storage # This does not work because of recursive imports
+from sqlalchemy.sql              import text
 
 class Item(db.Model):
     item_id    = db.Column(db.Integer, primary_key = True)
@@ -15,3 +15,12 @@ class Item(db.Model):
         self.storage_id  = storage_id
         self.quantity    = 0
         self.best_before = best_before
+
+    @staticmethod
+    def get_total():
+        q = text("SELECT SUM(quantity) FROM item")
+        res = db.engine.execute(q)
+        count = res.fetchone()[0]
+        res.close()
+        return count
+    

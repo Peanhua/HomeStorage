@@ -9,15 +9,17 @@
 <div class="container">
   <div class="row">
     <div class="col-1">Homes:</div>
-    <div class="col">{{ systemstatus.homes|length }}</div>
+    <div class="col-1">{{ systemstatus.homes|length }}</div>
+    <div class="col-2"></div>
+    <div class="col-1">Products:</div>
+    <div class="col-1">{{ systemstatus.products|length }}</div>
   </div>
   <div class="row">
     <div class="col-1">Users:</div>
-    <div class="col">{{ systemstatus.users|length }}</div>
-  </div>
-  <div class="row">
-    <div class="col-1">Products:</div>
-    <div class="col">{{ systemstatus.products|length }}</div>
+    <div class="col-1">{{ systemstatus.users|length }}</div>
+    <div class="col-2"></div>
+    <div class="col-1">Items:</div>
+    <div class="col-1">{{ systemstatus.itemcount }}</div>
   </div>
 </div>
 <p></p>

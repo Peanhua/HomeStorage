@@ -31,6 +31,7 @@ class Home(db.Model):
             mind = getattr(hprod, "desired_min_quantity", 0)
             maxd = getattr(hprod, "desired_max_quantity", 0)
             fps.append(TmpProduct(product.product_id, product.name, mind, maxd))
+        res.close()
         return fps;
 
     
@@ -65,6 +66,7 @@ class Home(db.Model):
                        "desired_max_quantity": row[3] if row[3] else 0,
                        "current_quantity":     row[4] if row[4] else 0
                        })
+        res.close()
         return rv
 
     def get_stock_all(self):
@@ -97,6 +99,7 @@ class Home(db.Model):
                        "best_before":    row[3],
                        "days_remaining": int(row[4])
                        })
+        res.close()
         return rv
 
 

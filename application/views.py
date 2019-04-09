@@ -1,5 +1,6 @@
 from application                 import app, login_required
 from application.homes.models    import Home
+from application.items.models    import Item
 from application.products.models import Product
 from application.users.models    import User
 from flask                       import render_template
@@ -10,9 +11,10 @@ from flask_login                 import current_user
 def index():
     if "ADMIN" in current_user.roles():
         systemstatus = {
-            "homes":    Home.query.all(),
-            "products": Product.query.all(),
-            "users":    User.query.all(),
+            "homes":     Home.query.all(),
+            "products":  Product.query.all(),
+            "users":     User.query.all(),
+            "itemcount": Item.get_total()
         }
 
     return render_template("index.html", systemstatus=systemstatus)
