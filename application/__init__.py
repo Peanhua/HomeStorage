@@ -12,10 +12,16 @@ Markdown(app)
 # Setup database connection:
 from flask_sqlalchemy import SQLAlchemy
 
+db_url = os.environ.get("DATABASE_URL")
 if os.environ.get("HEROKU"):
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_url
 else:
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///homestorage.db"
+    if db_url == None:
+        db_url = "sqlite:///homestorage.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_url
+
+db_echo = os.environ.get("DATABASE_ECHO")
+if db_echo:
     app.config["SQLALCHEMY_ECHO"] = True
     
 # The next is to silence this warning: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.

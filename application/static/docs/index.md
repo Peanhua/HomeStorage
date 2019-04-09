@@ -28,6 +28,16 @@ Install the Python required Python packages listed in *requirements.txt*:
 To run *Home Storage*, use the *run.py* script:
 
 ```$ ./run.py```
+
+The following environment variables are recognized and used if present:
+Variable      | Value   | Default       | Description
+--------      | -----   | -------       | -----------
+SECRET_KEY    | String  | *random data* | Set the Flask SECRET_KEY used for securely signing the session cookie.
+DATABASE_URL  | String  | sqlite:///homestorage.db | The database URL used for SQLAlchemy connection.
+DATABASE_ECHO | Boolean | False         | Controls the SQLALCHEMY_ECHO configuration.
+
+The variables are also read from ```.env``` using the *python-dotenv* package.
+
     
 ## 2. Setup
 After a fresh install, the system contains one default user named *root*, with a default password *root*. The *root* user has admin rights, and it can not be deleted. It is highly advisable to change the default password to something else.
