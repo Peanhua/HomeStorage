@@ -9,6 +9,10 @@ from flask_login                 import current_user
 @app.route("/")
 @login_required()
 def index():
+    myhomes = current_user.get_my_homes()
+    for home in myhomes:
+        setattr(home, "bad_stock", home.get_stock_going_bad(3))
+
     if "ADMIN" in current_user.roles():
         systemstatus = {
             "homes":     Home.query.all(),
@@ -17,7 +21,8 @@ def index():
             "itemcount": Item.get_total()
         }
 
-    return render_template("index.html", systemstatus=systemstatus)
+    return render_template("index.html", myhomes=myhomes, systemstatus=systemstatus)
+
 
 @app.route("/docs/")
 def docs_index():
