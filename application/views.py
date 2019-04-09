@@ -8,9 +8,11 @@ def index():
 
 @app.route("/docs/")
 def docs_index():
+    with open("application/static/docs/index.css") as fp:
+        css = fp.read()
     with open("application/static/docs/index.md") as fp:
         content = fp.read()
-    return render_template("doc.html", content=content)
+    return render_template("doc.html", css=css, content=content)
 
 
 @app.route("/docs/<name>.png")

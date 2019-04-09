@@ -1,5 +1,20 @@
-{% filter markdown %}
-{% autoescape false %}
-{{ content }}
-{% endautoescape %}
-{% endfilter %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      {% autoescape false %}
+      {{ css }}
+      {% endautoescape %}
+    </style>
+    <title>Home Storage</title>
+  </head>
+  <body>
+    {% filter markdown %}
+    {% autoescape false %}
+    {{ content }}
+    {% endautoescape %}
+    {% endfilter %}
+  </body>
+</html>
+

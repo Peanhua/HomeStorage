@@ -1,9 +1,3 @@
-<style>
-img {
-  border: 1px solid #cccccc;
-  box-shadow: 10px 10px #cccccc;
-}
-</style>
 
 # Home Storage
 
