@@ -79,6 +79,12 @@
       {% endif %}
     </div>
   </div>
+  {% else %}
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-danger" role="alert">You don't have any homes set. Ask your administrator to place you in one or more homes.</div>
+    </div>
+  </div>
   {% endfor %}
 </div>
 {% endblock %}
