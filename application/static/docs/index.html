@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home Storage documentation</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+  </head>
+  <body>
+    <h1>Home Storage</h1>
+
+    <h2>1. Installation</h2>
+    <h3>1.1. Requirements</h3>
+    <p><em>Home Storage</em> requires Python 3.</p>
+    <h3>1.2. Obtaining Home Storage</h3>
+    <p><em>Home Storage</em> can be obtained from the Github <a href="https://github.com/Peanhua/HomeStorage">homepage for Home Storage</a>.</p>
+    <p>Clone the project, or download the zip file and unpack its contents.</p>
+    <h3>1.3. Setup the Python environment</h3>
+    <p>Setup a Python virtual environment using the <em>venv</em> Python module:</p>
+    <code>$ python3 -m venv venv</code>
+    <p>Take the newly created virtual environment into use:</p>
+    <code>$ source venv/bin/activate</code>
+    <p>Install the Python required Python packages listed in <em>requirements.txt</em>:</p>
+    <code>$ pip install -r requirements.txt</code>
+    <h3>1.4. Running Home Storage</h3>
+    <p>To run <em>Home Storage</em>, use the <em>run.py</em> script:</p>
+    <code>$ ./run.py</code>
+    
+    <h2>2. Setup</h2>
+    <p>After a fresh install, the system contains one default user named <em>root</em>, with a default password <em>root</em>. The <em>root</em> user has admin rights, and it can not be deleted. It is highly advisable to change the default password to something else.</p>
+    <p>Use the <em>root</em> user to create new user accounts and new homes.</p>
+
+    
+    <h2>3. Using</h2>
+
+    <h3>3.1. User interface</h3>
+    <p>The screen is divided into two main parts. The top part contains a navigation toolbar, access to the users profile, and a button to logout the current user. The bottom part contains the currently active content.</p>
+    <img class="picture" src="userinterface.png" alt="User interface" />
+    <p>The number of menu entries in the navigation toolbar depends on the user, superusers have access to more options.</p>
+    
+    <h3>3.2. Users</h3>
+    <p>Users are divided into two groups: those who have admin rights and those who don't.</p>
+    <p>Users with admin rights, aka <em>superusers</em>, can do all the same things as normal users, but in addition the superusers can manage users and homes. The user with user id 1 is a special, and can not be deleted.</p>
+    <p>User management menu is shown only for superusers, and it contains tools to create new users, edit existing users, and delete existing users.</p>
+    <img class="picture" src="users.png" alt="User management menu" />
+
+    <h3>3.3. Homes</h3>
+    <p>From the home management, a superuser can create new homes, edit and delete existing homes.</p>
+    <img class="picture" src="homes.png" alt="Home management menu" />
+
+    <h3>3.4. Products</h3>
+    <p>Products are shared amongst all the homes. They can be created, edited, and deleted from the product management.</p>
+    <p>The <em>default lifetime</em> is used to calculate the best before date.</p>
+    <img class="picture" src="products.png" alt="Product management menu" />
+
+    <h3>3.5. My Homes</h3>
+    <p>From the <em>My Homes</em> management menu, users can see the current total stock of items for their homes, and edit the settings for each of their home.</p>
+    <img class="picture" src="myhomes.png" alt="My homes management menu" />
+
+    <h3>3.6. Storages</h3>
+    <p>A <em>storage</em> is a place in a <em>home</em> where items are stored. A home can have multiple storages. Storages management menu can be used to create and edit storages. The stock of each storage is managed through the <em>Edit stock</em> option.</p>
+    <img class="picture" src="storages.png" alt="Storages management menu" />
+
+    <h3>3.7. Reports</h3>
+    <p>There are currently two reports available from the reports menu:
+      <ul>
+        <li>Best before</li>
+        <li>Missing products</li>
+      </ul>
+    </p>
+    <p>From the reports menu, choose the home and other parameters, and then click the <em>Show</em> -button to generate a report.</p>
+    <img class="picture" src="reports.png" alt="Reports menu" />
+    <h4>3.7.1. Best before report</h4>
+    <p>Best before report lists items past, or nearing, the best before date of each stored item.</p>
+    <h4>3.7.2. Missing products report</h4>
+    <p>Missing products report lists products whose quantity is below minimum desired defined for the home.</p>
+  </body>
+</html>

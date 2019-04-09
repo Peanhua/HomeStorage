@@ -1,22 +1,27 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{{ error }}
-<form method="POST" action="{{ url_for('auth_login') }}">
-  <div class="container">
-    <div class="row">
-      <div class="col">{{ form.login.label }}</div>
-      <div class="col-10">{{ form.login       }}</div>
-    </div>
-    <div class="row">
-      <div class="col">{{ form.password.label }}</div>
-      <div class="col-10">{{ form.password       }}</div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <input type="submit" value="Login" />
+<div class="container">
+  <img src="{{ url_for('static', filename='logo.png') }}" alt="Home Storage logo" />
+  {{ error }}
+  <form method="POST" action="{{ url_for('auth_login') }}">
+    <div class="container">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-2">{{ form.login.label }}</div>
+        <div class="col">{{ form.login       }}</div>
+      </div>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-2">{{ form.password.label }}</div>
+        <div class="col">{{ form.password       }}</div>
+      </div>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-2"></div>
+        <div class="col"><button class="btn btn-success" type="submit">Login</button></div>
       </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
 {% endblock %}

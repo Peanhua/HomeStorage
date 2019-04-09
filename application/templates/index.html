@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h1>Home Storage</h1>
-<p>This is the best.</p>
+<h3>Dashboard</h3>
+<small>Use the navigation menu on top.</small>
+
+<p></p>
+<ul>
+  <li><a href="{{ url_for('static', filename='docs/index.html') }}">Documentation</a></li>
+</ul>
 {% endblock %}
