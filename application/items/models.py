@@ -21,6 +21,8 @@ class Item(db.Model):
         q = text("SELECT SUM(quantity) FROM item")
         res = db.engine.execute(q)
         count = res.fetchone()[0]
+        if count == None:
+            count = 0
         res.close()
         return count
     
