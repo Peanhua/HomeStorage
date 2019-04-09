@@ -31,7 +31,7 @@ class Home(db.Model):
             mind = getattr(hprod, "desired_min_quantity", 0)
             maxd = getattr(hprod, "desired_max_quantity", 0)
             fps.append(TmpProduct(product.product_id, product.name, mind, maxd))
-        res.close()
+
         return fps;
 
     
