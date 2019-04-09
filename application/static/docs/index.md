@@ -7,7 +7,7 @@
 *Home Storage* requires Python 3.
 
 ### 1.2. Obtaining Home Storage
-*Home Storage* can be obtained from the Github [homepage for Home Storage](https://github.com/Peanhua/HomeStorage").
+*Home Storage* can be obtained from the Github [homepage for Home Storage](https://github.com/Peanhua/HomeStorage).
 
 Clone the project, or download the zip file and unpack its contents.
 
