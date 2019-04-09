@@ -21,6 +21,8 @@ def index():
             "users":     User.query.all(),
             "itemcount": Item.get_total()
         }
+    else:
+        systemstatus = { }
 
     return render_template("index.html", myhomes=myhomes, systemstatus=systemstatus)
 
