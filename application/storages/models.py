@@ -1,6 +1,8 @@
-from application              import db
-from application.items.models import Item
-from sqlalchemy.sql           import text
+from application                 import db
+from application.items.models    import Item
+from application.products.models import Product
+from sqlalchemy.sql              import text
+from datetime                    import datetime, timedelta
 
 class Storage(db.Model):
     storage_id = db.Column(db.Integer,    primary_key = True)
@@ -58,3 +60,21 @@ class Storage(db.Model):
             item.quantity -= amount
             db.session().commit()
             return 0
+
+        
+    def adjust_stock(self, product_ids, changes):
+        for product_id in product_ids:
+            ind = product_ids.index(product_id)
+            amount = int(changes[ind])
+            if amount < 0: # Remove or adjust quantities for negative changes:
+                amount = -amount
+                while amount > 0:
+                    amount = self.decrease_item_count(product_id, amount)
+            elif amount > 0: # Add new items:
+                product = Product.query.get(product_id)
+                bestbefore = datetime.now() + timedelta(days=product.default_lifetime)
+                item = Item(product_id, self.storage_id, bestbefore)
+                item.quantity = amount
+                db.session().add(item)
+
+        db.session().commit()

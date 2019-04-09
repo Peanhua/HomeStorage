@@ -3,10 +3,8 @@ from application.storages.models import Storage
 from application.storages.forms  import StorageForm, StorageDeleteForm
 from application.homes.models    import Home
 from application.items.models    import Item
-from application.products.models import Product
 from flask                       import redirect, render_template, request, url_for
 from flask_login                 import current_user
-from datetime                    import datetime, timedelta
 
 # List of storages
 @app.route("/storages", methods=["GET"])
@@ -81,21 +79,45 @@ def stock_edit(storage_id):
     elif request.method == "POST":
         product_ids = request.form.getlist("productid[]")
         changes     = request.form.getlist("change[]")
-
-        for product_id in product_ids:
-            ind = product_ids.index(product_id)
-            amount = int(changes[ind])
-            if amount < 0: # Remove or adjust quantities for negative changes:
-                amount = -amount
-                while amount > 0:
-                    amount = storage.decrease_item_count(product_id, amount)
-            elif amount > 0: # Add new items:
-                product = Product.query.get(product_id)
-                bestbefore = datetime.now() + timedelta(days=product.default_lifetime)
-                item = Item(product_id, storage_id, bestbefore)
-                item.quantity = amount
-                db.session().add(item)
-
-        db.session().commit()
-
+        storage.adjust_stock(product_ids, changes)
         return view()
+
+
+@app.route("/storages/<storage_id>/add_items", methods=["GET", "POST"])
+@login_required()
+def stock_add(storage_id):
+    storage = Storage.query.get(storage_id)
+
+    def view():
+        home = Home.query.get(storage.home_id)
+        products = storage.get_stock()
+        return render_template("storages/stock_add.html", home=home, storage=storage, products=products)
+            
+    if request.method == "GET":
+        return view()
+
+    elif request.method == "POST":
+        product_ids = request.form.getlist("productid[]")
+        changes     = request.form.getlist("change[]")
+        storage.adjust_stock(product_ids, changes)
+        return view()
+
+@app.route("/storages/<storage_id>/remove_items", methods=["GET", "POST"])
+@login_required()
+def stock_remove(storage_id):
+    storage = Storage.query.get(storage_id)
+
+    def view():
+        home = Home.query.get(storage.home_id)
+        products = storage.get_stock()
+        return render_template("storages/stock_remove.html", home=home, storage=storage, products=products)
+            
+    if request.method == "GET":
+        return view()
+
+    elif request.method == "POST":
+        product_ids = request.form.getlist("productid[]")
+        changes     = request.form.getlist("change[]")
+        storage.adjust_stock(product_ids, changes)
+        return view()
+

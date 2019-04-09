@@ -18,9 +18,14 @@
     <td>{{ item[1] }}</td>
     <td>{{ item[0].name }}</td>
     <td>
-      <button type="button" class="btn btn-danger btn-sm" onclick="location.assign('{{ url_for('storages_delete', storage_id=item[0].storage_id) }}')">Delete storage</button>
-      <button type="button" class="btn btn-success btn-sm" onclick="location.assign('{{ url_for('stock_edit', storage_id=item[0].storage_id) }}')">Edit Stock</button>
+      <button type="button" class="btn btn-primary btn-sm" onclick="location.assign('{{ url_for('stock_add',    storage_id=item[0].storage_id) }}')">Add items</button>
+<!---      <button type="button" class="btn btn-primary btn-sm" onclick="location.assign('{{ url_for('stock_edit',   storage_id=item[0].storage_id) }}')">Add&Remove items</button>--->
+      <button type="button" class="btn btn-primary btn-sm" onclick="location.assign('{{ url_for('stock_remove', storage_id=item[0].storage_id) }}')">Remove items</button>
     </td>
+    <td>&nbsp;</td>
+    <td>
+      <button type="button" class="btn btn-danger btn-sm" onclick="location.assign('{{ url_for('storages_delete', storage_id=item[0].storage_id) }}')">Delete storage</button>
+    </td>      
   </tr>
   {% endfor %}
 </table>

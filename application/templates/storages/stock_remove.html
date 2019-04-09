@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST">
+  <h3>Remove items from: {{ home.name }} / {{ storage.name }}</h3>
+  <table>
+    <tr>
+      <th>Product</th>
+      <th>Current</th>
+      <th colspan="3">Change</th>
+      <th>New quantity</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+      <td>{{ product.product_name }}</td>
+      <td>{{ product.current_quantity }}<input type="hidden" id="curquant_{{ product.product_id }}" value="{{ product.current_quantity }}" /></td>
+      <td>
+        <button type="button" class="btn btn-danger btn-sm" onclick="onStockAdjustClicked({{ product.product_id }}, -1)">-</button>
+      </td>
+      <td>
+        <span class="label label-default">
+          <input type="hidden" name="productid[]" value="{{ product.product_id }}" />
+          <input type="number" min="-{{ product.current_quantity }}" max="0" style="width: 5em;" name="change[]" id="change_{{ product.product_id }}" value="0" onchange="onStockAdjustClicked({{ product.product_id }}, 0)" />
+        </span>
+      </td>
+      <td>
+        <button type="button" class="btn btn-success btn-sm" onclick="onStockAdjustClicked({{ product.product_id }}, 1)">+</button>
+      </td>
+      <td><span class="label label-default" id="newquant_{{ product.product_id }}">{{ product.current_quantity }}</span></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <div>
+    <button type="button" class="btn btn-secondary" onclick="location.assign('{{ url_for('storages_index') }}')">Cancel</button>
+    <button type="submit" class="btn btn-success">Save</button>
+  </div>
+</form>
+{% endblock %}
