@@ -2,6 +2,7 @@ from application                 import app, login_required
 from application.homes.models    import Home
 from application.items.models    import Item
 from application.products.models import Product
+from application.storages.models import Storage
 from application.users.models    import User
 from flask                       import render_template
 from flask_login                 import current_user
@@ -13,6 +14,7 @@ def index():
     for home in myhomes:
         setattr(home, "bad_stock", home.get_stock_going_bad(3))
         setattr(home, "missing_products", home.get_stock_missing())
+        setattr(home, "storages", Storage.query.filter(Storage.home_id == home.home_id).all())
 
     if "ADMIN" in current_user.roles():
         systemstatus = {
