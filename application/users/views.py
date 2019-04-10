@@ -18,7 +18,7 @@ def users_form():
     return render_template("users/new.html", form = UserNewForm())
 
 @app.route("/users/", methods=["POST"])
-@login_required()
+@login_required(role="ADMIN")
 def users_create():
     form = UserNewForm(request.form)
 
