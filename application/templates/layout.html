@@ -75,6 +75,14 @@
           </div>
 	</div>
       </nav>
+      {% elif request.path != url_for('auth_login') %}
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-primary" onclick="location.assign('{{ url_for('auth_login') }}')">Login</button>
+        </div>
+        <div class="col"></div>
+      </div>
+      <p></p>
       {% endif %}
       
       <main role="main" class="container">
