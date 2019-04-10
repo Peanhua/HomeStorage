@@ -34,7 +34,11 @@ def storages_create():
     if not form.validate():
         return render_template("storages/new.html", form = form)
 
-    storage = Storage(form.home.data, form.name.data)
+    home = Home.query.get(form.home.data)
+    if not home.is_user_in(current_user.user_id):
+        return redirect(url_for("auth_unauthorized"))
+    
+    storage = Storage(home.home_id, form.name.data)
 
     db.session().add(storage)
     db.session().commit()
@@ -46,10 +50,13 @@ def storages_create():
 @app.route("/storages/<storage_id>/delete", methods=["GET", "DELETE"])
 @login_required()
 def storages_delete(storage_id):
-    # TODO: make sure the user has permission to delete this storage
     storage = Storage.query.get(storage_id)
+    home = Home.query.get(storage.home_id)
+
+    if not home.is_user_in(current_user.user_id):
+        return redirect(url_for("auth_unauthorized"))
+
     if request.method == "GET":
-        home = Home.query.get(storage.home_id)
         stock = storage.get_stock(False)
         form = StorageDeleteForm(obj=storage)
         return render_template("storages/delete.html", form=form, home=home, storage=storage, stock=stock)
@@ -64,8 +71,12 @@ def storages_delete(storage_id):
 @login_required()
 def stock_edit(storage_id):
     storage = Storage.query.get(storage_id)
+    home = Home.query.get(storage.home_id)
+
+    if not home.is_user_in(current_user.user_id):
+        return redirect(url_for("auth_unauthorized"))
+    
     def view():
-        home = Home.query.get(storage.home_id)
         products = storage.get_stock()
         homeproducts = home.get_stock_all()
         for product in products:
@@ -87,9 +98,12 @@ def stock_edit(storage_id):
 @login_required()
 def stock_add(storage_id):
     storage = Storage.query.get(storage_id)
+    home = Home.query.get(storage.home_id)
 
+    if not home.is_user_in(current_user.user_id):
+        return redirect(url_for("auth_unauthorized"))
+    
     def view():
-        home = Home.query.get(storage.home_id)
         products = storage.get_stock()
         return render_template("storages/stock_add.html", home=home, storage=storage, products=products)
             
@@ -106,9 +120,12 @@ def stock_add(storage_id):
 @login_required()
 def stock_remove(storage_id):
     storage = Storage.query.get(storage_id)
+    home = Home.query.get(storage.home_id)
 
+    if not home.is_user_in(current_user.user_id):
+        return redirect(url_for("auth_unauthorized"))
+    
     def view():
-        home = Home.query.get(storage.home_id)
         products = storage.get_stock()
         return render_template("storages/stock_remove.html", home=home, storage=storage, products=products)
             
