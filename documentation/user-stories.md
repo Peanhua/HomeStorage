@@ -27,8 +27,22 @@ COMMIT;
 
 ## As an administrator, I can reset users password.
 
+This is currently possible by changing the users password and setting a "force password change" boolean, which forces the user to change the password next time the user logs in.
+```
+BEGIN;
+
+UPDATE account
+   SET password='NEW_PASSWORD_HASHED',
+       force_password_change=1
+ WHERE account.user_id = USER_ID
+;
+
+COMMIT;
+```
+
 
 ## As an administrator, I can create new homes and assign users to them.
+
 
 ### Creating a new home
 ```
@@ -60,14 +74,79 @@ COMMIT;
 
 ## As a user, I can create, delete, and edit storages belonging to my home.
 
+### Creating a new storage
+```
+BEGIN;
+
+INSERT INTO storage (home_id, name)
+             VALUES (HOME_ID, 'NAME')
+;
+
+COMMIT;
+```
+
+### Deleting a storage
+```
+BEGIN;
+
+DELETE
+  FROM storage
+ WHERE storage.storage_id = STORAGE_ID
+;
+
+COMMIT;
+```
+
 
 ## As a user, I can add items to my home storages. The items are based on products anyone has added.
+Adding 3 items of two different products to a storage:
+```
+BEGIN;
+
+INSERT INTO item (product_id,  storage_id, quantity, best_before)
+          VALUES (PRODUCT1_ID, STORAGE_ID, 2,        '2019-04-24')
+;
+
+INSERT INTO item (product_id,  storage_id, quantity, best_before)
+          VALUES (PRODUCT2_ID, STORAGE_ID, 1,        '2019-04-24')
+;
+
+COMMIT;
+```
 
 
 ## As a user, I can remove items from my home storages.
+Removing 1 item out of 3, and 1 item out of 1:
+```
+BEGIN;
+
+UPDATE item
+   SET quantity=2
+ WHERE item.item_id = ITEM1_ID
+;
+
+COMMIT;
+
+BEGIN;
+
+DELETE
+  FROM item
+ WHERE item.item_id = ITEM2_ID
+;
+
+COMMIT;
+```
 
 
 ## As a user, I can add new products.
+```
+BEGIN;
+
+INSERT INTO product (name,   default_lifetime)
+             VALUES ('NAME', LIFETIME)
+
+COMMIT;
+```
 
 
 ## As a user, I can edit products. This can be done anytime regardless whether the products are in use or not, a friendly environment between all the homes and users is expected.
