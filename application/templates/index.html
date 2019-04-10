@@ -29,7 +29,7 @@
     <div class="col">
       <div class="alert alert-danger" role="alert">
         You have not set any homes yet.
-        <a href="{{ url_for('homes_form') }}">Click here</a> to create a new home.
+        <a class="alert-link" href="{{ url_for('homes_form') }}">Click here</a> to create a new home.
       </div>
     </div>
   </div>
@@ -40,7 +40,7 @@
     <div class="col">
       <div class="alert alert-danger" role="alert">
         The home "{{ home.name }}" does not have any users.
-        <a href="{{ url_for('homeusers_edit', home_id=home.home_id) }}">Click here</a> to assign users for "{{ home.name }}".
+        <a class="alert-link" href="{{ url_for('homeusers_edit', home_id=home.home_id) }}">Click here</a> to assign users for "{{ home.name }}".
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@
     <div class="col">
       <div class="alert alert-danger" role="alert">
         User "{{ user.name }}" is not assigned to any home.
-        You can assign users to homes in <a href="{{ url_for('homes_index') }}">home management</a>.
+        You can assign users to homes in <a class="alert-link" href="{{ url_for('homes_index') }}">home management</a>.
       </div>
     </div>
   </div>
@@ -66,7 +66,7 @@
     <div class="col">
       <div class="alert alert-warning" role="alert">
         You have not set up additional users.
-        Home Storage is more fun with more users, <a href="{{ url_for('users_form') }}">click here</a> to create a new user.
+        Home Storage is more fun with more users, <a class="alert-link" href="{{ url_for('users_form') }}">click here</a> to create a new user.
       </div>
     </div>
   </div>
@@ -77,7 +77,7 @@
     <div class="col">
       <div class="alert alert-warning" role="alert">
         There are no products defined.
-        Products are essential for Home Storage, <a href="{{ url_for('products_form') }}">click here</a> to create a new product.
+        Products are essential for Home Storage, <a class="alert-link" href="{{ url_for('products_form') }}">click here</a> to create a new product.
       </div>
     </div>
   </div>
@@ -101,7 +101,7 @@
         <div class="alert alert-danger" role="alert">Missing {{ home.missing_products|length }} products from stock. <button type="button" class="btn btn-sm btn-primary" onclick="location.assign('{{ url_for('report_show', report_id='missing_products', home_id=home.home_id, param1='x') }}')">Show report</button></div>
         {% endif %}
         {% if home.storages|length == 0 %}
-        <div class="alert alert-danger" role="alert">No storages defined for "{{ home.name }}", <a href="{{ url_for('storages_form') }}">click here</a> to create storages.</div>
+        <div class="alert alert-danger" role="alert">No storages defined for "{{ home.name }}", <a class="alert-link" href="{{ url_for('storages_form') }}">click here</a> to create storages.</div>
         {% endif %}
       {% endif %}
     </div>
