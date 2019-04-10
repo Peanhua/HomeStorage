@@ -3,7 +3,6 @@
 {% block body %}
 <div class="container">
   <img src="{{ url_for('static', filename='logo.png') }}" alt="Home Storage logo" />
-  {{ error }}
   <form method="POST" action="{{ url_for('auth_login') }}">
     <div class="container">
       <div class="row">
@@ -19,7 +18,16 @@
       <div class="row">
         <div class="col-2"></div>
         <div class="col-2"></div>
-        <div class="col"><button class="btn btn-success" type="submit">Login</button></div>
+        <div class="col-1"><button class="btn btn-success" type="submit">Login</button></div>
+      </div>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col">
+          {% if error|length > 0 %}
+          <div class="alert alert-danger" role="alert">{{ error }}</div>
+          {% endif %}
+        </div>
+        <div class="col-2"></div>
       </div>
     </div>
   </form>
