@@ -33,7 +33,7 @@ def homes_create():
     db.session().add(home)
     db.session().commit()
     
-    return redirect(url_for("homes_index"))
+    return redirect(url_for("homeusers_edit", home_id=home.home_id))
 
 
 # Delete home
