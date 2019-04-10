@@ -3,7 +3,7 @@
 ## As an administrator, I can create and delete user accounts.
 
 ### Creating a new user account
-```
+```SQL
 BEGIN;
 
 INSERT INTO account (name,        login,    password,           email,    superuser, force_password_change)
@@ -14,7 +14,7 @@ COMMIT;
 ```
 
 ### Deleting a user account
-```
+```SQL
 BEGIN;
 
 DELETE
@@ -28,7 +28,7 @@ COMMIT;
 ## As an administrator, I can reset users password.
 
 This is currently possible by changing the users password and setting a "force password change" boolean, which forces the user to change the password next time the user logs in.
-```
+```SQL
 BEGIN;
 
 UPDATE account
@@ -45,7 +45,7 @@ COMMIT;
 
 
 ### Creating a new home
-```
+```SQL
 BEGIN;
 
 INSERT INTO home (name)
@@ -56,7 +56,7 @@ COMMIT;
 ```
 
 ### Assigning two users to a home
-```
+```SQL
 BEGIN;
 
 INSERT INTO home_user (home_id,  user_id)
@@ -75,7 +75,7 @@ COMMIT;
 ## As a user, I can create, delete, and edit storages belonging to my home.
 
 ### Creating a new storage
-```
+```SQL
 BEGIN;
 
 INSERT INTO storage (home_id,  name)
@@ -86,7 +86,7 @@ COMMIT;
 ```
 
 ### Deleting a storage
-```
+```SQL
 BEGIN;
 
 DELETE
@@ -100,7 +100,7 @@ COMMIT;
 
 ## As a user, I can add items to my home storages. The items are based on products anyone has added.
 Adding 3 items of two different products to a storage:
-```
+```SQL
 BEGIN;
 
 INSERT INTO item (product_id,   storage_id,  quantity, best_before)
@@ -117,7 +117,7 @@ COMMIT;
 
 ## As a user, I can remove items from my home storages.
 Removing 1 item out of 3, and 1 item out of 1:
-```
+```SQL
 BEGIN;
 
 UPDATE item
@@ -139,7 +139,7 @@ COMMIT;
 
 
 ## As a user, I can add new products.
-```
+```SQL
 BEGIN;
 
 INSERT INTO product (name,   default_lifetime)
@@ -150,7 +150,7 @@ COMMIT;
 
 
 ## As a user, I can edit products. This can be done anytime regardless whether the products are in use or not, a friendly environment between all the homes and users is expected.
-```
+```SQL
 BEGIN;
 
 UPDATE product
@@ -164,7 +164,7 @@ COMMIT;
 
 
 ## As a user, I can delete products if they are not in use.
-```
+```SQL
 BEGIN;
 
 DELETE
@@ -176,7 +176,7 @@ COMMIT;
 ```
 
 ## As a user, I can get a listing of items whose lifetime has ended or are about to end.
-```
+```SQL
 SELECT product.name                                    AS name,
        item.quantity                                   AS quantity,
        storage.name                                    AS storage,
@@ -192,7 +192,7 @@ SELECT product.name                                    AS name,
 
 
 ## As a user, I can get a listing of products missing for my home.
-```
+```SQL
 SELECT product.product_id                AS product_id,
        product.name                      AS product_name,
        home_product.desired_min_quantity AS desired_min_quantity,
@@ -220,7 +220,7 @@ Not yet implemented.
 
 
 ## As a user, I can adjust my personal user account profile and settings.
-```
+```SQL
 BEGIN;
 
 UPDATE account

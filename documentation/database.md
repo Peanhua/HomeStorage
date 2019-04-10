@@ -5,7 +5,7 @@
 Tables *Address* and *PostalCodes* are not yet implemented.
 
 ## Create table SQL
-```
+```SQL
 CREATE TABLE product (
         product_id       INTEGER NOT NULL, 
         name             VARCHAR(80) NOT NULL, 
@@ -74,7 +74,7 @@ CREATE TABLE item (
 ```
 
 ## Default data inserts
-```
+```SQL
 INSERT INTO account (name, login, password, email, superuser, force_password_change)
              VALUES ('Superuser', 'root', '$2b$12$ZLRQf/zxUaah4PbweKKRH.qUxYtdvj0BmdrqHsQSgrSHpL6FfX9ZG', 'root@not.set.invalid', 1, 0);
 ```
