@@ -47,17 +47,6 @@
   {% endif %}
   {% endfor %}
   {% endif %}
-  
-  {% if systemstatus.users|length == 1 %}
-  <div class="row">
-    <div class="col">
-      <div class="alert alert-warning" role="alert">
-        You have not set up additional users.
-        Home Storage is more fun with more users, <a href="{{ url_for('users_form') }}">click here</a> to create new users.
-      </div>
-    </div>
-  </div>
-  {% endif %}
 
   {% for user in systemstatus.users %}
   {% if user.homes|length == 0 %}
@@ -71,8 +60,31 @@
   </div>
   {% endif %}
   {% endfor %}
+
+  {% if systemstatus.users|length == 1 %}
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-warning" role="alert">
+        You have not set up additional users.
+        Home Storage is more fun with more users, <a href="{{ url_for('users_form') }}">click here</a> to create a new user.
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if systemstatus.products|length == 0 %}
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-warning" role="alert">
+        There are no products defined.
+        Products are essential for Home Storage, <a href="{{ url_for('products_form') }}">click here</a> to create a new product.
+      </div>
+    </div>
+  </div>
+  {% endif %}
 </div>
 {% endif %}
+
 <h4>My status:</h4>
 <div class="container">
   {% for home in myhomes %}
