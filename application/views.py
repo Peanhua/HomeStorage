@@ -4,8 +4,9 @@ from application.items.models    import Item
 from application.products.models import Product
 from application.storages.models import Storage
 from application.users.models    import User
-from flask                       import render_template
+from flask                       import redirect, render_template, url_for
 from flask_login                 import current_user
+import os
 
 @app.route("/")
 @login_required()
@@ -31,13 +32,24 @@ def index():
 
 @app.route("/docs/")
 def docs_index():
-    with open("application/static/docs/index.css") as fp:
-        css = fp.read()
-    with open("application/static/docs/index.md") as fp:
-        content = fp.read()
-    return render_template("doc.html", css=css, content=content)
-
+    return docs_md("index")
 
 @app.route("/docs/<name>.png")
 def docs_png(name):
     return app.send_static_file("docs/" + name + ".png")
+
+@app.route("/docs/<name>.md")
+def docs_md(name):
+    if name.find("/") != -1:
+        return redirect(url_for("auth_unauthorized"))
+    
+    filename = "application/static/docs/" + name + ".md"
+    if not os.path.isfile(filename):
+        return redirect(url_for("auth_unauthorized"))
+    
+    with open("application/static/docs/index.css") as fp:
+        css = fp.read()
+    with open(filename) as fp:
+        content = fp.read()
+    return render_template("doc.html", css=css, content=content)
+    

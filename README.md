@@ -7,7 +7,7 @@ Every home has some food stored, whether it's half eaten bread and open can of m
 
 ## Features
 
-This software is aimed to help keep track of the home storage, get reports and alerts about it, and help for replenishing the stock.
+This software is aimed to help keep track of the home storage, get reports and alerts about it, and help in replenishing the stock.
 * Products
 
   A *product* is something that can be stored, it's an abstract representation. All the *products* are shared between all the *homes*.
