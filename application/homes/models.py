@@ -14,6 +14,12 @@ class Home(db.Model):
         self.name     = name
 
 
+    def is_user_in(self, user_id):
+        for user in self.users:
+            if user.user_id == user_id:
+                return True
+        return False
+        
     def delete(self):
         q = text("DELETE FROM home WHERE home_id = :home_id").params(home_id=self.home_id)
         res = db.engine.execute(q)

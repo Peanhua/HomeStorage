@@ -31,6 +31,9 @@ def reports_index():
 @login_required()
 def report_show(report_id, home_id, param1):
     home = Home.query.get(home_id)
+    if not home.is_user_in(current_user.user_id):
+        return redirect(url_for("auth_unauthorized"))
+    
     if report_id == "best_before":
         try:
             days = int(param1)
