@@ -26,6 +26,9 @@
       deleteStorageUrl = (storage_id) => {
         return "{{ url_for('storages_delete', storage_id='STORAGE_ID') }}".replace(/STORAGE_ID/, storage_id)
       }
+      deleteHomeUrl = (home_id) => {
+        return "{{ url_for('homes_delete', home_id='HOME_ID') }}".replace(/HOME_ID/, home_id)
+      }
     </script>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
   </head>

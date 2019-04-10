@@ -36,6 +36,21 @@ def homes_create():
     return redirect(url_for("homes_index"))
 
 
+# Delete home
+@app.route("/homes/<home_id>/delete", methods=["GET", "DELETE"])
+@login_required(role="ADMIN")
+def homes_delete(home_id):
+    home = Home.query.get(home_id)
+    if request.method == "GET":
+        stock = home.get_stock_items()
+        return render_template("homes/delete.html", home=home, stock=stock)
+    elif request.method == "DELETE":
+        home.delete()
+        return url_for("homes_index")
+
+
+
+# Edit home
 @app.route("/homes/<home_id>/", methods=["GET", "POST"])
 @login_required(role="ADMIN")
 def homes_edit(home_id):

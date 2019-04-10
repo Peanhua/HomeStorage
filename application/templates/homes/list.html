@@ -19,9 +19,8 @@
     <td>{{ home.home_id      }}</td>
     <td>{{ home.name         }}</td>
     <td><button type="button" class="btn btn-primary btn-sm" onclick="onEditHomeUsersClicked({{ home.home_id }})">{{ home.users|length }}</button></td>
-    <td>
-      <button type="button" class="btn btn-primary btn-sm" onclick="location.assign('{{ url_for('homes_edit', home_id=home.home_id) }}')">Edit</button>
-    </td>
+    <td><button type="button" class="btn btn-primary btn-sm" onclick="location.assign('{{ url_for('homes_edit', home_id=home.home_id) }}')">Edit</button></td>
+    <td><button type="button" class="btn btn-danger btn-sm" onclick="location.assign('{{ url_for('homes_delete', home_id=home.home_id) }}')">Delete home</button></td>
   </tr>
   {% endfor %}
 </table>

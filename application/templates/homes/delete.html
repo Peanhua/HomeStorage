@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Delete home: {{ home.name }}</h3>
+{% if home.users|length > 0 %}
+<div class="alert alert-danger" role="alert">WARNING! There are {{ home.users|length }} users assigned to "{{ home.name }}"!</div>
+{% else %}
+<div><b>No users assigned to "{{ home.name }}".</b></div>
+{% endif %}
+{% if stock|length > 0 %}
+<div class="alert alert-danger" role="alert">WARNING! There are {{ stock|length }} products in the storages of "{{ home.name }}"!</div>
+<table>
+  <tr><th>Name</th><th>Quantity</th></tr>
+  {% for item in stock %}
+  <tr><td>{{ item.product_name }}</td><td>{{ item.current_quantity }}</td></tr>
+  {% endfor %}
+</table>
+<div class="alert alert-danger">The items will be permanently lost!</div>
+{% else %}
+<div><b>No items in {{ home.name }}.</b></div>
+{% endif %}
+<div>Are you sure you want to delete the home "{{ home.name }}" ?</div>
+<div>
+  <button type="button" class="btn btn-secondary" onclick="location.assign('{{ url_for('homes_index') }}')">Cancel</button>
+  <button type="submit" class="btn btn-danger" onclick="onDeleteHomeClicked({{ home.home_id }})">Delete</button>
+</div>
+{% endblock %}

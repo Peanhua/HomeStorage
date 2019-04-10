@@ -13,6 +13,12 @@ class Home(db.Model):
     def __init__(self, name):
         self.name     = name
 
+
+    def delete(self):
+        q = text("DELETE FROM home WHERE home_id = :home_id").params(home_id=self.home_id)
+        res = db.engine.execute(q)
+        db.session().commit()
+        res.close()
         
     def get_products(self):
         res = db.session().query(Product, HomeProduct).outerjoin(HomeProduct, and_(Product.product_id == HomeProduct.product_id,
@@ -34,6 +40,29 @@ class Home(db.Model):
 
         return fps;
 
+    def get_stock_items(self):
+        q = text(
+            "SELECT product.product_id AS product_id,"
+            "       product.name       AS product_name,"
+            "       SUM(item.quantity) AS current_quantity"
+            "  FROM product"
+            "  LEFT OUTER JOIN home_product ON product.product_id = home_product.product_id"
+            "  LEFT OUTER JOIN item         ON product.product_id = item.product_id"
+            "                              AND item.storage_id IN ( SELECT storage.storage_id"
+            "                                                         FROM storage"
+            "                                                        WHERE storage.home_id = :home_id )"
+            " GROUP BY product.product_id"
+            " HAVING current_quantity > 0"
+        ).params(home_id=self.home_id)
+        res = db.engine.execute(q)
+        rv = []
+        for row in res:
+            rv.append({"product_id":       row[0],
+                       "product_name":     row[1],
+                       "current_quantity": row[2] if row[2] else 0
+                       })
+        res.close()
+        return rv
     
     def get_stock(self, only_missing):
         sql = \
@@ -106,10 +135,10 @@ class Home(db.Model):
 
 class HomeUser(db.Model):
     homeuser_id = db.Column(db.Integer, primary_key = True)
-    home_id     = db.Column(db.Integer, db.ForeignKey("home.home_id"),    nullable = False)
-    user_id     = db.Column(db.Integer, db.ForeignKey("account.user_id"), nullable = False)
+    home_id     = db.Column(db.Integer, db.ForeignKey("home.home_id", ondelete="CASCADE"),    nullable = False)
+    user_id     = db.Column(db.Integer, db.ForeignKey("account.user_id", ondelete="CASCADE"), nullable = False)
 
-    #home = db.relationship("Home")
+    #home = db.relationship("Home", backref=backref("HomeUser", passive_deletes=True))
     user = db.relationship("User")
 
     def __init__(self, home_id, user_id):
@@ -119,8 +148,8 @@ class HomeUser(db.Model):
 
 class HomeProduct(db.Model):
     homeproduct_id       = db.Column(db.Integer, primary_key = True)
-    home_id              = db.Column(db.Integer, db.ForeignKey("home.home_id"),       nullable = False)
-    product_id           = db.Column(db.Integer, db.ForeignKey("product.product_id"), nullable = False)
+    home_id              = db.Column(db.Integer, db.ForeignKey("home.home_id", ondelete="CASCADE"), nullable = False)
+    product_id           = db.Column(db.Integer, db.ForeignKey("product.product_id", ondelete="CASCADE"), nullable = False)
     desired_min_quantity = db.Column(db.Integer, nullable = True)
     desired_max_quantity = db.Column(db.Integer, nullable = True)
 

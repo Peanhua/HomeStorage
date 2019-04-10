@@ -140,9 +140,8 @@ onShowReportClicked = (report_id) => {
 
 
 
-onDeleteStorageClicked = (storage_id) => {
+onDeleteSomethingClicked = (delete_url) => {
   const req = new XMLHttpRequest()
-  const url = deleteStorageUrl(storage_id)
   req.onreadystatechange = function() {
     if(this.readyState === 4) {
       if(this.status === 200) {
@@ -152,6 +151,16 @@ onDeleteStorageClicked = (storage_id) => {
       }
     }
   }
-  req.open("DELETE", url, true)
+  req.open("DELETE", delete_url, true)
   req.send(null)
+}
+
+
+onDeleteStorageClicked = (storage_id) => {
+  onDeleteSomethingClicked(deleteStorageUrl(storage_id))
+}
+
+
+onDeleteHomeClicked = (home_id) => {
+  onDeleteSomethingClicked(deleteHomeUrl(home_id))
 }
