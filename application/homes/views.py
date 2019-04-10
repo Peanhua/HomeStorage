@@ -118,7 +118,9 @@ def myhomes_index():
 @login_required()
 def myhomes_edit(home_id):
     home = Home.query.get(home_id)
-    # TODO: check that current_user has permission to edit the home
+
+    if not home.is_user_in(current_user.user_id):
+        return redirect(url_for("auth_unauthorized"))
 
     if request.method == "GET":
         res = home.get_products()
@@ -156,6 +158,9 @@ def myhomes_edit(home_id):
 @login_required()
 def myhomes_view(home_id):
     home = Home.query.get(home_id)
+
+    if not home.is_user_in(current_user.user_id):
+        return redirect(url_for("auth_unauthorized"))
     
     homeuserids = [ u.user_id for u in home.users]
     homeusers   = User.query.filter(User.user_id.in_(homeuserids)).all()
