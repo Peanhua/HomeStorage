@@ -10,7 +10,7 @@
     </div>
     <div class="row">
       <div class="col-2">{{ form.name.label }}</div>
-      <div class="col">{{ form.name }}</div>
+      <div class="col-3">{{ form.name }}</div>
       <div class="col">
         <ul>
           {% for error in form.name.errors %}
@@ -21,7 +21,7 @@
     </div>
     <div class="row">
       <div class="col-2">{{ form.default_lifetime.label }}</div>
-      <div class="col">{{ form.default_lifetime }}</div>
+      <div class="col-3">{{ form.default_lifetime }}</div>
       <div class="col">
         <ul>
           {% for error in form.default_lifetime.errors %}

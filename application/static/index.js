@@ -110,6 +110,9 @@ onStockAdjustClicked = (product_id, amount) => {
   const newquant = document.getElementById("newquant_" + product_id)
   
   let changeval = parseInt(change.value) + amount
+  if(isNaN(changeval)) {
+    changeval = 0
+  }
   const minchange = parseInt(change.min)
   const maxchange = parseInt(change.max)
   if(changeval < minchange) {

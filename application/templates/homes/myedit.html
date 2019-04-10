@@ -6,30 +6,26 @@
   <table>
     <tr>
       <th>Product</th>
-      <th colspan="2">Desired quantities</th>
-    </tr>
-    <tr>
-      <th></th>
-      <th>Minimum</th>
-      <th>Maximum</th>
+      <th>Desired minimum quantity</th>
+      <th>Desired maximum quantity</th>
     </tr>
     {% for product in form.products %}
     <tr>
-      <td>{{ product.product_id }}{{ product.product_name }}{{ product.product_name.data }}</td>
-      <td>{{ product.mindesired }}</td>
-      <td>{{ product.maxdesired }}</td>
-      <!-- <td><button>Reset</button></td>-->
-      <td>
+      <td>{{ product.product_id }}{{ product.product_name }}{{ product.product_name.data }}
         <ul>
           {% for error in product.product_name.errors %}
           <li>{{ error }}</li>
           {% endfor %}
         </ul>
+      </td>
+      <td>{{ product.mindesired }}
         <ul>
           {% for error in product.mindesired.errors %}
           <li>{{ error }}</li>
           {% endfor %}
         </ul>
+      </td>
+      <td>{{ product.maxdesired }}
         <ul>
           {% for error in product.maxdesired.errors %}
           <li>{{ error }}</li>

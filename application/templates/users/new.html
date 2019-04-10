@@ -6,8 +6,8 @@
   {{ form.user_id }}
   <div class="container">
     <div class="row">
-      <div class="col">{{ form.name.label }}</div>
-      <div class="col-8">{{ form.name }}</div>
+      <div class="col-2">{{ form.name.label }}</div>
+      <div class="col-3">{{ form.name }}</div>
       <div class="col">
         <ul>
           {% for error in form.name.errors %}
@@ -17,8 +17,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">{{ form.email.label }}</div>
-      <div class="col-8">{{ form.email }}</div>
+      <div class="col-2">{{ form.email.label }}</div>
+      <div class="col-3">{{ form.email }}</div>
       <div class="col">
         <ul>
           {% for error in form.email.errors %}
@@ -28,8 +28,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">{{ form.login.label }}</div>
-      <div class="col-8">{{ form.login }}</div>
+      <div class="col-2">{{ form.login.label }}</div>
+      <div class="col-3">{{ form.login }}</div>
       <div class="col">
         <ul>
           {% for error in form.login.errors %}
@@ -39,8 +39,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">{{ form.password.label }}</div>
-      <div class="col-8">{{ form.password }}</div>
+      <div class="col-2">{{ form.password.label }}</div>
+      <div class="col-3">{{ form.password }}</div>
       <div class="col">
         <ul>
           {% for error in form.password.errors %}
@@ -50,8 +50,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">{{ form.superuser.label }}</div>
-      <div class="col-8 align-left">{{ form.superuser }}</div>
+      <div class="col-2">{{ form.superuser.label }}</div>
+      <div class="col-3 align-left">{{ form.superuser }}</div>
       <div class="col"></div>
     </div>
     <div class="row">

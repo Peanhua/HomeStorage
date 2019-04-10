@@ -10,8 +10,8 @@ class HomeForm(FlaskForm):
 class MyHomeProductForm(FlaskForm):
     product_id   = HiddenField("Product ID", [validators.Optional()])
     product_name = HiddenField("Product", [validators.Optional()])
-    mindesired   = IntegerField("Min desired quantity", [validators.Optional()])
-    maxdesired   = IntegerField("Max desired quantity", [validators.Optional()])
+    mindesired   = IntegerField("Min desired quantity", [validators.InputRequired(), validators.NumberRange(min=0, max=9999)])
+    maxdesired   = IntegerField("Max desired quantity", [validators.InputRequired(), validators.NumberRange(min=0, max=9999)])
 
 class MyHomeForm(FlaskForm):
     products = FieldList(FormField(MyHomeProductForm))

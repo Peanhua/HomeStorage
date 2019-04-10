@@ -65,7 +65,7 @@ def homes_edit(home_id):
         form = HomeForm(request.form)
 
         if not form.validate():
-            return render_template("homes/edit.html", form = form)
+            return render_template("homes/edit.html", form=form, home=home)
 
         home.name = form.name.data
         db.session().commit()
@@ -133,8 +133,8 @@ def myhomes_edit(home_id):
     else:
         form = MyHomeForm(request.form)
 
-        #if not form.validate():
-        #    return render_template("homes/myedit.html", home=home, form=form)
+        if not form.validate():
+            return render_template("homes/myedit.html", home=home, form=form)
 
         # Delete and add new... TODO: fix this to update (where applicable) ?
         HomeProduct.query.filter(HomeProduct.home_id == home.home_id).delete()

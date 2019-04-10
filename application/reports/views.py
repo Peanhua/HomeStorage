@@ -1,6 +1,7 @@
 from application                 import app, db, login_required
 from application.products.models import Product
 from application.homes.models    import Home
+#from application.reports.forms   import ReportsForm
 from flask                       import redirect, render_template, url_for
 from flask_login                 import current_user
 
@@ -21,6 +22,8 @@ def reports_index():
         Report("missing_products", "Missing products", "List products whose quantity is below minimum desired.", None,   None)
     ]
     homes = current_user.get_my_homes()
+    #form.best_before_home.choices = [(h.home_id, h.name) for h in homes]
+    #form.missing_products_home.choices = [(h.home_id, h.name) for h in homes]
     return render_template("reports/index.html", reports=reports, homes=homes)
 
 
@@ -29,7 +32,14 @@ def reports_index():
 def report_show(report_id, home_id, param1):
     home = Home.query.get(home_id)
     if report_id == "best_before":
-        days = int(param1)
+        try:
+            days = int(param1)
+        except:
+            days = 0
+        if days < 0:
+            days = 0
+        if days > 365:
+            days = 365
         items = home.get_stock_going_bad(days)
         return render_template("reports/best_before.html", home=home, items=items, days=days)
     elif report_id == "missing_products":

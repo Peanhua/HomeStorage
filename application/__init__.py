@@ -132,5 +132,6 @@ root = load_user(1)
 if not root:
     root = User("Superuser", "root@not.set.invalid", "root", "root")
     root.superuser = True
+    # root.force_password_change = True
     db.session().add(root)
     db.session().commit()
