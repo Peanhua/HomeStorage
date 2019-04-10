@@ -44,6 +44,8 @@ def users_create():
 @login_required(role="ADMIN")
 def users_edit(user_id):
     user = User.query.get(user_id)
+    if not user:
+        return redirect(url_for("auth_unauthorized"))
 
     if request.method == "GET":
         form = UserEditForm(obj=user)

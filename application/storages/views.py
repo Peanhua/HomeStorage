@@ -35,6 +35,8 @@ def storages_create():
         return render_template("storages/new.html", form = form)
 
     home = Home.query.get(form.home.data)
+    if not home:
+        return redirect(url_for("auth_unauthorized"))
     if not home.is_user_in(current_user.user_id):
         return redirect(url_for("auth_unauthorized"))
     
@@ -51,6 +53,8 @@ def storages_create():
 @login_required()
 def storages_delete(storage_id):
     storage = Storage.query.get(storage_id)
+    if not storage:
+        return redirect(url_for("auth_unauthorized"))
     home = Home.query.get(storage.home_id)
 
     if not home.is_user_in(current_user.user_id):
@@ -71,6 +75,8 @@ def storages_delete(storage_id):
 @login_required()
 def stock_edit(storage_id):
     storage = Storage.query.get(storage_id)
+    if not storage:
+        return redirect(url_for("auth_unauthorized"))
     home = Home.query.get(storage.home_id)
 
     if not home.is_user_in(current_user.user_id):
@@ -98,6 +104,8 @@ def stock_edit(storage_id):
 @login_required()
 def stock_add(storage_id):
     storage = Storage.query.get(storage_id)
+    if not storage:
+        return redirect(url_for("auth_unauthorized"))
     home = Home.query.get(storage.home_id)
 
     if not home.is_user_in(current_user.user_id):
@@ -120,6 +128,8 @@ def stock_add(storage_id):
 @login_required()
 def stock_remove(storage_id):
     storage = Storage.query.get(storage_id)
+    if not storage:
+        return redirect(url_for("auth_unauthorized"))
     home = Home.query.get(storage.home_id)
 
     if not home.is_user_in(current_user.user_id):

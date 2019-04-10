@@ -41,6 +41,9 @@ def homes_create():
 @login_required(role="ADMIN")
 def homes_delete(home_id):
     home = Home.query.get(home_id)
+    if not home:
+        return redirect(url_for("auth_unauthorized"))
+
     if request.method == "GET":
         stock = home.get_stock_items()
         return render_template("homes/delete.html", home=home, stock=stock)
@@ -55,6 +58,8 @@ def homes_delete(home_id):
 @login_required(role="ADMIN")
 def homes_edit(home_id):
     home = Home.query.get(home_id)
+    if not home:
+        return redirect(url_for("auth_unauthorized"))
     
     if request.method == "GET":
         form = HomeForm()
@@ -78,6 +83,8 @@ def homes_edit(home_id):
 @login_required(role="ADMIN")
 def homeusers_edit(home_id):
     home = Home.query.get(home_id)
+    if not home:
+        return redirect(url_for("auth_unauthorized"))
     homeuserids = [ u.user_id for u in home.users]
     
     homeusers  = User.query.filter(User.user_id.in_(homeuserids)).all()
@@ -118,6 +125,8 @@ def myhomes_index():
 @login_required()
 def myhomes_edit(home_id):
     home = Home.query.get(home_id)
+    if not home:
+        return redirect(url_for("auth_unauthorized"))
 
     if not home.is_user_in(current_user.user_id):
         return redirect(url_for("auth_unauthorized"))
@@ -158,6 +167,8 @@ def myhomes_edit(home_id):
 @login_required()
 def myhomes_view(home_id):
     home = Home.query.get(home_id)
+    if not home:
+        return redirect(url_for("auth_unauthorized"))
 
     if not home.is_user_in(current_user.user_id):
         return redirect(url_for("auth_unauthorized"))

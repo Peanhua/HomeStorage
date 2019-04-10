@@ -1,7 +1,6 @@
 from application                 import app, db, login_required
 from application.products.models import Product
 from application.homes.models    import Home
-#from application.reports.forms   import ReportsForm
 from flask                       import redirect, render_template, url_for
 from flask_login                 import current_user
 
@@ -22,8 +21,6 @@ def reports_index():
         Report("missing_products", "Missing products", "List products whose quantity is below minimum desired.", None,   None)
     ]
     homes = current_user.get_my_homes()
-    #form.best_before_home.choices = [(h.home_id, h.name) for h in homes]
-    #form.missing_products_home.choices = [(h.home_id, h.name) for h in homes]
     return render_template("reports/index.html", reports=reports, homes=homes)
 
 
@@ -31,6 +28,8 @@ def reports_index():
 @login_required()
 def report_show(report_id, home_id, param1):
     home = Home.query.get(home_id)
+    if not home:
+        return redirect(url_for("auth_unauthorized"))
     if not home.is_user_in(current_user.user_id):
         return redirect(url_for("auth_unauthorized"))
     

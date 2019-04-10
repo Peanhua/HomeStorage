@@ -40,6 +40,8 @@ def products_create():
 @login_required
 def products_edit(product_id):
     product = Product.query.get(product_id)
+    if not product:
+        return redirect(url_for("auth_unauthorized"))
 
     if request.method == "GET":
         form = ProductForm(obj=product)
