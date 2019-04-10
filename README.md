@@ -45,7 +45,7 @@ This software is aimed to help keep track of the home storage, get reports and a
 
 ## Documentation
 
-* [Documentation](application/static/docs/index.md)
+* [Installation and user documentation](documentation/index.md)
 * [User stories](documentation/user-stories.md)
 * [Class diagram](documentation/classdiagram.svg)
 * [Database](documentation/database.md)

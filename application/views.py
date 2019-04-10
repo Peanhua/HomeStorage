@@ -36,18 +36,18 @@ def docs_index():
 
 @app.route("/docs/<name>.png")
 def docs_png(name):
-    return app.send_static_file("docs/" + name + ".png")
+    return app.send_static_file("documentation/" + name + ".png")
 
 @app.route("/docs/<name>.md")
 def docs_md(name):
     if name.find("/") != -1:
         return redirect(url_for("auth_unauthorized"))
     
-    filename = "application/static/docs/" + name + ".md"
+    filename = "documentation/" + name + ".md"
     if not os.path.isfile(filename):
         return redirect(url_for("auth_unauthorized"))
     
-    with open("application/static/docs/index.css") as fp:
+    with open("documentation/index.css") as fp:
         css = fp.read()
     with open(filename) as fp:
         content = fp.read()
