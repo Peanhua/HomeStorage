@@ -29,12 +29,17 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
+
+def is_sqlite():
+    return app.config["SQLALCHEMY_DATABASE_URI"].startswith("sqlite")
+    
+
 # Turn on foreign keys for sqlite:
 from sqlalchemy.engine import Engine
 from sqlalchemy        import event
 @event.listens_for(Engine, "connect")
 def set_sqlite_pragma(dbapi_connection, connection_record):
-    if app.config["SQLALCHEMY_DATABASE_URI"].startswith("sqlite"):
+    if is_sqlite():
         cursor = dbapi_connection.cursor()
         cursor.execute("PRAGMA foreign_keys=ON")
         cursor.close()

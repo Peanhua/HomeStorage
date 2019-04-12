@@ -1,3 +1,4 @@
+from application                 import is_sqlite
 from application                 import db
 from application.products.models import Product
 from sqlalchemy.sql              import text
@@ -113,18 +114,34 @@ class Home(db.Model):
 
     def get_stock_going_bad(self, days):
         # name, storage, best_before, days_remaining
-        q = text("SELECT product.name                                    AS name,"
-                 "       item.quantity                                   AS quantity,"
-                 "       storage.name                                    AS storage,"
-                 "       item.best_before                                AS best_before,"
-                 "       JULIANDAY(item.best_before) - JULIANDAY(DATE()) AS days_remaining"
-                 "  FROM item"
-                 "  JOIN product ON product.product_id = item.product_id"
-                 "  JOIN storage ON storage.storage_id = item.storage_id"
-                 " WHERE storage.home_id = :home_id"
-                 "   AND days_remaining < :days"
-                 " ORDER BY days_remaining"
-                 ).params(home_id=self.home_id, days=days)
+        if is_sqlite():
+            q = text("SELECT product.name     AS name,"
+                     "       item.quantity    AS quantity,"
+                     "       storage.name     AS storage,"
+                     "       item.best_before AS best_before,"
+                     "       JULIANDAY(item.best_before) - JULIANDAY(date()) AS days_remaining"
+                     "  FROM item"
+                     "  JOIN product ON product.product_id = item.product_id"
+                     "  JOIN storage ON storage.storage_id = item.storage_id"
+                     " WHERE storage.home_id = :home_id"
+                     "   AND days_remaining < :days"
+                     " ORDER BY days_remaining"
+            ).params(home_id=self.home_id, days=days)
+        else:
+            # PostgreSQL:
+            q = text("SELECT product.name      AS name,"
+                     "       item.quantity     AS quantity,"
+                     "       storage.name      AS storage,"
+                     "       item.best_before  AS best_before,"
+                     "       CAST(TO_CHAR(item.best_before, 'J') AS INT) - CAST(TO_CHAR(now(), 'J') AS INT) AS days_remaining"
+                     "  FROM item"
+                     "  JOIN product ON product.product_id = item.product_id"
+                     "  JOIN storage ON storage.storage_id = item.storage_id"
+                     " WHERE storage.home_id = :home_id"
+                     "   AND days_remaining < :days"
+                     " ORDER BY days_remaining"
+            ).params(home_id=self.home_id, days=days)
+            
         res = db.engine.execute(q)
         rv = []
         for row in res:
