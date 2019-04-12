@@ -176,6 +176,7 @@ COMMIT;
 ```
 
 ## As a user, I can get a listing of items whose lifetime has ended or are about to end.
+SQLite variant:
 ```SQL
 SELECT product.name                                    AS name,
        item.quantity                                   AS quantity,
@@ -187,6 +188,20 @@ SELECT product.name                                    AS name,
   JOIN storage ON storage.storage_id = item.storage_id
  WHERE storage.home_id = :HOME_ID
    AND days_remaining < :DAYS
+ ORDER BY days_remaining
+```
+PostgreSQL variant:
+```SQL
+SELECT product.name      AS name,
+       item.quantity     AS quantity,
+       storage.name      AS storage,
+       item.best_before  AS best_before,
+       CAST(TO_CHAR(item.best_before, 'J') AS INT) - CAST(TO_CHAR(now(), 'J') AS INT) AS days_remaining
+  FROM item
+  JOIN product ON product.product_id = item.product_id
+  JOIN storage ON storage.storage_id = item.storage_id
+ WHERE storage.home_id = :home_id
+   AND days_remaining < :days
  ORDER BY days_remaining
 ```
 
