@@ -27,7 +27,8 @@ class Storage(db.Model):
             "                                       AND ( home_product.home_id = :home_id OR home_product.home_id IS NULL)" \
             "  LEFT OUTER JOIN item ON product.product_id = item.product_id" \
             "                          AND item.storage_id = :storage_id" \
-            " GROUP BY product.product_id"
+            " GROUP BY product.product_id" \
+            " ORDER BY product.name"
         if not include_zero_quantities:
             sql += " HAVING current_quantity > 0"
 

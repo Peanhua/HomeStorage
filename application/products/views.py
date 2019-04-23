@@ -10,7 +10,7 @@ from sqlalchemy                  import exc
 @app.route("/products", methods=["GET"])
 @login_required
 def products_index():
-    return render_template("products/list.html", products = Product.query.all())
+    return render_template("products/list.html", products = Product.query.order_by(Product.name).all())
 
 
 # Create new product

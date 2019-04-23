@@ -30,7 +30,7 @@ class Home(db.Model):
     def get_products(self):
         res = db.session().query(Product, HomeProduct).outerjoin(HomeProduct, and_(Product.product_id == HomeProduct.product_id,
                                                                                    or_(HomeProduct.home_id == self.home_id,
-                                                                                       HomeProduct.home_id.is_(None)))).all()
+                                                                                       HomeProduct.home_id.is_(None)))).order_by(Product.name).all()
         class TmpProduct(object):
             def __init__(self, product_id, name, mind, maxd):
                 self.product_id   = product_id
