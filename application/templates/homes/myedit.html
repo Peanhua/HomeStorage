@@ -11,24 +11,16 @@
     </tr>
     {% for product in form.products %}
     <tr>
-      <td>{{ product.product_id }}{{ product.product_name }}{{ product.product_name.data }}
-        <ul>
-          {% for error in product.product_name.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-      <td>{{ product.mindesired }}
-        <ul>
+      <td>{{ product.product_id }}{{ product.product_name }}{{ product.product_name.data }}</td>
+      <td>{{ product.mindesired }}</td>
+      <td>{{ product.maxdesired }}</td>
+      <td>
+        <ul class="mb-0">
           {% for error in product.mindesired.errors %}
-          <li>{{ error }}</li>
+          <li>Minimum: {{ error }}</li>
           {% endfor %}
-        </ul>
-      </td>
-      <td>{{ product.maxdesired }}
-        <ul>
           {% for error in product.maxdesired.errors %}
-          <li>{{ error }}</li>
+          <li>Maximum: {{ error }}</li>
           {% endfor %}
         </ul>
       </td>
