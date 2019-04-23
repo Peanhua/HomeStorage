@@ -11,9 +11,9 @@
     </tr>
     {% for product in form.products %}
     <tr>
-      <td>{{ product.product_id }}{{ product.product_name }}{{ product.product_name.data }}</td>
-      <td>{{ product.mindesired }}</td>
-      <td>{{ product.maxdesired }}</td>
+      <td><span class="mr-2">{{ product.product_id }}{{ product.product_name }}{{ product.product_name.data }}</span></td>
+      <td class="text-center">{{ product.mindesired(class_="w-75") }}</td>
+      <td class="text-center">{{ product.maxdesired(class_="w-75") }}</td>
       <td>
         <ul class="mb-0">
           {% for error in product.mindesired.errors %}

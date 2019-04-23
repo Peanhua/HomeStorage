@@ -5,15 +5,15 @@
   <h3>Add items to: {{ home.name }} / {{ storage.name }}</h3>
   <table>
     <tr>
-      <th>Product</th>
-      <th>Current</th>
+      <th><span class="mr-2">Product</span></th>
+      <th><span class="mr-2">Current</span></th>
       <th colspan="3">Change</th>
       <th>New quantity</th>
     </tr>
     {% for product in products %}
     <tr>
       <td>{{ product.product_name }}</td>
-      <td>{{ product.current_quantity }}<input type="hidden" id="curquant_{{ product.product_id }}" value="{{ product.current_quantity }}" /></td>
+      <td><span class="ml-2">{{ product.current_quantity }}<input type="hidden" id="curquant_{{ product.product_id }}" value="{{ product.current_quantity }}" /></span></td>
       <td>
         <button type="button" class="btn btn-danger btn-sm" onclick="onStockAdjustClicked({{ product.product_id }}, -1)">-</button>
       </td>
@@ -26,7 +26,7 @@
       <td>
         <button type="button" class="btn btn-success btn-sm" onclick="onStockAdjustClicked({{ product.product_id }}, 1)">+</button>
       </td>
-      <td><span class="label label-default" id="newquant_{{ product.product_id }}">{{ product.current_quantity }}</span></td>
+      <td><span class="label label-default ml-2" id="newquant_{{ product.product_id }}">{{ product.current_quantity }}</span></td>
     </tr>
     {% endfor %}
   </table>
