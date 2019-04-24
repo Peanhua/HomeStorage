@@ -1,6 +1,7 @@
 # Database
 
-<img src="database.svg" alt="Database" width="700" />
+Database diagram:
+<img src="database.svg" alt="Database diagram" width="700" />
 
 
 ## Create table SQL
