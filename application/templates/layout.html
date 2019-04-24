@@ -70,7 +70,7 @@
             </li>
           </ul>
           <div class="form-inline mt-2 mt-md-0">
-            <span>user: <a href="{{ url_for('users_profile_edit') }}">{{ current_user.name }}</a></span>
+            <span class="mr-1">user: <a href="{{ url_for('users_profile_edit') }}">{{ current_user.name }}</a></span>
             <button type="button" class="btn btn-secondary btn-sm" onclick="location.assign('{{ url_for('auth_logout') }}')">logout</button>
           </div>
 	</div>
