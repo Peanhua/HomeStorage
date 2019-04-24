@@ -85,6 +85,18 @@ INSERT INTO storage (home_id,  name)
 COMMIT;
 ```
 
+### Editing a storage
+```SQL
+BEGIN;
+
+UPDATE storage
+   SET name = :NEW_NAME
+ WHERE storage.storage_id = :STORAGE_ID
+;
+
+COMMIT;
+```
+
 ### Deleting a storage
 ```SQL
 BEGIN;

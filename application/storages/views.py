@@ -1,6 +1,6 @@
 from application                 import app, db, login_required
 from application.storages.models import Storage
-from application.storages.forms  import StorageForm, StorageDeleteForm
+from application.storages.forms  import StorageForm, StorageEditForm, StorageDeleteForm
 from application.homes.models    import Home
 from application.items.models    import Item
 from flask                       import redirect, render_template, request, url_for
@@ -46,6 +46,32 @@ def storages_create():
     db.session().commit()
     
     return redirect(url_for("storages_index"))
+
+
+# Storage edit:
+@app.route("/storages/<storage_id>/edit", methods=["GET", "POST"])
+@login_required()
+def storages_edit(storage_id):
+    storage = Storage.query.get(storage_id)
+    if not storage:
+        return redirect(url_for("auth_unauthorized"))
+    home = Home.query.get(storage.home_id)
+
+    if not home.is_user_in(current_user.user_id):
+        return redirect(url_for("auth_unauthorized"))
+
+    if request.method == "GET":
+        form = StorageEditForm()
+        form.name.data = storage.name
+        return render_template("storages/edit.html", form=form, home=home, storage=storage)
+    elif request.method == "POST":
+        form = StorageEditForm(request.form)
+        if not form.validate():
+            return render_template("storages/edit.html", form=form, home=home, storage=storage)
+        storage.name = form.name.data
+        db.session().commit()
+        return redirect(url_for("storages_index"))
+    
 
 
 # Storage delete:
