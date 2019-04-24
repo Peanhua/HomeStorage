@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
-<svg width="30cm" height="33cm" viewBox="-129 -171 593 642" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="29cm" height="33cm" viewBox="-129 -171 573 642" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g>
     <rect style="fill: #ffffff" x="-128" y="388" width="233.9" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-128" y="388" width="233.9" height="18"/>
@@ -60,22 +60,6 @@
     <ellipse style="fill: #000000" cx="-110" cy="-63" rx="2" ry="2"/>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-106" y="-57">superuser</text>
     <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-3.6" y="-57">BOOLEAN</text>
-  </g>
-  <g>
-    <rect style="fill: #ffffff" x="199" y="59" width="264.7" height="18"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="199" y="59" width="264.7" height="18"/>
-    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="331.35" y="73">Address</text>
-    <rect style="fill: #ffffff" x="199" y="77" width="264.7" height="52"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="199" y="77" width="264.7" height="52"/>
-    <polygon style="fill: #000000" points="202,87 204,90 206,87 204,84 "/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="208" y="93">(pk) location_id</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="364.3" y="93">INTEGER</text>
-    <ellipse style="fill: #000000" cx="204" cy="103" rx="2" ry="2"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="208" y="109">(fk) postal_code_id</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="364.3" y="109">INTEGER</text>
-    <ellipse style="fill: #000000" cx="204" cy="119" rx="2" ry="2"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="208" y="125">street_address</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="364.3" y="125">VARCHAR(120)</text>
   </g>
   <g>
     <rect style="fill: #ffffff" x="-126" y="111" width="226.2" height="18"/>
@@ -181,39 +165,5 @@
     <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="105.9,416 168.45,416 168.45,413 231,413 "/>
     <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="109.9" y="412">1</text>
     <text font-size="9.6" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="227" y="409">*</text>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="100.2,139 149.6,139 149.6,87 199,87 "/>
-    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="104.2" y="135">*</text>
-    <text font-size="9.6" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="195" y="83">1</text>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="331.35,129 331.35,166 330.1,166 330.1,203 "/>
-    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="335.35" y="141">1</text>
-    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="334.1" y="199">*</text>
-  </g>
-  <g>
-    <rect style="fill: #ffffff" x="203" y="-90" width="257" height="18"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="203" y="-90" width="257" height="18"/>
-    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="331.5" y="-76">PostalCodes</text>
-    <rect style="fill: #ffffff" x="203" y="-72" width="257" height="68"/>
-    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="203" y="-72" width="257" height="68"/>
-    <polygon style="fill: #000000" points="206,-62 208,-59 210,-62 208,-65 "/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="212" y="-56">(pk) postal_code_id</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="368.3" y="-56">INTEGER</text>
-    <ellipse style="fill: #000000" cx="208" cy="-46" rx="2" ry="2"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="212" y="-40">postal_code</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="368.3" y="-40">VARCHAR(20)</text>
-    <ellipse style="fill: #000000" cx="208" cy="-30" rx="2" ry="2"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="212" y="-24">city</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="368.3" y="-24">VARCHAR(80)</text>
-    <ellipse style="fill: #000000" cx="208" cy="-14" rx="2" ry="2"/>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="212" y="-8">country</text>
-    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="368.3" y="-8">VARCHAR(80)</text>
-  </g>
-  <g>
-    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="331.5,-4 331.5,27.5 331.35,27.5 331.35,59 "/>
-    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="335.5" y="8">1</text>
-    <text font-size="9.6" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="335.35" y="55">*</text>
   </g>
 </svg>

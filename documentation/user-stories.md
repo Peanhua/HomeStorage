@@ -238,14 +238,6 @@ SELECT product.product_id                AS product_id,
 ```
 
 
-## As a user, I can get reports about product usage. The statistics contain quantities of products used over certain period of time, for example how many liters of milk are consumed per month.
-Not yet implemented.
-
-
-## As a user, I can get alarms about my home and storages. The alarms are based on the existing reports, and they are triggered by some limits on values such as "the amount of cakes is below 10kg".
-Not yet implemented.
-
-
 ## As a user, I can adjust my personal user account profile and settings.
 ```SQL
 BEGIN;
@@ -259,7 +251,3 @@ UPDATE account
 
 COMMIT;
 ```
-
-
-## As a user, I can request my password to be reset if I have forgotten it. An email is sent to my email account with a new temporary password, which I need to change next time I log in.
-Not yet implemented.

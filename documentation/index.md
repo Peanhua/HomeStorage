@@ -5,8 +5,9 @@
 
 Every home has some food stored, whether it's half eaten bread and open can of milk, [3 tons of sugar](https://www.riemurasia.net/kuva/Sokerivarasto/69529), or something between. The home storage can also contain items such as medicine, tools, and so on. The items in home storage often have limited lifetime, they are constantly being used, and the stock is also constantly being replenished with new items. The larger the storage is, the harder it is to keep track of the current state of it; is something going bad soon, is there oversupply of something, and so on.
 
-This software is aimed to help keep track of the home storage, get reports and alerts about it, and help in replenishing the stock.
+This software is aimed to help keep track of the items in your home storages, get reports and alerts about them, and help in replenishing the stock.
 
+One installation of a Home Storage can contain multiple homes, the system is designed with the assumption that all the users and homes in an installation are friendly. Thus there is no registration, new users are created using an admin account.
 
 
 ## 1. Setup
@@ -17,6 +18,12 @@ Use the *root* user to create new user accounts and new homes.
 
 
 ## 2. Using
+
+The system requires some setting up before it is useful. Homes, users, products, and storages need to be setup first.
+
+After setting things up, the normal "daily" routine consists of checking reports and adjusting the stock in storages. The landing screen, also accessible by clicking the big "Home Storage" in the navigation toolbar, contains some useful quick information about the system. And adjusting the stock is done through the "Storages" of the navigation toolbar.
+
+The following sections describe each part of the system in more detail.
 
 
 ### 2.1. User interface
@@ -35,6 +42,8 @@ Users with admin rights, aka *superusers*, can do all the same things as normal 
 User management menu is shown only for superusers, and it contains tools to create new users, edit existing users, and delete existing users.
 
 ![User management menu](users.png)
+
+A user can be part of multiple homes.
 
 
 ### 2.3. Homes
