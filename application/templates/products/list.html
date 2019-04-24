@@ -8,6 +8,7 @@
 <div>
   &nbsp;
 </div>
+{% if products|length > 0 %}
 <table>
   <tr>
     <th>#</th>
@@ -26,4 +27,10 @@
   </tr>
   {% endfor %}
 </table>
+{% else %}
+<div class="alert alert-warning" role="alert">
+  There are no products defined.
+  Products are essential for Home Storage, <a class="alert-link" href="{{ url_for('products_form') }}">click here</a> to create a new product.
+</div>
+{% endif %}
 {% endblock %}
