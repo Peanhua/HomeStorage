@@ -2,7 +2,6 @@
 
 <img src="database.svg" alt="Database" width="700" />
 
-Tables *Address* and *PostalCodes* are not yet implemented.
 
 ## Create table SQL
 ```SQL
