@@ -8,6 +8,7 @@
 <div>
   &nbsp;
 </div>
+{% if homes|length > 0 %}
 <table>
   <tr>
     <th>#</th>
@@ -24,4 +25,10 @@
   </tr>
   {% endfor %}
 </table>
+{% else %}
+<div class="alert alert-danger" role="alert">
+  You have not set any homes yet.
+  <a class="alert-link" href="{{ url_for('homes_form') }}">Click here</a> to create a new home.
+</div>
+{% endif %}
 {% endblock %}
