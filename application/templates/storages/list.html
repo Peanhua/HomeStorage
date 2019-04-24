@@ -8,6 +8,7 @@
 <div>
   &nbsp;
 </div>
+{% if storages|length > 0 %}
 <table>
   <tr>
     <th>Home</th>
@@ -28,4 +29,10 @@
   </tr>
   {% endfor %}
 </table>
+{% else %}
+<div class="alert alert-danger" role="alert">
+  There are no storages defined for your homes.
+  <a class="alert-link" href="{{ url_for('storages_form') }}">Click here</a> to create a new storage.
+</div>
+{% endif %}
 {% endblock %}
