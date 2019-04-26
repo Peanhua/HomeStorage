@@ -29,3 +29,9 @@ Multiple homes could share their shopping together to share the time and money s
 
 ### Addresses for homes and storages
 The homes and storages should have addresses set on them. This would allow showing them on map, and could be utilized in other features as well.
+
+### Single-page application
+The front-end should be switched to [single-page application](https://en.wikipedia.org/wiki/Single-page_application) -style for more pleasant user experience.
+
+### Filtering
+The lists made of products should have filtering, so that users can easily see only relevant information. Paging would be another option, but that would make the user interface more difficult to use, and slower. The number of products per installation is most likely not going to be very high because this stock management is aimed for homes, and not for big commercial stores.
