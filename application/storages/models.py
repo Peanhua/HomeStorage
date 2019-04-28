@@ -9,8 +9,6 @@ class Storage(db.Model):
     home_id    = db.Column(db.Integer,    db.ForeignKey("home.home_id", ondelete="CASCADE"), nullable = False)
     name       = db.Column(db.String(80), nullable = False)
 
-    #items = db.relationship("Item", backref="Storage", passive_deletes=True) # not needed
-
     def __init__(self, home_id, name):
         self.home_id = home_id
         self.name    = name

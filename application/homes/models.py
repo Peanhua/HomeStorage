@@ -9,10 +9,9 @@ class Home(db.Model):
     name     = db.Column(db.String(80), nullable = False)
 
     users = db.relationship("HomeUser", backref="home", lazy=True)
-    #users = db.relationship("HomeUser", back_populates="users")
 
     def __init__(self, name):
-        self.name     = name
+        self.name = name
 
 
     def is_user_in(self, user_id):
@@ -161,7 +160,6 @@ class HomeUser(db.Model):
     home_id     = db.Column(db.Integer, db.ForeignKey("home.home_id", ondelete="CASCADE"),    nullable = False)
     user_id     = db.Column(db.Integer, db.ForeignKey("account.user_id", ondelete="CASCADE"), nullable = False)
 
-    #home = db.relationship("Home", backref=backref("HomeUser", passive_deletes=True))
     user = db.relationship("User")
 
     def __init__(self, home_id, user_id):

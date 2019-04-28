@@ -97,8 +97,8 @@ def users_profile_edit():
         if not form.validate():
             return render_template("users/edit_profile.html", form=form, user=current_user)
 
-        current_user.name      = form.name.data
-        current_user.email     = form.email.data
+        current_user.name  = form.name.data
+        current_user.email = form.email.data
         if len(form.password.data) > 0:
             current_user.change_password(form.password.data)
         db.session().commit()

@@ -16,7 +16,6 @@ class User(db.Model):
     force_password_change = db.Column(db.Boolean,     nullable = False)
 
     homes = db.relationship("HomeUser", back_populates="user", cascade="all, delete, delete-orphan")
-    #homes = db.relationship("HomeUser", backref="user", cascade="all, delete, delete-orphan")
 
     def __init__(self, name, email, login, password):
         self.name      = name

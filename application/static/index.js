@@ -57,8 +57,6 @@ onEditHomeUsersClicked = (home_id) => {
 
 /* Activates all entries in select_lists before submitting to the server. */
 onSubmitFormClicked = (event, select_lists) => {
-  //event.preventDefault()
-
   select_lists.forEach(list_id => {
     const list = document.getElementById(list_id)
     if(list) {

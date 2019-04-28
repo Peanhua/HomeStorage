@@ -8,8 +8,6 @@ class Item(db.Model):
     quantity   = db.Column(db.Integer, nullable = False)
     best_before = db.Column(db.Date,   nullable = False)
 
-    #storage = db.relationship("Storage", backref=backref("Item", passive_deletes=True))
-
     def __init__(self, product_id, storage_id, best_before):
         self.product_id  = product_id
         self.storage_id  = storage_id
