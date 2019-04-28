@@ -21,7 +21,7 @@ A smart phone application would ease the users life a great deal. Users could sc
 
 These features could also be implemented without a special smart phone application, because all these are basically just picture scanning problems.
 
-### From where to buy information
+### From where to buy -information
 Information system from where to buy specific items, for the best prices, could be implemented. First manual input, and then use some form of online gathering system to do it automatically.
 
 ### Homes working together
