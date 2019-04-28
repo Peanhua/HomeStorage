@@ -7,10 +7,11 @@ from flask_login                 import login_required
 from sqlalchemy                  import exc
 
 # List of products
-@app.route("/products", methods=["GET"])
+@app.route("/products/", methods=["GET"], defaults={"page": 1})
+@app.route("/products/<int:page>", methods=["GET"])
 @login_required
-def products_index():
-    return render_template("products/list.html", products = Product.query.order_by(Product.name).all())
+def products_index(page):
+    return render_template("products/list.html", products = Product.query.order_by(Product.name).paginate(page=page, per_page=20))
 
 
 # Create new product

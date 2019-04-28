@@ -3,38 +3,42 @@
 {% block body %}
 <h3>Reports</h3>
 {% if homes|length > 0 %}
-<table>
-  <tr>
-    <th>Report</th>
-    <th>Description</th>
-    <th>For home</th>
-    <th>Parameters</th>
-    <th></th>
-  </tr>
-  {% for report in reports %}
-  <tr>
-    <td><div class="align-middle">{{ report.name }}</div></td>
-    <td><div class="small" style="width: 200px;">{{ report.description }}</div></td>
-    <td>
-      <select class="align-middle" id="home_select_{{ report.id }}">
-        {% for home in homes %}
-        <option value="{{ home.home_id }}">{{ home.name }}</option>
-        {% endfor %}
-      </select>
-    </td>
-    <td>
-      {% if report.param1label %}
-      {{ report.param1label }}
-      <input type="text" id="param1_{{ report.id }}" value="{{ report.param1default }}">
-      {% else %}
-      <input type="hidden" id="param1_{{ report.id }}" value="-">
-      {% endif %}
-    </td>
-    <td>
-      <button type="button" class="btn btn-primary btn-sm align-middle" onclick="onShowReportClicked('{{ report.id }}')">Show</button>
-    </td>
-  </tr>
-  {% endfor %}
+<table class="table table-hover table-sm">
+  <thead class="thead-light">
+    <tr>
+      <th>Report</th>
+      <th>Description</th>
+      <th>For home</th>
+      <th>Parameters</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for report in reports %}
+    <tr>
+      <td><div class="align-middle">{{ report.name }}</div></td>
+      <td><div class="small" style="width: 200px;">{{ report.description }}</div></td>
+      <td>
+        <select class="align-middle" id="home_select_{{ report.id }}">
+          {% for home in homes %}
+          <option value="{{ home.home_id }}">{{ home.name }}</option>
+          {% endfor %}
+        </select>
+      </td>
+      <td>
+        {% if report.param1label %}
+        {{ report.param1label }}
+        <input type="text" id="param1_{{ report.id }}" value="{{ report.param1default }}">
+        {% else %}
+        <input type="hidden" id="param1_{{ report.id }}" value="-">
+        {% endif %}
+      </td>
+      <td>
+        <button type="button" class="btn btn-primary btn-sm align-middle" onclick="onShowReportClicked('{{ report.id }}')">Show</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 {% else %}
 <div>You don't have any homes set. Ask your administrator to place you in one or more homes.</div>

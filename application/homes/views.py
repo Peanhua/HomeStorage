@@ -7,11 +7,11 @@ from flask                       import redirect, render_template, request, url_
 from flask_login                 import current_user
 
 # List of homes
-@app.route("/homes", methods=["GET"])
+@app.route("/homes/", methods=["GET"], defaults={"page": 1})
+@app.route("/homes/<int:page>", methods=["GET"])
 @login_required(role="ADMIN")
-def homes_index():
-    homes = Home.query.all()
-    return render_template("homes/list.html", homes = homes)
+def homes_index(page):
+    return render_template("homes/list.html", homes = Home.query.paginate(page=page, per_page=20))
 
 
 # Create new home
@@ -114,10 +114,11 @@ def homeusers_edit(home_id):
 
 
 # My Homes list:
-@app.route("/myhomes", methods=["GET"])
+@app.route("/myhomes/", methods=["GET"], defaults={"page": 1})
+@app.route("/myhomes/<int:page>", methods=["GET"])
 @login_required()
-def myhomes_index():
-    homes = current_user.get_my_homes()
+def myhomes_index(page):
+    homes = current_user.get_my_homes().paginate(page=page, per_page=20)
     return render_template("homes/mylist.html", homes = homes)
 
 # My Homes editing:

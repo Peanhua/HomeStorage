@@ -5,10 +5,11 @@ from flask                    import abort, redirect, render_template, request, 
 from flask_login              import current_user
 
 # List of users
-@app.route("/users", methods=["GET"])
+@app.route("/users/", methods=["GET"], defaults={"page": 1})
+@app.route("/users/<int:page>", methods=["GET"])
 @login_required(role="ADMIN")
-def users_index():
-    return render_template("users/list.html", users = User.query.all())
+def users_index(page):
+    return render_template("users/list.html", users=User.query.paginate(page=page, per_page=20))
 
 
 # Create new user

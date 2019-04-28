@@ -1,23 +1,33 @@
 {% extends "layout.html" %}
+{% from "macros.html" import render_pagination_controls with context %}
 
 {% block body %}
 <h3>My Homes</h3>
-{% if homes|length > 0 %}
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Users</th>
-  </tr>
-  {% for home in homes %}
-  <tr>
-    <td><a href="{{ url_for('myhomes_view', home_id=home.home_id) }}">{{ home.name }}</a></td>
-    <td>{{ home.users|length }}</td>
-    <td>
-      <button type="button" class="btn btn-primary btn-sm" onclick="location.assign('{{ url_for('myhomes_edit', home_id=home.home_id) }}')">Edit</button>
-    </td>
-  </tr>
-  {% endfor %}
+{% if homes.items|length > 0 %}
+<table class="table table-hover table-sm">
+  <thead class="thead-light">
+    <tr>
+      <th>Name</th>
+      <th>Users</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for home in homes.items %}
+    <tr>
+      <td>{{ home.name }}</td>
+      <td>{{ home.users|length }}</td>
+      <td>
+        <button type="button" class="btn btn-success btn-sm" onclick="location.assign('{{ url_for('myhomes_view', home_id=home.home_id) }}')">View</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="location.assign('{{ url_for('myhomes_edit', home_id=home.home_id) }}')">Edit</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
+<div>
+  {{ render_pagination_controls(homes, 'myhomes_index', 'My home list pages') }}
+</div>
 {% else %}
 <div>You don't have any homes set. Ask your administrator to place you in one or more homes.</div>
 {% endif %}

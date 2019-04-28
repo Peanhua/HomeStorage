@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% from "macros.html" import render_pagination_controls with context %}
 
 {% block body %}
 <h3>Products</h3>
@@ -8,25 +9,33 @@
 <div>
   &nbsp;
 </div>
-{% if products|length > 0 %}
-<table>
-  <tr>
-    <th>#</th>
-    <th>Product</th>
-    <th>Default lifetime (days)</th>
-  </tr>
-  {% for product in products %}
-  <tr>
-    <td>{{ product.product_id       }}</td>
-    <td>{{ product.name             }}</td>
-    <td>{{ product.default_lifetime }}</td>
-    <td>
-      <button type="button" class="btn btn-primary btn-sm" onclick="onEditProductClicked({{ product.product_id }})">Edit</button>
-      <button type="button" class="btn btn-danger btn-sm" onclick="onDeleteProductClicked({{ product.product_id }})">Delete</button>
-    </td>
-  </tr>
+{% if products.items|length > 0 %}
+<table class="table table-hover table-sm">
+  <thead class="thead-light">
+    <tr>
+      <th>#</th>
+      <th>Product</th>
+      <th>Default lifetime (days)</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products.items %}
+    <tr>
+      <td>{{ product.product_id       }}</td>
+      <td>{{ product.name             }}</td>
+      <td>{{ product.default_lifetime }}</td>
+      <td>
+        <button type="button" class="btn btn-primary btn-sm" onclick="onEditProductClicked({{ product.product_id }})">Edit</button>
+        <button type="button" class="btn btn-danger btn-sm" onclick="onDeleteProductClicked({{ product.product_id }})">Delete</button>
+      </td>
+    </tr>
+  </tbody>
   {% endfor %}
 </table>
+<div>
+  {{ render_pagination_controls(products, 'products_index', 'Product list pages') }}
+</div>
 {% else %}
 <div class="alert alert-warning" role="alert">
   There are no products defined.

@@ -7,11 +7,12 @@ from flask                       import redirect, render_template, request, url_
 from flask_login                 import current_user
 
 # List of storages
-@app.route("/storages", methods=["GET"])
+@app.route("/storages/", methods=["GET"], defaults={"page": 1})
+@app.route("/storages/<int:page>", methods=["GET"])
 @login_required()
-def storages_index():
-    homeids = [h.home_id for h in current_user.get_my_homes()]
-    storages = db.session().query(Storage, Home.name).join(Home).filter(Home.home_id.in_(homeids)).order_by(Home.name, Storage.name).all()
+def storages_index(page):
+    homeids = [h.home_id for h in current_user.get_my_homes().all()]
+    storages = db.session().query(Storage, Home.name).join(Home).filter(Home.home_id.in_(homeids)).order_by(Home.name, Storage.name).paginate(page=page, per_page=20)
     return render_template("storages/list.html", storages=storages)
 
 
@@ -20,7 +21,7 @@ def storages_index():
 @login_required()
 def storages_form():
     form = StorageForm()
-    form.home.choices = [(h.home_id, h.name) for h in current_user.get_my_homes()]
+    form.home.choices = [(h.home_id, h.name) for h in current_user.get_my_homes().all()]
     return render_template("storages/new.html", form = form)
 
 @app.route("/storages/", methods=["POST"])
@@ -29,7 +30,7 @@ def storages_create():
     form = StorageForm(request.form)
 
     # Need to fill in the choices or the validator will crash:
-    form.home.choices = [(h.home_id, h.name) for h in current_user.get_my_homes()]
+    form.home.choices = [(h.home_id, h.name) for h in current_user.get_my_homes().all()]
     
     if not form.validate():
         return render_template("storages/new.html", form = form)

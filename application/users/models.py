@@ -51,4 +51,5 @@ class User(db.Model):
 
     def get_my_homes(self):
         myhomes = [home.home_id for home in self.homes]
-        return Home.query.filter(Home.home_id.in_(myhomes)).order_by("name").all()
+        return Home.query.filter(Home.home_id.in_(myhomes)).order_by("name")
+    
