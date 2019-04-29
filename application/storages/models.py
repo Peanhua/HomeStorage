@@ -15,20 +15,26 @@ class Storage(db.Model):
 
     def get_stock(self, include_zero_quantities=True):
         sql = \
-            "SELECT product.product_id                AS product_id," \
-            "       product.name                      AS product_name," \
+            "SELECT t.product_id                      AS product_id," \
+            "       t.product_name                    AS product_name," \
             "       home_product.desired_min_quantity AS desired_min_quantity," \
             "       home_product.desired_max_quantity AS desired_max_quantity," \
-            "       SUM(item.quantity)                AS current_quantity" \
-            "  FROM product" \
-            "       LEFT OUTER JOIN home_product ON product.product_id = home_product.product_id" \
+            "       t.current_quantity                AS current_quantity" \
+            "  FROM ( SELECT product.product_id AS product_id," \
+            "                product.name       AS product_name," \
+            "                SUM(item.quantity) AS current_quantity" \
+            "           FROM product" \
+            "           LEFT OUTER JOIN home_product ON product.product_id = home_product.product_id" \
             "                                       AND ( home_product.home_id = :home_id OR home_product.home_id IS NULL)" \
-            "  LEFT OUTER JOIN item ON product.product_id = item.product_id" \
-            "                          AND item.storage_id = :storage_id" \
-            " GROUP BY product.product_id" \
-            " ORDER BY product.name"
+            "           LEFT OUTER JOIN item ON product.product_id = item.product_id" \
+            "                               AND item.storage_id = :storage_id" \
+            "           GROUP BY product.product_id" \
+            "           ORDER BY product.name" \
+            "       ) t" \
+            " LEFT JOIN home_product ON home_product.product_id = t.product_id" \
+            "                       AND home_product.home_id = :home_id"
         if not include_zero_quantities:
-            sql += " HAVING current_quantity > 0"
+            sql += " WHERE current_quantity > 0"
 
         q = text(sql).params(home_id=self.home_id, storage_id=self.storage_id)
         res = db.engine.execute(q)
