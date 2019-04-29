@@ -87,7 +87,7 @@ class Home(db.Model):
             "                                   AND item.storage_id IN ( SELECT storage.storage_id" \
             "                                                              FROM storage" \
             "                                                             WHERE storage.home_id = :home_id )" \
-            "          GROUP BY product.product_id"
+            "          GROUP BY product.product_id" \
             "        ) t" \
             "  LEFT JOIN home_product ON home_product.product_id = t.product_id" \
             "                        AND home_product.home_id = :home_id"
