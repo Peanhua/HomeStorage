@@ -71,25 +71,33 @@ class Home(db.Model):
         return rv
     
     def get_stock(self, only_missing):
-        sql = \
-            "SELECT product.product_id                AS product_id," \
-            "       product.name                      AS product_name," \
+        sql = "" \
+            "SELECT home_product.product_id           AS product_id," \
+            "       t.product_name                    AS product_name," \
             "       home_product.desired_min_quantity AS desired_min_quantity," \
             "       home_product.desired_max_quantity AS desired_max_quantity," \
-            "       SUM(item.quantity)                AS current_quantity" \
-            "  FROM product" \
-            "  LEFT OUTER JOIN home_product ON product.product_id = home_product.product_id" \
-            "                                  AND ( home_product.home_id = :home_id OR home_product.home_id IS NULL)" \
-            "  LEFT OUTER JOIN item ON product.product_id = item.product_id" \
-            "                          AND item.storage_id IN ( SELECT storage.storage_id" \
-            "                                                     FROM storage" \
-            "                                                    WHERE storage.home_id = :home_id )" \
-            " GROUP BY product.product_id"
+            "       t.current_quantity                AS current_quantity" \
+            "  FROM ( SELECT product.product_id AS product_id," \
+            "                product.name       AS product_name," \
+            "                SUM(item.quantity) AS current_quantity" \
+            "           FROM product" \
+            "           LEFT OUTER JOIN home_product ON product.product_id = home_product.product_id" \
+            "                                           AND ( home_product.home_id = :home_id OR home_product.home_id IS NULL)" \
+            "           LEFT OUTER JOIN item ON product.product_id = item.product_id" \
+            "                                   AND item.storage_id IN ( SELECT storage.storage_id" \
+            "                                                              FROM storage" \
+            "                                                             WHERE storage.home_id = :home_id )" \
+            "          GROUP BY product.product_id"
+            "        ) t" \
+            "  LEFT JOIN home_product ON home_product.product_id = t.product_id" \
+            "                        AND home_product.home_id = :home_id"
+
         if only_missing:
             sql += \
-                " HAVING current_quantity < desired_min_quantity" \
-                "     OR (current_quantity IS NULL AND desired_min_quantity IS NOT NULL)"
-            
+                " WHERE current_quantity < desired_min_quantity" \
+                "    OR (current_quantity IS NULL AND desired_min_quantity IS NOT NULL)"
+
+
         q = text(sql).params(home_id=self.home_id)
         res = db.engine.execute(q)
         
