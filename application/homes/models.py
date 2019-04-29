@@ -136,16 +136,18 @@ class Home(db.Model):
             ).params(home_id=self.home_id, days=days)
         else:
             # PostgreSQL:
-            q = text("SELECT product.name      AS name,"
-                     "       item.quantity     AS quantity,"
-                     "       storage.name      AS storage,"
-                     "       item.best_before  AS best_before,"
-                     "       CAST(TO_CHAR(item.best_before, 'J') AS INT) - CAST(TO_CHAR(now(), 'J') AS INT) AS days_remaining"
-                     "  FROM item"
-                     "  JOIN product ON product.product_id = item.product_id"
-                     "  JOIN storage ON storage.storage_id = item.storage_id"
-                     " WHERE storage.home_id = :home_id"
-                     "   AND days_remaining < :days"
+            q = text("SELECT *"
+                     "  FROM ( SELECT product.name      AS name,"
+                     "                item.quantity     AS quantity,"
+                     "                storage.name      AS storage,"
+                     "                item.best_before  AS best_before,"
+                     "                CAST(TO_CHAR(item.best_before, 'J') AS INT) - CAST(TO_CHAR(now(), 'J') AS INT) AS days_remaining"
+                     "           FROM item"
+                     "           JOIN product ON product.product_id = item.product_id"
+                     "           JOIN storage ON storage.storage_id = item.storage_id"
+                     "          WHERE storage.home_id = :home_id"
+                     "       ) tmp"
+                     " WHERE days_remaining < :days"
                      " ORDER BY days_remaining"
             ).params(home_id=self.home_id, days=days)
             
