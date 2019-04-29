@@ -3,7 +3,11 @@ from flask_wtf                import FlaskForm
 from wtforms                  import BooleanField, HiddenField, PasswordField, StringField, validators, ValidationError
 
 def check_unique_login(form, field):
-    existing = User.query.filter(User.user_id != form.user_id.data, User.login == field.data).first()
+    if form.user_id.data:
+        uid = int(form.user_id.data)
+    else:
+        uid = -1
+    existing = User.query.filter(User.user_id != uid, User.login == field.data).first()
     if existing:
         raise ValidationError("This login is already in use, please choose another.")
 
