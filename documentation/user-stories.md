@@ -204,37 +204,45 @@ SELECT product.name                                    AS name,
 ```
 PostgreSQL variant:
 ```SQL
-SELECT product.name      AS name,
-       item.quantity     AS quantity,
-       storage.name      AS storage,
-       item.best_before  AS best_before,
-       CAST(TO_CHAR(item.best_before, 'J') AS INT) - CAST(TO_CHAR(now(), 'J') AS INT) AS days_remaining
-  FROM item
-  JOIN product ON product.product_id = item.product_id
-  JOIN storage ON storage.storage_id = item.storage_id
- WHERE storage.home_id = :home_id
-   AND days_remaining < :days
+SELECT *
+  FROM ( SELECT product.name      AS name,
+                item.quantity     AS quantity,
+                storage.name      AS storage,
+                item.best_before  AS best_before,
+                CAST(TO_CHAR(item.best_before, 'J') AS INT) - CAST(TO_CHAR(now(), 'J') AS INT) AS days_remaining
+           FROM item
+           JOIN product ON product.product_id = item.product_id
+           JOIN storage ON storage.storage_id = item.storage_id
+          WHERE storage.home_id = :home_id
+       ) tmp
+ WHERE days_remaining < :days
  ORDER BY days_remaining
 ```
 
 
 ## As a user, I can get a listing of products missing for my home.
 ```SQL
-SELECT product.product_id                AS product_id,
-       product.name                      AS product_name,
+SELECT home_product.product_id           AS product_id,
+       t.product_name                    AS product_name,
        home_product.desired_min_quantity AS desired_min_quantity,
        home_product.desired_max_quantity AS desired_max_quantity,
-       SUM(item.quantity)                AS current_quantity
-  FROM product
-  LEFT OUTER JOIN home_product ON product.product_id = home_product.product_id
-                                  AND ( home_product.home_id = :HOME_ID OR home_product.home_id IS NULL)
-  LEFT OUTER JOIN item ON product.product_id = item.product_id
-                          AND item.storage_id IN ( SELECT storage.storage_id
-                                                     FROM storage
-                                                    WHERE storage.home_id = :HOME_ID )
- GROUP BY product.product_id
- HAVING current_quantity < desired_min_quantity
-     OR (current_quantity IS NULL AND desired_min_quantity IS NOT NULL)
+       t.current_quantity                AS current_quantity
+  FROM ( SELECT product.product_id AS product_id,
+                product.name       AS product_name,
+                SUM(item.quantity) AS current_quantity
+           FROM product
+           LEFT OUTER JOIN home_product ON product.product_id = home_product.product_id
+                                           AND ( home_product.home_id = :home_id OR home_product.home_id IS NULL)
+           LEFT OUTER JOIN item ON product.product_id = item.product_id
+                                   AND item.storage_id IN ( SELECT storage.storage_id
+                                                              FROM storage
+                                                             WHERE storage.home_id = :home_id )
+          GROUP BY product.product_id
+        ) t
+  LEFT JOIN home_product ON home_product.product_id = t.product_id
+                        AND home_product.home_id = :home_
+ WHERE current_quantity < desired_min_quantity
+    OR (current_quantity IS NULL AND desired_min_quantity IS NOT NULL)
 ```
 
 
