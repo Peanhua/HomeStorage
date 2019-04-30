@@ -6,23 +6,27 @@
 <div>&nbsp;</div>
 <div>Displaying items with less than {{ days }} days remaining:</div>
 {% if items|length > 0 %}
-<table>
-  <tr>
-    <th>Item</th>
-    <th>Quantity</th>
-    <th>Storage</th>
-    <th>Best before</th>
-    <th>Days remaining</th>
-  </tr>
-  {% for item in items %}
-  <tr>
-    <td>{{ item.name }}</td>
-    <td>{{ item.quantity }}</td>
-    <td>{{ item.storage }}</td>
-    <td>{{ item.best_before }}</td>
-    <td>{{ item.days_remaining }}</td>
-  </tr>
-  {% endfor %}
+<table class="table table-hover table-sm">
+  <thead class="thead-light">
+    <tr>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Storage</th>
+      <th>Best before</th>
+      <th>Days remaining</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.storage }}</td>
+      <td>{{ item.best_before }}</td>
+      <td>{{ item.days_remaining }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 {% else %}
 <div><b>No results.</b></div>
