@@ -1,17 +1,18 @@
-from application                 import app, db, login_required
+from application                 import app, db, login_required, get_items_per_page
 from application.homes.models    import Home, HomeUser, HomeProduct
 from application.homes.forms     import HomeForm, MyHomeForm
 from application.users.models    import User
 from application.products.models import Product
 from flask                       import redirect, render_template, request, url_for
 from flask_login                 import current_user
+from flask_sqlalchemy            import Pagination
 
 # List of homes
 @app.route("/homes/", methods=["GET"], defaults={"page": 1})
 @app.route("/homes/<int:page>", methods=["GET"])
 @login_required(role="ADMIN")
 def homes_index(page):
-    return render_template("homes/list.html", homes = Home.query.paginate(page=page, per_page=20))
+    return render_template("homes/list.html", homes = Home.query.paginate(page=page, per_page=get_items_per_page()))
 
 
 # Create new home
@@ -118,7 +119,7 @@ def homeusers_edit(home_id):
 @app.route("/myhomes/<int:page>", methods=["GET"])
 @login_required()
 def myhomes_index(page):
-    homes = current_user.get_my_homes().paginate(page=page, per_page=20)
+    homes = current_user.get_my_homes().paginate(page=page, per_page=get_items_per_page())
     return render_template("homes/mylist.html", homes = homes)
 
 # My Homes editing:
@@ -164,9 +165,12 @@ def myhomes_edit(home_id):
 
 
 # View my home:
-@app.route("/myhomes/view/<home_id>/", methods=["GET"])
+@app.route("/myhomes/view/<home_id>/", methods=["GET"], defaults={"users_page": 1})
+@app.route("/myhomes/view/<home_id>/", methods=["GET"], defaults={"products_page": 1})
+@app.route("/myhomes/view/<home_id>/", methods=["GET"], defaults={"users_page": 1, "products_page": 1})
+@app.route("/myhomes/view/<home_id>/<int:users_page>/<int:products_page>", methods=["GET"])
 @login_required()
-def myhomes_view(home_id):
+def myhomes_view(home_id, users_page, products_page):
     home = Home.query.get(home_id)
     if not home:
         return redirect(url_for("auth_unauthorized"))
@@ -175,11 +179,8 @@ def myhomes_view(home_id):
         return redirect(url_for("auth_unauthorized"))
     
     homeuserids = [ u.user_id for u in home.users]
-    homeusers   = User.query.filter(User.user_id.in_(homeuserids)).all()
+    homeusers   = User.query.filter(User.user_id.in_(homeuserids)).paginate(page=users_page, per_page=get_items_per_page())
 
-    if current_user.user_id not in homeuserids:
-        return redirect(url_for("myhomes_index"));
-
-    products = home.get_stock_all()
-
+    stock = home.get_stock(page=products_page, per_page=get_items_per_page())
+    products = Pagination(None, page=products_page, per_page=get_items_per_page(), total=Product.query.count(), items=stock)
     return render_template("homes/myview.html", home=home, homeusers=homeusers, products=products)

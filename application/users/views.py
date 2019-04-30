@@ -1,4 +1,4 @@
-from application              import app, db, login_required
+from application              import app, db, login_required, get_items_per_page
 from application.users.models import User
 from application.users.forms  import UserNewForm, UserEditForm, UserProfileForm
 from flask                    import abort, redirect, render_template, request, url_for
@@ -9,7 +9,7 @@ from flask_login              import current_user
 @app.route("/users/<int:page>", methods=["GET"])
 @login_required(role="ADMIN")
 def users_index(page):
-    return render_template("users/list.html", users=User.query.paginate(page=page, per_page=20))
+    return render_template("users/list.html", users=User.query.paginate(page=page, per_page=get_items_per_page()))
 
 
 # Create new user

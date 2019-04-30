@@ -1,4 +1,4 @@
-from application                 import app, db, login_required
+from application                 import app, db, login_required, get_items_per_page
 from application.storages.models import Storage
 from application.storages.forms  import StorageForm, StorageEditForm, StorageDeleteForm
 from application.homes.models    import Home
@@ -12,7 +12,7 @@ from flask_login                 import current_user
 @login_required()
 def storages_index(page):
     homeids = [h.home_id for h in current_user.get_my_homes().all()]
-    storages = db.session().query(Storage, Home.name).join(Home).filter(Home.home_id.in_(homeids)).order_by(Home.name, Storage.name).paginate(page=page, per_page=20)
+    storages = db.session().query(Storage, Home.name).join(Home).filter(Home.home_id.in_(homeids)).order_by(Home.name, Storage.name).paginate(page=page, per_page=get_items_per_page())
     return render_template("storages/list.html", storages=storages)
 
 

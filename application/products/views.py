@@ -1,4 +1,4 @@
-from application                 import app, db
+from application                 import app, db, get_items_per_page
 from application.products.models import Product
 from application.products.forms  import ProductForm
 from application.items.models    import Item
@@ -11,7 +11,7 @@ from sqlalchemy                  import exc
 @app.route("/products/<int:page>", methods=["GET"])
 @login_required
 def products_index(page):
-    return render_template("products/list.html", products = Product.query.order_by(Product.name).paginate(page=page, per_page=20))
+    return render_template("products/list.html", products = Product.query.order_by(Product.name).paginate(page=page, per_page=get_items_per_page()))
 
 
 # Create new product

@@ -70,7 +70,7 @@ class Home(db.Model):
         res.close()
         return rv
     
-    def get_stock(self, only_missing):
+    def get_stock(self, only_missing=False, page=None, per_page=None):
         sql = "" \
             "SELECT home_product.product_id           AS product_id," \
             "       t.product_name                    AS product_name," \
@@ -97,6 +97,10 @@ class Home(db.Model):
                 " WHERE current_quantity < desired_min_quantity" \
                 "    OR (current_quantity IS NULL AND desired_min_quantity IS NOT NULL)"
 
+        sql += " ORDER BY t.product_name"
+
+        if page and per_page:
+            sql += " LIMIT " + str(per_page) + " OFFSET " + str((page - 1) * per_page)
 
         q = text(sql).params(home_id=self.home_id)
         res = db.engine.execute(q)
@@ -111,9 +115,6 @@ class Home(db.Model):
                        })
         res.close()
         return rv
-
-    def get_stock_all(self):
-        return self.get_stock(False)
 
     def get_stock_missing(self):
         return self.get_stock(True)

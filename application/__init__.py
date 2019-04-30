@@ -32,7 +32,13 @@ db = SQLAlchemy(app)
 
 def is_sqlite():
     return app.config["SQLALCHEMY_DATABASE_URI"].startswith("sqlite")
-    
+
+from flask import session
+def get_items_per_page():
+    if "items_per_page" not in session:
+        session["items_per_page"] = 10
+    return session["items_per_page"]
+
 
 # Turn on foreign keys for sqlite:
 from sqlalchemy.engine import Engine
