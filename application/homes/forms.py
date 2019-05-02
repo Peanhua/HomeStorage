@@ -3,18 +3,12 @@ from wtforms   import FormField, FieldList, HiddenField, IntegerField, StringFie
 
 class HomeForm(FlaskForm):
     name = StringField("Name:", [validators.DataRequired(), validators.Length(min=4, max=80)])
-    class Meta:
-        csrf = False
 
 class MyHomeProductForm(FlaskForm):
     product_id   = HiddenField("Product ID", [validators.Optional()])
     product_name = HiddenField("Product", [validators.Optional()])
     mindesired   = IntegerField("Min desired quantity", [validators.InputRequired(), validators.NumberRange(min=0, max=9999)])
     maxdesired   = IntegerField("Max desired quantity", [validators.InputRequired(), validators.NumberRange(min=0, max=9999)])
-    class Meta:
-        csrf = False
 
 class MyHomeForm(FlaskForm):
     products = FieldList(FormField(MyHomeProductForm))
-    class Meta:
-        csrf = False
