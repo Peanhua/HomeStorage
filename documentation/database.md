@@ -1,6 +1,6 @@
 # Database
 
-Database diagram:
+<div>Database diagram:</div>
 <img src="database.svg" alt="Database diagram" width="700" />
 
 ## Indices
