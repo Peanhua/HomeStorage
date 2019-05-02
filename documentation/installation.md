@@ -55,6 +55,7 @@ The following environment variables are recognized and used if present:
   <tr><td>SECRET_KEY   </td><td>String    </td><td>some random data</td><td>Set the Flask SECRET_KEY used for securely signing the session cookie.</td></tr>
   <tr><td>DATABASE_URL </td><td>String    </td><td>sqlite:///homestorage.db</td><td>The database URL used for SQLAlchemy connection.</td></tr>
   <tr><td>DATABASE_ECHO</td><td>Boolean   </td><td>False        </td><td>Controls the SQLALCHEMY_ECHO configuration.</td></tr>
+  <tr><td>DEBUG        </td><td>Boolean   </td><td>False        </td><td>If DEBUG environment variable is defined (to any value), turns on debugging mode.</td></tr>
 </table>
 
 The variables are also read from ```.env``` using the *python-dotenv* package.
