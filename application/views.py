@@ -4,7 +4,7 @@ from application.items.models    import Item
 from application.products.models import Product
 from application.storages.models import Storage
 from application.users.models    import User
-from flask                       import redirect, render_template, url_for
+from flask                       import redirect, render_template, url_for, send_from_directory
 from flask_login                 import current_user
 import os
 
@@ -36,7 +36,11 @@ def docs_index():
 
 @app.route("/docs/<name>.png")
 def docs_png(name):
-    return app.send_static_file("documentation/" + name + ".png")
+    return send_from_directory("../documentation", name + ".png")
+
+@app.route("/docs/<name>.svg")
+def docs_svg(name):
+    return send_from_directory("../documentation", name + ".svg")
 
 @app.route("/docs/<name>.md")
 def docs_md(name):
