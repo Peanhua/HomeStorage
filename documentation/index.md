@@ -18,6 +18,8 @@ After a fresh install, the system contains one default user named *root*, with a
 
 Use the *root* user to create new user accounts and new homes.
 
+At the minimum, there needs to be a home, user assigned to the home, storage created for the home, and some products defined. After setting those up, the normal operations of adding and removing items from storages, and checking out reports, become available. Some of the reports and alerts also require setting up the desired quantities for products per home.
+
 
 
 ## 2. Using
@@ -83,6 +85,7 @@ A *storage* is a place in a *home* where items are stored. A home can have multi
 
 ### 2.7. Reports
 There are currently two reports available from the reports menu:
+
 * Best before
 * Missing products
 
