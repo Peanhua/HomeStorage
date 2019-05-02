@@ -123,7 +123,7 @@ def stock_add(storage_id):
         product_ids = request.form.getlist("productid[]")
         changes     = request.form.getlist("change[]")
         storage.adjust_stock(product_ids, changes)
-        return view()
+        return redirect(url_for("storages_index"))
 
 @app.route("/storages/<storage_id>/remove_items", methods=["GET", "POST"])
 @login_required()
@@ -148,5 +148,5 @@ def stock_remove(storage_id):
         product_ids = request.form.getlist("productid[]")
         changes     = request.form.getlist("change[]")
         storage.adjust_stock(product_ids, changes)
-        return view()
+        return redirect(url_for("storages_index"))
 
