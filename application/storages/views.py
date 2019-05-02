@@ -5,6 +5,7 @@ from application.homes.models    import Home
 from application.items.models    import Item
 from flask                       import redirect, render_template, request, url_for
 from flask_login                 import current_user
+from flask_wtf                   import FlaskForm
 
 # List of storages
 @app.route("/storages/", methods=["GET"], defaults={"page": 1})
@@ -112,7 +113,8 @@ def stock_add(storage_id):
     
     def view():
         products = storage.get_stock()
-        return render_template("storages/stock_add.html", home=home, storage=storage, products=products)
+        form = FlaskForm()
+        return render_template("storages/stock_add.html", form=form, home=home, storage=storage, products=products)
             
     if request.method == "GET":
         return view()
@@ -136,7 +138,8 @@ def stock_remove(storage_id):
     
     def view():
         products = storage.get_stock()
-        return render_template("storages/stock_remove.html", home=home, storage=storage, products=products)
+        form = FlaskForm()
+        return render_template("storages/stock_remove.html", form=form, home=home, storage=storage, products=products)
             
     if request.method == "GET":
         return view()
