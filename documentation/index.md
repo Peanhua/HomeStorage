@@ -9,6 +9,9 @@ This software is aimed to help keep track of the items in your home storages, ge
 
 One installation of a Home Storage can contain multiple homes, the system is designed with the assumption that all the users and homes in an installation are friendly. Thus there is no registration, new users are created using an admin account.
 
+The generic view of the software looks like the following:
+
+<img src="overview.svg" alt="Overview of the software" width="500" />
 
 ## 1. Setup
 After a fresh install, the system contains one default user named *root*, with a default password *root*. The *root* user has admin rights, and it can not be deleted. It is highly advisable to change the default password to something else.
