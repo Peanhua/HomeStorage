@@ -240,7 +240,7 @@ SELECT home_product.product_id           AS product_id,
           GROUP BY product.product_id
         ) t
   LEFT JOIN home_product ON home_product.product_id = t.product_id
-                        AND home_product.home_id = :home_
+                        AND home_product.home_id = :home_id
  WHERE current_quantity < desired_min_quantity
     OR (current_quantity IS NULL AND desired_min_quantity IS NOT NULL)
 ```
