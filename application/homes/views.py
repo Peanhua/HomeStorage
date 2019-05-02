@@ -187,7 +187,7 @@ def myhomes_view(home_id, users_page, products_page):
     
     homeuserids = [ u.user_id for u in home.users]
     homeusers   = User.query.filter(User.user_id.in_(homeuserids)).paginate(page=users_page, per_page=get_items_per_page(), error_out=False)
-    if homeuserspage > 1 and homeusers.page > homeusers.pages:
+    if homeusers.page > 1 and homeusers.page > homeusers.pages:
         return redirect(url_for("myhomes_view", home_id=home_id))
 
     stock = home.get_stock(page=products_page, per_page=get_items_per_page())
