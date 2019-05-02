@@ -29,6 +29,8 @@
   {{ render_pagination_controls(homes, 'myhomes_index', 'My home list pages') }}
 </div>
 {% else %}
-<div>You don't have any homes set. Ask your administrator to place you in one or more homes.</div>
+<div class="alert alert-warning" role="alert">
+  You don't have any homes set. Ask your administrator to place you in one or more homes.
+</div>
 {% endif %}
 {% endblock %}
