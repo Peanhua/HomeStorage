@@ -36,6 +36,8 @@ The screen is divided into two main parts. The top part contains a navigation to
 
 ![User interface](userinterface.png)
 
+The navigation toolbar is marked with red, and the active content is marked with blue on the screenshot above.
+
 The number of menu entries in the navigation toolbar depends on the user: superusers have access to more options.
 
 
