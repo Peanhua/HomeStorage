@@ -3,6 +3,20 @@
 Database diagram:
 <img src="database.svg" alt="Database diagram" width="700" />
 
+## Indices
+
+<table>
+  <tr><th>Index name                </th><th>Index type</th><th>Table       </th><th>Fields    </th></tr>
+  <tr><td>ix_account_login          </td><td>unique    </td><td>account     </td><td>login     </td></tr>
+  <tr><td>ix_home_product_home_id   </td><td>index     </td><td>home_product</td><td>home_id   </td></tr>
+  <tr><td>ix_home_product_product_id</td><td>index     </td><td>home_product</td><td>product_id</td></tr>
+  <tr><td>ix_home_user_home_id      </td><td>index     </td><td>home_user   </td><td>home_id   </td></tr>
+  <tr><td>ix_home_user_user_id      </td><td>index     </td><td>home_user   </td><td>user_id   </td></tr>
+  <tr><td>ix_item_product_id        </td><td>index     </td><td>item        </td><td>product_id</td></tr>
+  <tr><td>ix_item_storage_id        </td><td>index     </td><td>item        </td><td>storage_id</td></tr>
+  <tr><td>ix_storage_home_id        </td><td>index     </td><td>storage     </td><td>home_id   </td></tr>
+</table>
+
 
 ## Create table SQL
 ```SQL

@@ -3,8 +3,8 @@ from sqlalchemy.sql              import text
 
 class Item(db.Model):
     item_id    = db.Column(db.Integer, primary_key = True)
-    product_id = db.Column(db.Integer, db.ForeignKey("product.product_id"), nullable = False)
-    storage_id = db.Column(db.Integer, db.ForeignKey("storage.storage_id", ondelete="CASCADE"), nullable = False)
+    product_id = db.Column(db.Integer, db.ForeignKey("product.product_id"),                     nullable = False, index = True)
+    storage_id = db.Column(db.Integer, db.ForeignKey("storage.storage_id", ondelete="CASCADE"), nullable = False, index = True)
     quantity   = db.Column(db.Integer, nullable = False)
     best_before = db.Column(db.Date,   nullable = False)
 

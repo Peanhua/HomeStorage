@@ -6,7 +6,7 @@ from datetime                    import datetime, timedelta
 
 class Storage(db.Model):
     storage_id = db.Column(db.Integer,    primary_key = True)
-    home_id    = db.Column(db.Integer,    db.ForeignKey("home.home_id", ondelete="CASCADE"), nullable = False)
+    home_id    = db.Column(db.Integer,    db.ForeignKey("home.home_id", ondelete="CASCADE"), nullable = False, index = True)
     name       = db.Column(db.String(80), nullable = False)
 
     def __init__(self, home_id, name):

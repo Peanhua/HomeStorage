@@ -168,8 +168,8 @@ class Home(db.Model):
 
 class HomeUser(db.Model):
     homeuser_id = db.Column(db.Integer, primary_key = True)
-    home_id     = db.Column(db.Integer, db.ForeignKey("home.home_id", ondelete="CASCADE"),    nullable = False)
-    user_id     = db.Column(db.Integer, db.ForeignKey("account.user_id", ondelete="CASCADE"), nullable = False)
+    home_id     = db.Column(db.Integer, db.ForeignKey("home.home_id", ondelete="CASCADE"),    nullable = False, index = True)
+    user_id     = db.Column(db.Integer, db.ForeignKey("account.user_id", ondelete="CASCADE"), nullable = False, index = True)
 
     user = db.relationship("User")
 
@@ -180,8 +180,8 @@ class HomeUser(db.Model):
 
 class HomeProduct(db.Model):
     homeproduct_id       = db.Column(db.Integer, primary_key = True)
-    home_id              = db.Column(db.Integer, db.ForeignKey("home.home_id", ondelete="CASCADE"), nullable = False)
-    product_id           = db.Column(db.Integer, db.ForeignKey("product.product_id", ondelete="CASCADE"), nullable = False)
+    home_id              = db.Column(db.Integer, db.ForeignKey("home.home_id", ondelete="CASCADE"),       nullable = False, index = True)
+    product_id           = db.Column(db.Integer, db.ForeignKey("product.product_id", ondelete="CASCADE"), nullable = False, index = True)
     desired_min_quantity = db.Column(db.Integer, nullable = True)
     desired_max_quantity = db.Column(db.Integer, nullable = True)
 
