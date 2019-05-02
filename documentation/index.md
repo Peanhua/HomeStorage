@@ -18,13 +18,13 @@ After a fresh install, the system contains one default user named *root*, with a
 
 Use the *root* user to create new user accounts and new homes.
 
-At the minimum, there needs to be a home, user assigned to the home, storage created for the home, and some products defined. After setting those up, the normal operations of adding and removing items from storages, and checking out reports, become available. Some of the reports and alerts also require setting up the desired quantities for products per home.
-
 
 
 ## 2. Using
 
 The system requires some setting up before it is useful. Homes, users, products, and storages need to be setup first.
+
+At the minimum, there needs to be a home, user assigned to the home, storage created for the home, and some products defined. After setting those up, the normal operations of adding and removing items from storages, and checking out reports, become available. Some of the reports and alerts also require setting up the desired quantities for products per home.
 
 After setting things up, the normal "daily" routine consists of checking reports and adjusting the stock in storages. The landing screen, also accessible by clicking the big "Home Storage" in the navigation toolbar, contains some useful quick information about the system. And adjusting the stock is done through the "Storages" of the navigation toolbar.
 
