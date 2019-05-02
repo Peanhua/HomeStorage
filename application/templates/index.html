@@ -1,9 +1,6 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h3>Dashboard</h3>
-<small>Use the navigation menu on top, or check out the <a href="{{ url_for('docs_index') }}">documentation</a></small>
-<p></p>
 {% if "ADMIN" in current_user.roles() %}
 <h4>System status:</h4>
 <div class="container">
