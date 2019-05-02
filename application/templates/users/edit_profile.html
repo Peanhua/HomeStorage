@@ -3,6 +3,7 @@
 {% block body %}
 <h3>My profile</h3>
 <form method="POST">
+  {{ form.csrf_token }}
   <div table="container">
     <div class="row">
       <div class="col-2">User id:</div>

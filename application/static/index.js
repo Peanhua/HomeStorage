@@ -18,6 +18,7 @@ onDeleteUserClicked = (user_id) => {
       }
     }
     req.open("DELETE", url, true)
+    req.setRequestHeader("X-CSRFToken", getCSRFToken())
     req.send(null)
   }
 }
@@ -44,6 +45,7 @@ onDeleteProductClicked = (product_id) => {
       }
     }
     req.open("DELETE", url, true)
+    req.setRequestHeader("X-CSRFToken", getCSRFToken())
     req.send(null)
   }
 }
@@ -153,6 +155,7 @@ onDeleteSomethingClicked = (delete_url) => {
     }
   }
   req.open("DELETE", delete_url, true)
+  req.setRequestHeader("X-CSRFToken", getCSRFToken())
   req.send(null)
 }
 

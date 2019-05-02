@@ -3,6 +3,7 @@
 {% block body %}
 <h3>Products for: {{ home.name }}</h3>
 <form method="POST">
+  {{ form.csrf_token }}
   <table>
     <tr>
       <th>Product</th>

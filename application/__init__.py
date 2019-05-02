@@ -91,6 +91,10 @@ login_manager.login_view = "auth_login"
 login_manager.login_message = "Please login to use this functionality."
 
 
+# CSRF setup
+from flask_wtf.csrf import CSRFProtect
+csrf = CSRFProtect(app)
+
 
 # Load application content:
 from application          import views

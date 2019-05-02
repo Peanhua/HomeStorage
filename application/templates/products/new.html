@@ -3,6 +3,7 @@
 {% block body %}
 <h3>Add new product</h3>
 <form method="POST" action="{{ url_for('products_create') }}">
+  {{ form.csrf_token }}
   <div class="container">
     <div class="row">
       <div class="col-2">{{ form.name.label }}</div>

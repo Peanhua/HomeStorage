@@ -24,6 +24,7 @@ def users_create():
     form = UserNewForm(request.form)
 
     if not form.validate():
+        print("FAILED TO VALIDATE FORM")
         return render_template("users/new.html", form = form)
     
     user = User(form.name.data,

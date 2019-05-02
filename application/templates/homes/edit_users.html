@@ -3,6 +3,7 @@
 {% block body %}
 <form method="POST">
   <h3>Select users for: {{ home.name }}</h3>
+  {{ form.csrf_token }}
   <input type="hidden" name="home_id" value="{{ home.home_id }}" />
   <div class="container">
     <div class="row">

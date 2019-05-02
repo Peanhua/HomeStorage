@@ -4,6 +4,7 @@
 <h3>Add new storage</h3>
 {% if form.home.choices|length > 0 %}
 <form method="POST" action="{{ url_for('storages_create') }}">
+  {{ form.csrf_token }}
   <div class="container">
     <div class="row">
       <div class="col-1">{{ form.home.label }}</div>
