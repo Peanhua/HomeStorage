@@ -105,6 +105,90 @@ CREATE INDEX ix_item_storage_id ON item (storage_id);
 CREATE INDEX ix_item_product_id ON item (product_id);
 ```
 
+### PostgreSQL variants
+
+```SQL
+CREATE TABLE product (
+       product_id       SERIAL NOT NULL,
+       name             VARCHAR(80) NOT NULL,
+       default_lifetime INTEGER NOT NULL,
+       PRIMARY KEY (product_id)
+);
+
+CREATE TABLE home (
+       home_id SERIAL NOT NULL,
+       name    VARCHAR(80) NOT NULL,
+       PRIMARY KEY (home_id)
+);
+
+CREATE TABLE account (
+       user_id               SERIAL NOT NULL,
+       name                  VARCHAR(80) NOT NULL,
+       login                 VARCHAR(40) NOT NULL,
+       password              VARCHAR(128) NOT NULL,
+       email                 VARCHAR(80) NOT NULL,
+       superuser             BOOLEAN NOT NULL,
+       force_password_change BOOLEAN NOT NULL,
+       PRIMARY KEY (user_id)
+);
+
+CREATE UNIQUE INDEX ix_account_login ON account (login);
+
+CREATE TABLE home_user (
+       homeuser_id SERIAL NOT NULL,
+       home_id     INTEGER NOT NULL,
+       user_id     INTEGER NOT NULL,
+       PRIMARY KEY (homeuser_id),
+       FOREIGN KEY(home_id) REFERENCES home (home_id) ON DELETE CASCADE,
+       FOREIGN KEY(user_id) REFERENCES account (user_id) ON DELETE CASCADE
+);
+
+CREATE INDEX ix_home_user_home_id ON home_user (home_id);
+
+CREATE INDEX ix_home_user_user_id ON home_user (user_id);
+
+CREATE TABLE home_product (
+       homeproduct_id       SERIAL NOT NULL,
+       home_id              INTEGER NOT NULL,
+       product_id           INTEGER NOT NULL,
+       desired_min_quantity INTEGER,
+       desired_max_quantity INTEGER,
+       PRIMARY KEY (homeproduct_id),
+       FOREIGN KEY(home_id) REFERENCES home (home_id) ON DELETE CASCADE,
+       FOREIGN KEY(product_id) REFERENCES product (product_id) ON DELETE CASCADE
+);
+
+CREATE INDEX ix_home_product_product_id ON home_product (product_id);
+
+CREATE INDEX ix_home_product_home_id ON home_product (home_id);
+
+CREATE TABLE storage (
+       storage_id SERIAL NOT NULL,
+       home_id    INTEGER NOT NULL,
+       name       VARCHAR(80) NOT NULL,
+       PRIMARY KEY (storage_id),
+       FOREIGN KEY(home_id) REFERENCES home (home_id) ON DELETE CASCADE
+);
+
+CREATE INDEX ix_storage_home_id ON storage (home_id);
+
+CREATE TABLE item (
+       item_id     SERIAL NOT NULL,
+       product_id  INTEGER NOT NULL,
+       storage_id  INTEGER NOT NULL,
+       quantity    INTEGER NOT NULL,
+       best_before DATE NOT NULL,
+       PRIMARY KEY (item_id),
+       FOREIGN KEY(product_id) REFERENCES product (product_id),
+       FOREIGN KEY(storage_id) REFERENCES storage (storage_id) ON DELETE CASCADE
+);
+
+CREATE INDEX ix_item_storage_id ON item (storage_id);
+
+CREATE INDEX ix_item_product_id ON item (product_id);
+```
+
+
 ## Default data inserts
 ```SQL
 INSERT INTO account (name, login, password, email, superuser, force_password_change)
