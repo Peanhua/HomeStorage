@@ -13,7 +13,7 @@ from flask_login                 import current_user
 def storages_index(page):
     homeids = [h.home_id for h in current_user.get_my_homes().all()]
     storages = db.session().query(Storage, Home.name).join(Home).filter(Home.home_id.in_(homeids)).order_by(Home.name, Storage.name).paginate(page=page, per_page=get_items_per_page(), error_out=False)
-    if storages.page > storages.pages:
+    if storages.page > 1 and storages.page > storages.pages:
         return redirect(url_for("storages_index"))
     return render_template("storages/list.html", storages=storages)
 

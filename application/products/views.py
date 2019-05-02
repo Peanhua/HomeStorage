@@ -12,7 +12,7 @@ from sqlalchemy                  import exc
 @login_required
 def products_index(page):
     products = Product.query.order_by(Product.name).paginate(page=page, per_page=get_items_per_page(), error_out=False)
-    if products.page > products.pages:
+    if products.page > 1 and products.page > products.pages:
         return redirect(url_for("products_index"))
     return render_template("products/list.html", products=products)
 

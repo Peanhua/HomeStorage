@@ -13,7 +13,7 @@ from flask_sqlalchemy            import Pagination
 @login_required(role="ADMIN")
 def homes_index(page):
  homes = Home.query.paginate(page=page, per_page=get_items_per_page(), error_out=False)
- if homes.page > homes.pages:
+ if homes.page > 1 and homes.page > homes.pages:
      return redirect(url_for("homes_index"))
  return render_template("homes/list.html", homes=homes)
 
@@ -123,7 +123,7 @@ def homeusers_edit(home_id):
 @login_required()
 def myhomes_index(page):
     homes = current_user.get_my_homes().paginate(page=page, per_page=get_items_per_page(), error_out=False)
-    if homes.page > homes.pages:
+    if homes.page > 1 and homes.page > homes.pages:
         return redirect(url_for("myhomes_index"))
     return render_template("homes/mylist.html", homes = homes)
 
@@ -185,12 +185,12 @@ def myhomes_view(home_id, users_page, products_page):
     
     homeuserids = [ u.user_id for u in home.users]
     homeusers   = User.query.filter(User.user_id.in_(homeuserids)).paginate(page=users_page, per_page=get_items_per_page(), error_out=False)
-    if homeusers.page > homeusers.pages:
+    if homeuserspage > 1 and homeusers.page > homeusers.pages:
         return redirect(url_for("myhomes_view", home_id=home_id))
 
     stock = home.get_stock(page=products_page, per_page=get_items_per_page())
     products = Pagination(None, page=products_page, per_page=get_items_per_page(), total=Product.query.count(), items=stock)
-    if products.page > products.pages:
+    if products.page > 1 and products.page > products.pages:
         return redirect(url_for("myhomes_view", home_id=home_id))
     
     return render_template("homes/myview.html", home=home, homeusers=homeusers, products=products)
