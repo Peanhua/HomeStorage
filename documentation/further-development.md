@@ -16,6 +16,9 @@ This requires managing the configuration for an email server.
 
 ## Other improvements/ideas
 
+### Per item best before dates
+Currently all the items share the same lifetime, which is used to calculate the best before date. But when items are bought from a shop, they usually have varying lifetimes based on their creation date. There should be possibility to adjust the best before date when adding items to the storage.
+
 ### Smart phone application
 A smart phone application would ease the users life a great deal. Users could scan a receipt for adding items to storage, use bar codes on the items to add/remove items to/from storages. And the beforementioned alarms would fit smart phone application well.
 
