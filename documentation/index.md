@@ -40,8 +40,16 @@ The navigation toolbar is marked with red, and the active content is marked with
 
 The number of menu entries in the navigation toolbar depends on the user: superusers have access to more options.
 
+### 2.2. Dashboard
 
-### 2.2. Users
+The dashboard contains information about the system and your homes. The information contains some simple statistics and possible warnings and errors. Warnings are shown on yellow background, and more severe errors are on red background.
+
+The amount of information about the system depends on whether the current user is a superuser or not. The superuser sees additional warnings and errors related to the overall system health.
+
+For each home the current is user is part of, some default reports are run and if there are issues, their short results are shown as warnings or errors. Otherwise a "All good." message is shown in green background.
+
+
+### 2.3. Users
 Users are divided into two groups: those who have admin rights and those who don't.
 
 Users with admin rights, aka *superusers*, can do all the same things as normal users, but in addition the superusers can manage users and homes. The user with user id 1 is a special, and can not be deleted. After a fresh install, the system contains one default superuser named *root*, with a default password *root*.
@@ -53,7 +61,7 @@ User management menu is shown only for superusers, and it contains tools to crea
 A user can be part of multiple homes.
 
 
-### 2.3. Homes
+### 2.4. Homes
 A *home* is a set of *storages*, *users*, and *product* settings.
 
 The home management menu is shown only for superusers, from there, a superuser can create new homes, edit and delete existing homes.
@@ -61,7 +69,7 @@ The home management menu is shown only for superusers, from there, a superuser c
 ![Home management menu](homes.png)
 
 
-### 2.4. Products
+### 2.5. Products
 A *product* is something that can be stored, it's an abstract representation. All the *products* are shared between all the *homes*.
 
 An *item* is a physical instantation of a *product*, something that is actually present in real life. An *item* is always located in a specific *storage*.
@@ -73,19 +81,19 @@ The *default lifetime* is used to calculate the best before date.
 ![Product management menu](products.png)
 
 
-### 2.5. My Homes
+### 2.6. My Homes
 From the *My Homes* management menu, users can see the current total stock of items for their homes, and edit the settings for each of their home.
 
 ![My homes management menu](myhomes.png)
 
 
-### 2.6. Storages
+### 2.7. Storages
 A *storage* is a place in a *home* where items are stored. A home can have multiple storages. Storages management menu can be used to create and edit storages. The stock of each storage is managed through the *Add items* and the *Remove items* options.
 
 ![Storages management menu](storages.png)
 
 
-### 2.7. Reports
+### 2.8. Reports
 There are currently two reports available from the reports menu:
 
 * Best before
@@ -96,10 +104,10 @@ From the reports menu, choose the home and other parameters, and then click the 
 ![Reports menu](reports.png)
 
 
-#### 2.7.1. Best before report
+#### 2.8.1. Best before report
 Best before report lists items past, or nearing, the best before date of each stored item.
 
 
-#### 2.7.2. Missing products report
+#### 2.8.2. Missing products report
 Missing products report lists products whose quantity is below minimum desired defined for the home.
 
