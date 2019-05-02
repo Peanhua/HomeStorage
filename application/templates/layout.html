@@ -32,6 +32,9 @@
       getCSRFToken = () => {
         return "{{ csrf_token() }}"
       }
+      perPageItemCountChangeUrl = (items) => {
+        return "{{ url_for('per_page_item_count_change', items='ITEMS') }}".replace(/ITEMS/, items)
+      }
     </script>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
   </head>

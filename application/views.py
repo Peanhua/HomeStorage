@@ -53,3 +53,14 @@ def docs_md(name):
         content = fp.read()
     return render_template("doc.html", css=css, content=content)
     
+
+from flask import session
+@app.route("/per_page_items/<items>")
+def per_page_item_count_change(items):
+    try:
+        items = int(items)
+        if items > 0 and items <= 1000:
+            session["items_per_page"] = items
+    except:
+        pass
+    return ""

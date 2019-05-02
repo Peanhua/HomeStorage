@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% from "macros.html" import render_pagination_item_count_controls with context %}
 
 {% block body %}
 <h3>My Home: {{ home.name }}</h3>
@@ -89,7 +90,7 @@
             </a>
           </li>
         </ul>
-        <small class="mt-0">Page {{ products.page }} of {{ products.pages }}</small>
+        <small class="mt-0">Page {{ products.page }} of {{ products.pages }}, displaying {{ render_pagination_item_count_controls('default', products.per_page) }} per page</small>
       </nav>
     </div>
   </div>

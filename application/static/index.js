@@ -168,3 +168,19 @@ onDeleteStorageClicked = (storage_id) => {
 onDeleteHomeClicked = (home_id) => {
   onDeleteSomethingClicked(deleteHomeUrl(home_id))
 }
+
+
+onPerPageItemCountChange = (id) => {
+  const selectObject = document.getElementById(id)
+  const items = selectObject.options[selectObject.selectedIndex].value
+  const req = new XMLHttpRequest()
+  req.onreadystatechange = function() {
+    if (this.readyState === 4) {
+      if (this.status === 200) {
+        location.reload()
+      }
+    }
+  }
+  req.open("GET", perPageItemCountChangeUrl(items), true)
+  req.send(null)
+}
