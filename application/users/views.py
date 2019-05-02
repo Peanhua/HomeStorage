@@ -9,7 +9,7 @@ from flask_login              import current_user
 @app.route("/users/<int:page>", methods=["GET"])
 @login_required(role="ADMIN")
 def users_index(page):
-    users = User.query.paginate(page=page, per_page=get_items_per_page(), error_out=False)
+    users = User.query.order_by(User.name).paginate(page=page, per_page=get_items_per_page(), error_out=False)
     if users.page > 1 and users.page > users.pages:
         return redirect(url_for("users_index"))
     return render_template("users/list.html", users=users)
