@@ -12,7 +12,10 @@ from flask_sqlalchemy            import Pagination
 @app.route("/homes/<int:page>", methods=["GET"])
 @login_required(role="ADMIN")
 def homes_index(page):
-    return render_template("homes/list.html", homes = Home.query.paginate(page=page, per_page=get_items_per_page()))
+ homes = Home.query.paginate(page=page, per_page=get_items_per_page(), error_out=False)
+ if homes.page > homes.pages:
+     return redirect(url_for("homes_index"))
+ return render_template("homes/list.html", homes=homes)
 
 
 # Create new home
@@ -119,7 +122,9 @@ def homeusers_edit(home_id):
 @app.route("/myhomes/<int:page>", methods=["GET"])
 @login_required()
 def myhomes_index(page):
-    homes = current_user.get_my_homes().paginate(page=page, per_page=get_items_per_page())
+    homes = current_user.get_my_homes().paginate(page=page, per_page=get_items_per_page(), error_out=False)
+    if homes.page > homes.pages:
+        return redirect(url_for("myhomes_index"))
     return render_template("homes/mylist.html", homes = homes)
 
 # My Homes editing:
@@ -179,8 +184,13 @@ def myhomes_view(home_id, users_page, products_page):
         return redirect(url_for("auth_unauthorized"))
     
     homeuserids = [ u.user_id for u in home.users]
-    homeusers   = User.query.filter(User.user_id.in_(homeuserids)).paginate(page=users_page, per_page=get_items_per_page())
+    homeusers   = User.query.filter(User.user_id.in_(homeuserids)).paginate(page=users_page, per_page=get_items_per_page(), error_out=False)
+    if homeusers.page > homeusers.pages:
+        return redirect(url_for("myhomes_index"))
 
     stock = home.get_stock(page=products_page, per_page=get_items_per_page())
-    products = Pagination(None, page=products_page, per_page=get_items_per_page(), total=Product.query.count(), items=stock)
+    products = Pagination(None, page=products_page, per_page=get_items_per_page(), total=Product.query.count(), items=stock, error_out=False)
+    if products.page > products.pages:
+        return redirect(url_for("myhomes_index"))
+    
     return render_template("homes/myview.html", home=home, homeusers=homeusers, products=products)

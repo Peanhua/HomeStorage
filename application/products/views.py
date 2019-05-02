@@ -11,7 +11,10 @@ from sqlalchemy                  import exc
 @app.route("/products/<int:page>", methods=["GET"])
 @login_required
 def products_index(page):
-    return render_template("products/list.html", products = Product.query.order_by(Product.name).paginate(page=page, per_page=get_items_per_page()))
+    products = Product.query.order_by(Product.name).paginate(page=page, per_page=get_items_per_page(), error_out=False)
+    if products.page > products.pages:
+        return redirect(url_for("products_index"))
+    return render_template("products/list.html", products=products)
 
 
 # Create new product
