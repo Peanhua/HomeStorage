@@ -11,6 +11,10 @@ Every home has some food stored, whether it's half eaten bread and open can of m
 
 This software is aimed to help keep track of the items in your home storages, get reports and alerts about them, and help in replenishing the stock.
 
+The generic view of the software looks like the following:
+
+<img src="documentation/overview.svg" alt="Overview of the software" width="500" />
+
 For more information, see the documentation below.
 
 
