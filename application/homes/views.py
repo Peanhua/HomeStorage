@@ -186,11 +186,11 @@ def myhomes_view(home_id, users_page, products_page):
     homeuserids = [ u.user_id for u in home.users]
     homeusers   = User.query.filter(User.user_id.in_(homeuserids)).paginate(page=users_page, per_page=get_items_per_page(), error_out=False)
     if homeusers.page > homeusers.pages:
-        return redirect(url_for("myhomes_index"))
+        return redirect(url_for("myhomes_view", home_id=home_id))
 
     stock = home.get_stock(page=products_page, per_page=get_items_per_page())
-    products = Pagination(None, page=products_page, per_page=get_items_per_page(), total=Product.query.count(), items=stock, error_out=False)
+    products = Pagination(None, page=products_page, per_page=get_items_per_page(), total=Product.query.count(), items=stock)
     if products.page > products.pages:
-        return redirect(url_for("myhomes_index"))
+        return redirect(url_for("myhomes_view", home_id=home_id))
     
     return render_template("homes/myview.html", home=home, homeusers=homeusers, products=products)
