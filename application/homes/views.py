@@ -6,6 +6,7 @@ from application.products.models import Product
 from flask                       import redirect, render_template, request, url_for
 from flask_login                 import current_user
 from flask_sqlalchemy            import Pagination
+from flask_wtf                   import FlaskForm
 
 # List of homes
 @app.route("/homes/", methods=["GET"], defaults={"page": 1})
@@ -95,7 +96,8 @@ def homeusers_edit(home_id):
     otherusers = User.query.filter(~User.user_id.in_(homeuserids)).all()
     
     if request.method == "GET":
-        return render_template("homes/edit_users.html", home=home, homeusers=homeusers, otherusers=otherusers)
+        form = FlaskForm()
+        return render_template("homes/edit_users.html", form=form, home=home, homeusers=homeusers, otherusers=otherusers)
 
     elif request.method == "POST":
         # Delete HomeUsers not in saveduids, and add new HomeUsers for those that didn't exist before:
