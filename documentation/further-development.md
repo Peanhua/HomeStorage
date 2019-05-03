@@ -19,6 +19,12 @@ This requires managing the configuration for an email server.
 ### Per item best before dates
 Currently all the items share the same lifetime, which is used to calculate the best before date. But when items are bought from a shop, they usually have varying lifetimes based on their creation date. There should be possibility to adjust the best before date when adding items to the storage.
 
+### The force_password_change field in Account table should be True by default
+The *force_password_change* in Account table, which forces the user to change password before the user can do anything else, should be True by default. This would force the default root account user to also change the password upon first login. This was not done because it makes testing a lot harder.
+
+### Units and package sizes
+Item quantities are without any unit type information. A single item is considered as a one "normal" package of the product in question, for example in Finland milk is often sold in 1 liter packages, sugar in 1 kilogram, etc. However, there are multiple package sizes present, even in Finland, and the package size does matter. This is especially true with reports that try to determine the "amount" of some product. So it would be a good addition to have units and package sizes supported by the software. This issue can somewhat be circumvented by the users via soft rules made by themselves, for example "sugar is always in kilograms", "chocolade powder is always in grams".
+
 ### Smart phone application
 A smart phone application would ease the users life a great deal. Users could scan a receipt for adding items to storage, use bar codes on the items to add/remove items to/from storages. And the beforementioned alarms would fit smart phone application well.
 
