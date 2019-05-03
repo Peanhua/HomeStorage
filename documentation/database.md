@@ -30,6 +30,8 @@ There is no denormalization of the database done. The most heavy queries are don
   <tr><td>ix_storage_home_id        </td><td>index     </td><td>storage     </td><td>home_id   </td></tr>
 </table>
 
+The *ix_account_login* unique index is used to make sure that no two accounts have the same login.
+
 
 ## Create table SQL
 
