@@ -48,5 +48,17 @@ The homes and storages should have addresses set on them. This would allow showi
 ### Single-page application
 The front-end should be switched to [single-page application](https://en.wikipedia.org/wiki/Single-page_application) -style for more pleasant user experience.
 
-### Filtering
-The lists made of products should have filtering, so that users can easily see only relevant information. Paging would be another option, but that would make the user interface more difficult to use, and slower. The number of products per installation is most likely not going to be very high because this stock management is aimed for homes, and not for big commercial stores.
+### Filtering and sorting
+All the lists should have filtering, so that users can easily see only relevant information.
+
+### Improve the user interface for the lists without paging
+In the add/remove items and editing products desired quantities for homes views all the products are listed without paging or filtering. Filtering would be a first step to improve the user interface. Paging would be another option, but that would make the user interface more difficult to use, and slower. The number of products per installation is most likely not going to be very high because this stock management is aimed for homes, and not for big commercial stores.
+
+### Easier/faster way to add/remove items
+Currently the option to add/remove items is to go to the Storages view, and then click either add or remove items. This is a bit "hidden" and might not be so intuitive/easy to find for new users. There maybe could be separate navigation toolbar options for these common tasks, and/or buttons in the dashboard.
+
+### Default home
+If a user is part of multiple homes, the user would benefit from having a default home selected automatically because the user is most likely working on one home at a time. The changing of the default home should be easily accessible, for example from the navigation toolbar.
+
+### Per home views
+If a user is part of multiple homes, it might be nice for the eye, and help avoid making changes to the wrong home, if the current home was somehow selected (see also *Default home* above), and it changed something visually in the user interface (for example coloring, background image, home specific logo somewhere).
