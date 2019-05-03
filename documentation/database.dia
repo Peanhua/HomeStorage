@@ -101,7 +101,7 @@
         <dia:real val="0.10000000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#Product#</dia:string>
+        <dia:string>#product#</dia:string>
       </dia:attribute>
       <dia:attribute name="comment">
         <dia:string>##</dia:string>
@@ -231,7 +231,7 @@
         <dia:real val="0.10000000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#Storage#</dia:string>
+        <dia:string>#storage#</dia:string>
       </dia:attribute>
       <dia:attribute name="comment">
         <dia:string>##</dia:string>
@@ -361,7 +361,7 @@
         <dia:real val="0.10000000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#Account#</dia:string>
+        <dia:string>#account#</dia:string>
       </dia:attribute>
       <dia:attribute name="comment">
         <dia:string>##</dia:string>
@@ -571,7 +571,7 @@
         <dia:real val="0.10000000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#Home#</dia:string>
+        <dia:string>#home#</dia:string>
       </dia:attribute>
       <dia:attribute name="comment">
         <dia:string>##</dia:string>
@@ -681,7 +681,7 @@
         <dia:real val="0.10000000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#Item#</dia:string>
+        <dia:string>#item#</dia:string>
       </dia:attribute>
       <dia:attribute name="comment">
         <dia:string>##</dia:string>
@@ -851,7 +851,7 @@
         <dia:real val="0.10000000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#HomeUser#</dia:string>
+        <dia:string>#home_user#</dia:string>
       </dia:attribute>
       <dia:attribute name="comment">
         <dia:string>##</dia:string>
@@ -1101,7 +1101,7 @@
         <dia:real val="0.10000000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#HomeProduct#</dia:string>
+        <dia:string>#home_product#</dia:string>
       </dia:attribute>
       <dia:attribute name="comment">
         <dia:string>##</dia:string>

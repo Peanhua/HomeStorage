@@ -4,7 +4,7 @@
   <g>
     <rect style="fill: #ffffff" x="-128" y="388" width="233.9" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-128" y="388" width="233.9" height="18"/>
-    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-11.05" y="402">Product</text>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-11.05" y="402">product</text>
     <rect style="fill: #ffffff" x="-128" y="406" width="233.9" height="52"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-128" y="406" width="233.9" height="52"/>
     <polygon style="fill: #000000" points="-125,416 -123,419 -121,416 -123,413 "/>
@@ -20,7 +20,7 @@
   <g>
     <rect style="fill: #ffffff" x="215" y="125" width="226.2" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="215" y="125" width="226.2" height="18"/>
-    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="328.1" y="139">Storage</text>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="328.1" y="139">storage</text>
     <rect style="fill: #ffffff" x="215" y="143" width="226.2" height="52"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="215" y="143" width="226.2" height="52"/>
     <polygon style="fill: #000000" points="218,153 220,156 222,153 220,150 "/>
@@ -36,7 +36,7 @@
   <g>
     <rect style="fill: #ffffff" x="-153" y="-194" width="280.1" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-153" y="-194" width="280.1" height="18"/>
-    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-12.95" y="-180">Account</text>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-12.95" y="-180">account</text>
     <rect style="fill: #ffffff" x="-153" y="-176" width="280.1" height="116"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-153" y="-176" width="280.1" height="116"/>
     <polygon style="fill: #000000" points="-150,-166 -148,-163 -146,-166 -148,-169 "/>
@@ -64,7 +64,7 @@
   <g>
     <rect style="fill: #ffffff" x="-113" y="118" width="203.1" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-113" y="118" width="203.1" height="18"/>
-    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-11.45" y="132">Home</text>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-11.45" y="132">home</text>
     <rect style="fill: #ffffff" x="-113" y="136" width="203.1" height="36"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-113" y="136" width="203.1" height="36"/>
     <polygon style="fill: #000000" points="-110,146 -108,149 -106,146 -108,143 "/>
@@ -77,7 +77,7 @@
   <g>
     <rect style="fill: #ffffff" x="231" y="369" width="195.4" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="231" y="369" width="195.4" height="18"/>
-    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="328.7" y="383">Item</text>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="328.7" y="383">item</text>
     <rect style="fill: #ffffff" x="231" y="387" width="195.4" height="84"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="231" y="387" width="195.4" height="84"/>
     <polygon style="fill: #000000" points="234,397 236,400 238,397 236,394 "/>
@@ -99,7 +99,7 @@
   <g>
     <rect style="fill: #ffffff" x="-114" y="-5" width="203.1" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-114" y="-5" width="203.1" height="18"/>
-    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-12.45" y="9">HomeUser</text>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-12.45" y="9">home_user</text>
     <rect style="fill: #ffffff" x="-114" y="13" width="203.1" height="52"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-114" y="13" width="203.1" height="52"/>
     <polygon style="fill: #000000" points="-111,23 -109,26 -107,23 -109,20 "/>
@@ -125,7 +125,7 @@
   <g>
     <rect style="fill: #ffffff" x="-129" y="246" width="233.9" height="18"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-129" y="246" width="233.9" height="18"/>
-    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-12.05" y="260">HomeProduct</text>
+    <text font-size="11.2" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-12.05" y="260">home_product</text>
     <rect style="fill: #ffffff" x="-129" y="264" width="233.9" height="84"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-129" y="264" width="233.9" height="84"/>
     <polygon style="fill: #000000" points="-126,274 -124,277 -122,274 -124,271 "/>

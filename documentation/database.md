@@ -3,17 +3,17 @@
 <div>Database diagram:</div>
 <img src="database.svg" alt="Database diagram" width="700" />
 
-The *superuser* field in Account table is *True* when the user is a superuser and has the rights to manage users and homes.
+The *superuser* field in *account* table is *True* when the user is a superuser and has the rights to manage users and homes.
 
-When the *force_password_change* in Account table is set to True, the user is required to change the password before the user can do anything else. After the user in question has changed the password, the *force_password_change* field is set to False. The field is set to True for all new users created via the softwares user interface.
+When the *force_password_change* in *account* table is set to *True*, the user is required to change the password before the user can do anything else. After the user in question has changed the password, the *force_password_change* field is set to *False*. The field is set to *True* for all new users created via the softwares user interface.
 
 All the item quantities used are integers, and are not tied to any special unit like "liter", "kilogram", etc.
 
-The *default_lifetime* field in Product table is in days.
+The *default_lifetime* field in *product* table is in days.
 
 When items are taken out from a storage, it is done using the *best_before* date so that the oldest items are used first. For details, see the file `application/storage/models.py`, methods adjust_stock() and decrease_item_count().
 
-There is no denormalization of the database done. The most heavy queries are done around the HomeProduct, Item, and Product tables. Especially, an often done query is with Item and Product tables, so for example the Product.name field could be denormalized into the Item table to possibly gain some performance increase.
+There is no denormalization of the database done. The most heavy queries are done around the *home_product*, *item*, and *product* tables. Especially, an often done query is with *item* and *product* tables, so for example the *product.name* field could be denormalized into the *item* table to possibly gain some performance increase.
 
 
 ## Indices
