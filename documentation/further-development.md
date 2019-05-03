@@ -22,8 +22,14 @@ Currently all the items share the same lifetime, which is used to calculate the 
 ### The force_password_change field in Account table should be True by default
 The *force_password_change* in Account table, which forces the user to change password before the user can do anything else, should be True by default. This would force the default root account user to also change the password upon first login. This was not done because it makes testing a lot harder.
 
+### Home specific products
+It might be a good idea to have each home their own products. This could still allow the use of common repository of products, from which the home owners would then utilize the ones they want. There should probably also be some way to clone a product, so that variants could be easily made.
+
 ### Units and package sizes
 Item quantities are without any unit type information. A single item is considered as a one "normal" package of the product in question, for example in Finland milk is often sold in 1 liter packages, sugar in 1 kilogram, etc. However, there are multiple package sizes present, even in Finland, and the package size does matter. This is especially true with reports that try to determine the "amount" of some product. So it would be a good addition to have units and package sizes supported by the software. This issue can somewhat be circumvented by the users via soft rules made by themselves, for example "sugar is always in kilograms", "chocolade powder is always in grams".
+
+### Products of same type
+Sometimes there are products that are of same type, where the type doesn't really matter, but the packaging/brand/something else varies between products. Users are now forced to use one type of product for all of those in order to get meaningful reports. For example there could be two bread brands that taste a bit different, but are easily interchangeable by the users, so the users might sometimes opt to take the other brand bread whose best before date is later than the other one, but in the reports they want to just see a generic "bread".
 
 ### Smart phone application
 A smart phone application would ease the users life a great deal. Users could scan a receipt for adding items to storage, use bar codes on the items to add/remove items to/from storages. And the beforementioned alarms would fit smart phone application well.
